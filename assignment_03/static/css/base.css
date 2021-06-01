@@ -1,38 +1,70 @@
+
+/* Hides navbar that is made for smaller screens */
+@media only screen and (min-width: 767px){
+    #mobile-navbar{
+        display: none!important;
+    }
+}
+/* Hides navbar that is made for larger screens */
+@media only screen and (max-width: 767px){
+    #big-navbar{
+        display: none;
+    }
+}
+/* BASE HTML */
 body{
-    background-color:lightgrey;
+    background-color: #030303;
 }
-.navbar-nav{
-    width: 100%;
+.navbar-collapse{
     display: flex;
+    justify-content: flex-end;
 }
-.nav-link{
-    margin-left:-12px;
-    margin-right: -12px;
+.search-bar{
+    display: flex;
+    flex: 1;
+    
 }
-.nav-center-divider{
-    /* display: flex;
-    justify-content: flex-end; */
-    width: calc( 100% - 15% );
+/* HOME HTML */
+.btn-group{
+    width: 100vw;
 }
-.navbar-nav li{
-    white-space: nowrap;
+.btn-group>.btn:nth-child(2){
+    border-left: 2px solid white; 
+    border-right: 3px solid white; 
 }
-a.btn-outline-primary:hover{
-    color:white!important;
-    font-weight: 600;
+.btn-group .btn{
+    border-radius: 0;
 }
-:current a.hover{
-    background-color:red;
+.btn-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 0%;
 }
-.card:first-of-type{
-    margin-top: 60px;
+.card{
+    background-color: rgb(26, 26, 27);
+    color: white;
+    margin-top: 5%;
 }
-.nav-active{
-    color:white!important;
-    font-weight: 600;
-    background-color:#0d6efd;
+.vote-text{
+    margin: 0 5%;
 }
-a.nav-active:hover{
-    color: lightgrey!important;
-    background-color:royalblue;
+.comment-text{
+    margin-left: 5%;
+}
+.post-footer{
+    justify-content: space-between;
+    align-items: flex-end;
+}
+a i{
+    color: white;
+    font-size: 1.4rem;
+}
+.arrow-up:hover{
+    color: rgb(0, 153, 255);
+}
+.arrow-down:hover{
+    color: rgb(252, 70, 70);
+}
+.comment-btn{
+    align-items: center;
 }

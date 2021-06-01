@@ -3,18 +3,39 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-<br />
+<div class="btn-container">
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-dark btn-spacing">Home</button>
+        <button type="button" class="btn btn-dark btn-spacing">Trending</button>
+        <button type="button" class="btn btn-dark btn-spacing">New</button>
+    </div>
+</div>
+
 <div class="container">
 
-    <div class="bg-light p-5 rounded mt-5 shadow">
-        <div class="jumbotron">
-            <h1 class="display-4">TMT app</h1>
-            <p class="lead">Social Media website built with Django.</p>
-            <p class="lead">
-                <a href="{% url 'home' %}" role="button">View All Articles</a>
-            </p>
+    <div class="card" style="width: 100%;">
+        <div class="card-body">
+          <h6 class="card-group">TMT/Group_goes_here</h6>
+          <h4 class="card-title">Title for post</h4>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <div class="post-footer d-flex">
+                <div class="vote-container d-flex">
+                    <a href="#"><i class="far fa-arrow-alt-circle-up arrow-up"></i></a>
+                        <h6 class="vote-text">Vote</h6>
+                    <a href="#"><i class="far fa-arrow-alt-circle-down arrow-down"></i></a>
+                </div>
+
+                <div class="comments-container ">
+                    <button 
+                    type="button" 
+                    class="btn btn-outline-light d-flex comment-btn">
+                        <i class="far fa-comment-alt"></i>
+                        <h6 class="comment-text">Comments</h6>
+                    </button>
+                </div>
+          </div>
         </div>
-    </div>
+      </div>
 
 </div>
 {% endblock content %}
