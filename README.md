@@ -7,3 +7,4 @@
 - [ ] sign up form
 - [ ] new post page
 - [ ] review page
+- [ ] comments
