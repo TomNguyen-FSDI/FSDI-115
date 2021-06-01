@@ -11,6 +11,9 @@
     }
 }
 /* BASE HTML */
+body{
+    background-color: #030303;
+}
 .navbar-collapse{
     display: flex;
     justify-content: flex-end;
@@ -19,4 +22,48 @@
     display: flex;
     flex: 1;
     
+}
+/* HOME HTML */
+.btn-group{
+    width: 100vw;
+}
+.btn-group>.btn:nth-child(2){
+    border-left: 2px solid white; 
+    border-right: 3px solid white; 
+}
+.btn-group .btn{
+    border-radius: 0;
+}
+.btn-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 0%;
+}
+.card{
+    background-color: rgb(26, 26, 27);
+    color: white;
+    margin-top: 5%;
+}
+.vote-text{
+    margin: 0 5%;
+}
+.comment-text{
+    margin-left: 5%;
+}
+.post-footer{
+    justify-content: space-between;
+    align-items: flex-end;
+}
+a i{
+    color: white;
+    font-size: 1.4rem;
+}
+.arrow-up:hover{
+    color: rgb(0, 153, 255);
+}
+.arrow-down:hover{
+    color: rgb(252, 70, 70);
+}
+.comment-btn{
+    align-items: center;
 }
