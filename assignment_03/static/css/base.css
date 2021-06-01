@@ -1,0 +1,22 @@
+/* Hides navbar that is made for smaller screens */
+@media only screen and (min-width: 767px){
+    #mobile-navbar{
+        display: none!important;
+    }
+}
+/* Hides navbar that is made for larger screens */
+@media only screen and (max-width: 767px){
+    #big-navbar{
+        display: none;
+    }
+}
+/* BASE HTML */
+.navbar-collapse{
+    display: flex;
+    justify-content: flex-end;
+}
+.search-bar{
+    display: flex;
+    flex: 1;
+    
+}
