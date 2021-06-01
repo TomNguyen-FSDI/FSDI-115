@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load poll_extras %}
+
+{% block cssstyle %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+{% endblock cssstyle %}
+{% block title %}Log In{% endblock title %}
+
+
+
+{% block content %}
+
+<div class="position-relative">
+    <div class="position-absolute top-100 start-50 translate-middle-x" style="margin-top:5rem;width:300px;">
+
+        <div class="bg-light p-4 rounded mt-10 shadow">
+            <p class="text-center">Welcome to TMT Social Media</p>
+            <p class=" login-title text-center">TMT</p>
+            <br>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.username.label_tag }}
+                {{ form.username|placeholder:'Username' }}
+                <br><br>
+                {{ form.password.label_tag }}
+                <div class="password-toggle">
+
+                    {{ form.password|placeholder:'Password' }}
+                    <i class="far fa-eye-slash password-toggle" id="togglePassword"></i>
+                </div >
+                    <div class="d-grip gap-2" >
+                    <button class="login-btn btn btn-primary" type="submit" style="width: 100%;">Log in</button>
+                    <p class="text-center">
+                        New to TMT? <a href='#'>Sign Up</a><br>
+                        <a class="fs-6 fst-italic " href="{% url 'password_reset' %}">Forgot Your Password?</a>    
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/login.js' %}"></script>
+{% endblock content %}
+
+{{ form.username.label_tag }}
+{{ form.username }}
+{{ form.password }}
+https://docs.djangoproject.com/en/3.2/topics/auth/default/
