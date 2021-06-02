@@ -1,7 +1,11 @@
 from django.shortcuts import render
+from django.views.generic import ListView
+from .models import Post
 
-# Create your views here.
-from django.views.generic import TemplateView
+class HomePageView(ListView):
+    model = Post
+    template_name = 'home.html'
 
-class HomePageView(TemplateView):
+class PostListView(ListView):
+    model = Post 
     template_name = 'home.html'
