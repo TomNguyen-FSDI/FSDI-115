@@ -82,6 +82,11 @@ body{
 .dropdown-toggle::after{
     content: none!important;
 }
+.fa-angle-down{
+    font-size: 12px;
+    position: absolute;
+    bottom: 0;
+}
 /* HOME HTML */
 .container{
     padding-left: 0;
@@ -161,6 +166,9 @@ body{
 .list-group-item a{
     text-decoration: none;
     color: whitesmoke;
+}
+.list-group-item a:hover{
+    color: rgb(218, 215, 212);
 }
 a i{
     color: white;
