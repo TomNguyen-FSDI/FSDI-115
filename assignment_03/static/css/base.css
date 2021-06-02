@@ -11,6 +11,10 @@
         display: none;
     }
 }
+/* Utilities */
+.text-dec-none{
+    text-decoration: none!important;
+}
 /* BASE HTML */
 body{
     background-color: #030303;
@@ -44,6 +48,7 @@ body{
     background-color: rgb(26, 26, 27);
     color: white;
     margin-top: 5%;
+    border: 1px solid #ffffff45;
 }
 .vote-text{
     margin: 0 5%;

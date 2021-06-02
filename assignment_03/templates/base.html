@@ -30,8 +30,9 @@ crossorigin="anonymous">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
       </form> -->
       <div>
-        <button type="button" class="btn btn-outline-light"><a href="{% url 'login' %}">Log In</a></button>
-        <button type="button" class="btn btn-light"><a>Sign Up</a></button>
+        <a type="button" class="btn btn-outline-light" href="{% url 'login' %}">Log In</a>
+        
+        <a type="button" class="btn btn-light">Sign Up</a>
       </div>
     </div>
       
@@ -53,8 +54,9 @@ crossorigin="anonymous">
             </form>
 
             <div>
-              <a type="button" class="btn btn-outline-light" href="{% url 'login' %}">Log In</a>
-              <button type="button" class="btn btn-outline-light"><a>Sign Up</a></button>
+              <a type="button" class="btn btn-outline-light text-dec-none" href="{% url 'login' %}">Log In</a>
+              
+              <a type="button" class="btn btn-light">Sign Up</a>
 
           </div>
         </div>
