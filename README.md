@@ -2,9 +2,10 @@
 
 - [x] login page
 - [X] home page
-- [ ] sign up (currently working on)
+- [ ] sign up (Tom)
 - [ ] password reset
 - [ ] sign up form
-- [ ] new post page
+- [ ] new post page (Matt)
 - [ ] review page
 - [ ] comments
+- [ ] account models (trae)
