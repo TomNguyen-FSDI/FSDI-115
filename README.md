@@ -1,8 +1,8 @@
 # FSDI-115 : ToDo List
 
-- [ ] login page
+- [x] login page
 - [ ] home page
-- [ ] sign up
+- [ ] sign up (currently working on)
 - [ ] password reset
 - [ ] sign up form
 - [ ] new post page
