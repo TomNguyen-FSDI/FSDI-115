@@ -1,14 +1,32 @@
 
-/* Hides navbar that is made for smaller screens */
+/* Hides navbar/btn-group that is made for smaller screens */
 @media only screen and (min-width: 767px){
     #mobile-navbar{
         display: none!important;
     }
+    #sm-btn-container{
+        display: none!important;
+    }
 }
-/* Hides navbar that is made for larger screens */
+/* Hides navbar/btn-group that is made for larger screens */
 @media only screen and (max-width: 767px){
     #big-navbar{
         display: none;
+    }
+    #lg-btn-container{
+        display: none!important;
+    }
+}
+/* Hides column set up for laptop/desktop displays */
+@media only screen and (max-width: 1023px){
+    .col-3{
+        display: none;
+    }
+    .col-2{
+        display:none;
+    }
+    .col-6{
+        width: 100%;
     }
 }
 /* Utilities */
@@ -18,6 +36,11 @@
 /* BASE HTML */
 body{
     background-color: #030303;
+    /* optional background */
+    /* background-image: url("../images/stars-1654074.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover; */
 }
 .navbar-collapse{
     display: flex;
@@ -25,12 +48,61 @@ body{
 }
 .search-bar{
     display: flex;
-    flex: 1;
-    
+    margin: 0 auto;
+    width: 75%;
+}
+.search-container{
+    flex:1;
+}
+.user {
+    margin-left: 4%;
+    width: 10%;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+@media(min-width:768px){
+    .user{
+        width: 45px;
+        margin-left: 2%;
+        margin-right: 10px;
+    }
+}
+.user-img{
+    width: 100%;
+}
+.dropdown-menu[data-bs-popper]{
+    right: 0;
+    left: -50px;
+}
+.dropdown-menu{
+    min-width: 100%!important;
+}
+.dropdown-toggle::after{
+    content: none!important;
 }
 /* HOME HTML */
+.container{
+    padding-left: 0;
+    padding-right: 0;
+}
+@media(min-width:768px){
+    .container{
+        padding-right: var(--bs-gutter-x,.75rem);
+        padding-left: var(--bs-gutter-x,.75rem);
+    }
+    .row{
+        margin: 0;
+    }
+}
 .btn-group{
     width: 100vw;
+}
+@media(min-width:768px){
+    .btn-group{
+        margin-top: 5%;
+    }
 }
 .btn-group>.btn:nth-child(2){
     border-left: 2px solid white; 
@@ -60,11 +132,42 @@ body{
     justify-content: space-between;
     align-items: flex-end;
 }
+.row{
+    align-items: baseline;
+}
+.col-6{
+    flex: 1 auto;
+}
+.group-img{
+    width: 24px;
+}
+.list-group-item{
+    background-color: rgb(26, 26, 27);
+    color: rgba(255, 255, 255, 0.794);
+    border: 1px solid #ffffff45;
+}
+.list-group-item:first-of-type{
+    text-align: center;
+    background-image: url("../images/cosmos-5809271_640.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: overlay;
+    background-color: rgba(0, 0, 0, 0.274);
+    height: 50px;
+    color: white;
+    
+}
+.list-group-item a{
+    text-decoration: none;
+    color: whitesmoke;
+}
 a i{
     color: white;
     font-size: 1.4rem;
 }
-.arrow-up:hover{
+.arrow-up:hover,
+.arrow-up:visited{
     color: rgb(0, 153, 255);
 }
 .arrow-down:hover{
