@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load poll_extras %}
+
+{% block cssstyle %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+{% endblock cssstyle %}
+
+{% block title %}Sign Up{% endblock title %}
+
+{% block content %}
+
+<div class="position-relative">
+    <div class="position-absolute top-100 start-50 translate-middle-x" >
+
+        <div class="bg-light p-5 rounded mb-5 mt-3 shadow">
+            <h2 class="text-center">Sign Up</h2>
+            <hr/>
+            <br>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                {{ field.label_tag }}
+                {% if field.label == 'Password' %}
+                
+                <div class="password-toggle">
+                    {{ field|placeholder:field.label }}
+                    <i class="far fa-eye-slash password-toggle" id="togglePassword"></i>
+                </div >
+                {% elif field.label == "Password confirmation" %}
+                <div class="password-toggle">
+                    {{ field|placeholder:field.label }}
+                    <i class="far fa-eye-slash password-toggle" id="togglePassword2"></i>
+                </div >
+                {% else %}
+                {{ field|placeholder:field.label }}
+                {% endif %}
+
+                {% if field.help_text %}
+                <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+                {% endfor %}
+
+                <div class="d-grip gap-2" >
+                    <button class="btn btn-primary" type="submit" style="width: 100%;">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script language="JavaScript" type="text/javascript" src="{% static 'js/signup.js' %}"></script>
+{% endblock content %}
