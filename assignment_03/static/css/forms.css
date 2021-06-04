@@ -20,6 +20,10 @@
 #id_username{
     width:100%;
 }
+#id_new_password1, #id_new_password2{
+    width: 100%;
+    border: 1px red solid;
+}
 #id_password, #id_password1, #id_password2{
     width: 100%;
 }
