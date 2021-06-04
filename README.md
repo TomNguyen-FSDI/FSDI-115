@@ -3,7 +3,10 @@
 - [x] login page (tom)
 - [X] home page(Trae)
 - [x] sign up (Tom)
-- [ ] password reset (tom)
+- [x] password reset console(tom)
+- [ ] profile > change password
+- [ ] profile page
+- [ ] password reset sendgrid
 - [x] sign up form (tom)
 - [ ] new post page (Matt)
 - [ ] review page
