@@ -15,6 +15,6 @@ def search_bar(request):
     if request.method == "POST":
         if 'searched_data' in request.POST: # same as : # searched = request.POST.get('searched_data', False)
             searched = request.POST['searched_data']
-            searched_results = Post.objects.filter(Q(body__contains=searched)|Q(title__contains=searched))
+            searched_results = Post.objects.filter(Q(body__contains=searched)|Q(title__contains=searched)).order_by('-id')[:7]
             return render(request, 'search_bar.html', {'searched': searched, 'searched_results': searched_results})
     return render(request, 'search_bar.html', {})
