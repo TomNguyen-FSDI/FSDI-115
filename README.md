@@ -1,13 +1,18 @@
 # FSDI-115 : ToDo List
 
-- [x] login page (tom)
-- [X] home page(Trae)
+- [x] login page (Tom)
+- [X] home page (Trae)
 - [x] sign up (Tom - 06/04)
 - [x] password reset console (Tom - 06/04)
+- [x] Search bar (Tom - 06/05)
+> - Search for title and body
+> - Does not search for author because it is an id
+> - Does not search comments
+? How does the responsive search bar look like? (keep/change)
 - [ ] profile > change password
 - [ ] profile page
 - [ ] password reset sendgrid
-- [ ] new post page (Matt)
+- [ ] new post page (Matthew)
 - [ ] review page
 - [ ] comments
-- [X] post models (trae)
+- [X] post models (Trae)
