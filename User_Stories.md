@@ -73,4 +73,4 @@
 19. Tom (06/04) - Sign Up page
 20. 
 21. Tom (06/04) - Password reset console
-- [ ] Waiting to the end to implement sendgrid
+> - [ ] Waiting to the end to implement sendgrid
