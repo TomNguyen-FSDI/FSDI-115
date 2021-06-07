@@ -29,7 +29,7 @@
 4. Allow the user to edit their post and not others
 5. Allow the user to upload images to their post
 6. Allow the user to delete their post
-7. Allow th user to commit comment to other post
+7. Allow the user to commit comment to other post
 8. Allow the user to vote like or dislike on post
 9. Allow the user to create a profile
 10. Allow the user to direct message other users
@@ -44,6 +44,7 @@
 19. Allow the user to create an account
 20. Allow the user to change password
 21. Allow the user to reset password
+
 
 ## Who is working on the software requirements and coding notes:
 1. 
