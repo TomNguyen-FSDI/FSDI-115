@@ -137,4 +137,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
-TIME_ZONE = 'America/Chicago'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+TIME_ZONE = 'America/Los_Angeles'

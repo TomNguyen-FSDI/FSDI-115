@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    
+        <div class="container">
+        {% if searched %}
+            <h1 style="color:white;"> Results for {{ searched }}</h1>
+            <br/>
+            {% for searched_result in searched_results %}
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                      <h6 class="card-group">By: {{ searched_result.author }} | {{ searched_result.date }}</h6>
+                      <h4 class="card-title">{{ searched_result.title }}</h4>
+                      <p class="card-text">{{ searched_result.body|safe|truncatechars:140 }}</p>
+                      <div class="post-footer d-flex">
+                            <div class="vote-container d-flex">
+                                <a href="#"><i class="far fa-arrow-alt-circle-up arrow-up"></i></a>
+                                    <h6 class="vote-text">Vote</h6>
+                                <a href="#"><i class="far fa-arrow-alt-circle-down arrow-down"></i></a>
+                            </div>
+            
+                            <div class="comments-container ">
+                                <button 
+                                type="button" 
+                                class="btn btn-outline-light d-flex comment-btn">
+                                    <i class="far fa-comment-alt"></i>
+                                    <h6 class="comment-text">Comments</h6>
+                                </button>
+                            </div>
+                      </div>
+                    </div>
+                  </div>
+            {% endfor %}
+        {% else %}
+            <center style="color:white;">
+                <h1>You don't have access to this page</h1>
+            </center>
+        {% endif %}
+        </div>
+
+
+    
+
+{% endblock content %}
