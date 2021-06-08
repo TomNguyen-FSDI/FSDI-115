@@ -26,9 +26,10 @@ crossorigin="anonymous">
       <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-rocket"></i> TMT</i> </a>
       <!-- Will uncomment when user accounts are created -->
       {% if user.is_authenticated %}
-      <form class="search-container">
-        
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <form class="search-container" method=POST action="{% url 'search_bar' %}">
+        {% csrf_token %}
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched_data">
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
       </form>
 
       <div class="user">
@@ -73,8 +74,10 @@ crossorigin="anonymous">
                 <a class="nav-link btn btn-outline-dark" id="homePage" href="{% url 'home' %}"><i class="fas fa-home"></i>Home</a>
               </li>
             </ul> -->
-            <form class="search-bar">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="search-bar" method="POST" action="{% url 'search_bar' %}">
+              {% csrf_token %}
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched_data">
+              <button class="btn btn-outline-secondary" type="submit">Search</button>
             </form>
             <div class="user">
               <div class="dropdown">

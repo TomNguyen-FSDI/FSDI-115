@@ -36,11 +36,11 @@
 /* BASE HTML */
 body{
     background-color: #030303;
-    /* optional background */
-    /* background-image: url("../images/stars-1654074.jpg");
+    background-image: url("../images/stars-1654074.jpg");
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover; */
+    background-size: cover;
+    min-height: 100vh;
 }
 .navbar-collapse{
     display: flex;
