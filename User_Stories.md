@@ -48,7 +48,7 @@
 
 ## Who is working on the software requirements and coding notes:
 1. 
-2. 
+2. Matt(06/07) - Create posts
 3. Tom (06/05) - Search Bar (request)
 > Search in title and body
 <br> Does not search for author or comments
