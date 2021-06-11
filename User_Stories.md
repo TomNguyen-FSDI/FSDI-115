@@ -50,7 +50,7 @@
 1. 
 2. Matt(06/07) - Create posts
 3. Tom (06/05) - Search Bar (request)
-> Search in title and body
+<br> Search in title and body
 <br> Does not search for author or comments
 <br> Search limit set to 7
 <br> Does not sort by votes
@@ -65,7 +65,7 @@
 11. 
 12. 
 13. Trae - Home Page (ListView)
-> Created post models 
+<br> Created post models 
 14. 
 15. 
 16. 
@@ -73,5 +73,5 @@
 18. Tom - login Page
 19. Tom (06/04) - Sign Up page
 20. 
-21. Tom (06/04) - Password reset console
-> - [ ] Waiting to the end to implement sendgrid
+21. Tom (06/04) - Password reset console 
+<br>[ ] Waiting to the end to implement sendgrid
