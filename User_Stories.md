@@ -75,3 +75,17 @@
 20. 
 21. Tom (06/04) - Password reset console 
 <br>[ ] Waiting to the end to implement sendgrid
+
+
+
+<br>
+<br><br><br>
+***
+##### Back Log - extra features if time		
+<br>FAQ 		
+<br>Add more color to the scheme		
+<br>Check for Error notifications		
+<br>Advance options for experienced users		
+<br>Undo or redo function		
+<br>Reporting abusive post function		
+<br>404 page error		
