@@ -32,7 +32,7 @@
           <h6 class="card-group"> By: {{ article.author }} | {{ article.date }}</h6>
           <h4 class="card-title">{{ article.title }}</h4>
           <p class="card-text">{{ article.body|safe|truncatechars:140 }}</p>
-          <img src="{{ article.image.url }}" alt="{{ article.title }}">
+          <img src="{{ article.image.url }}" alt="" style="width: 100%">
           <div class="post-footer d-flex">
                 <div class="vote-container d-flex">
                     <a href="#"><i class="far fa-arrow-alt-circle-up arrow-up"></i></a>
