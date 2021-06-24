@@ -3,6 +3,7 @@ from django.views.generic import ListView, DetailView, CreateView
 from .models import Post
 from django.db.models import Q
 
+
 class HomePageView(ListView):
     model = Post
     template_name = 'home.html'
@@ -19,6 +20,12 @@ class PostCreateView(CreateView):
     model = Post
     template_name = 'post_create.html'
     fields = ["title", "body", "image"]
+    
+
+    def form_valid(self, form): # can be used for LoginRequiredMixin
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
 
 def search_bar(request):
     if request.method == "POST":
