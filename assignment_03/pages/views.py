@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Post
 from django.db.models import Q
 
@@ -18,6 +18,11 @@ class PostDetailView(DetailView):
 class PostCreateView(CreateView):
     model = Post
     template_name = 'post_create.html'
+    fields = ["title", "body", "image"]
+
+class PostUpdateView(UpdateView):
+    model = Post
+    template_name = 'post_update.html'
     fields = ["title", "body", "image"]
 
 def search_bar(request):
