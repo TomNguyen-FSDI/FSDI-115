@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }}{% endblock title %}
+{% block content %} 
+<div class="post-detail rounded shadow">
+    <h2 class=" title-case" >{{ post.title }}</h2>
+    <img src="{{ post.image.url }}" alt>
+    <p class="title-case text-muted">by: {{ post.author }} | {{ post.date }}</p>
+    <p class="text-container">{{ post.body }}</p>
+    {% if user == post.author %}
+    <div class="btn-container">
+        <a href="" class="btn btn-primary mt-3">+ Edit post</a>
+        <a href="" class="btn btn-danger ms-3 mt-3">- Delete post</a>
+        <a href="{% url 'home' %}" class="btn btn-dark ms-3 mt-3">Back</a>
+    </div>
+    {% else %}
+    <!-- only let the author edit or delete post -->
+    <!-- Send them back to home page -->
+    <div class="btn-container">
+        <a href="{% url 'post_list' %}" class="btn btn-primary mt-3">Back to posts</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}
