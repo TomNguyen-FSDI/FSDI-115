@@ -1,8 +1,4 @@
-<<<<<<< HEAD:assignment_03/.gitignore
 venv/
 *__pycache__*
 db.sqlite3
-=======
-venv/
-*__pycache__*
->>>>>>> 0d1a359137b3431b40e3bf8b160d20b73f9ae864:.gitignore
+.env

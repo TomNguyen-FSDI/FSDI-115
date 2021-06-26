@@ -65,6 +65,13 @@ body{
     background-position: center center;
     background-size: cover;
 }
+.post-detail-link{
+    text-decoration: none!important;
+    color: aliceblue;
+}
+.post-detail-link:hover{
+    color: rgb(179, 182, 182);
+}
 @media(min-width:768px){
     .user{
         width: 45px;
@@ -77,7 +84,7 @@ body{
 }
 .dropdown-menu[data-bs-popper]{
     right: 0;
-    left: -50px;
+    left: -105px;
 }
 .dropdown-menu{
     min-width: 100%!important;
