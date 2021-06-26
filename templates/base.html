@@ -52,7 +52,8 @@ crossorigin="anonymous">
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">Profile</a></li>
-              <li><a class="dropdown-item" href="#">Log out</a></li>
+              <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
+              <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
             </ul>
           </div>
       </div>
@@ -106,6 +107,7 @@ crossorigin="anonymous">
                   </a>
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
                     <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
                   </ul>
                 </div>
