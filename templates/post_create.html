@@ -14,10 +14,10 @@
             {% if field.label == "Image" %}
                 <label for="{{ form.image.id_for_label }}">Image (optional):</label>
                 {{ field }}
-            {% endif %}
 
-            {% if field.label != "Image" %}
+            {% elif field.label != "Image" %}
                 {{ field.label_tag }} {{ field }}
+                
             {% endif %}
 
         {% endfor %}
