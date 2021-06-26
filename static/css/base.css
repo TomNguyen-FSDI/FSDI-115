@@ -150,6 +150,11 @@ body{
 .row{
     align-items: baseline;
 }
+@media(max-width:768px){
+   .row{
+    --bs-gutter-x: 0;
+    } 
+}
 .col-6{
     flex: 1 auto;
 }
