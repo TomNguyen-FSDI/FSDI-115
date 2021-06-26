@@ -20,6 +20,10 @@ class PostCreateView(CreateView):
     template_name = 'post_create.html'
     fields = ["title", "body", "image"]
 
+    def form_valid(self, form): # can be used for LoginRequiredMixin
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
 class PostUpdateView(UpdateView):
     model = Post
     template_name = 'post_update.html'
