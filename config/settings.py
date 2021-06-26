@@ -32,7 +32,10 @@ SECRET_KEY = env.str("SECRET_KEY")
 # DEBUG = True
 DEBUG = env.str("SECRET_KEY")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '.pythonanywhere.com',
+]
 
 
 # Application definition
