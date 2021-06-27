@@ -62,3 +62,7 @@
     cursor: pointer;
 
 }
+.invalid-login-label{
+    color:#DD0000;
+
+}
