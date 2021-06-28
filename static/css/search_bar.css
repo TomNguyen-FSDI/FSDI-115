@@ -1,0 +1,10 @@
+.search-image{
+    height: 300px;
+    width: 300px;
+    margin-left: auto;
+    order: 2;
+}
+.search-container{
+    display: flex;
+    justify-content: space-between;
+}
