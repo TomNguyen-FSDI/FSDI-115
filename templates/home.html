@@ -26,15 +26,15 @@
                     <button type="button" class="btn btn-dark btn-spacing">New</button>
                 </div>
             </div>
-    {% for article in object_list %}
+    {% for post in object_list %}
     <div class="card" style="width: 100%;">
         <div class="card-body">
-        <a class="post-detail-link" href="{% url 'post_detail' article.pk %}">
-          <h6 class="card-group"> By: {{ article.author }} | {{ article.date }}</h6>
-          <h4 class="card-title">{{ article.title }}</h4>
-          <p class="card-text">{{ article.body|safe|truncatechars:140 }}</p>
+        <a class="post-detail-link" href="{% url 'post_detail' post.pk %}">
+          <h6 class="card-group"> By: {{ post.author }} | {{ post.date }}</h6>
+          <h4 class="card-title">{{ post.title }}</h4>
+          <p class="card-text">{{ post.body|safe|truncatechars:140 }}</p>
         </a>
-          <img src="{{ article.image.url }}" alt="" style="width: 100%">
+          <img src="{{ post.image.url }}" alt="" style="width: 100%">
         
           <div class="post-footer d-flex">
                 <div class="vote-container d-flex">
@@ -44,11 +44,12 @@
                 </div>
 
                 <div class="comments-container ">
-                    <a href="" 
+                    <a href="{% url 'add_comment' post.pk %}" 
                     type="button" 
                     class="btn btn-outline-light d-flex comment-btn">
                         <i class="far fa-comment-alt"></i>
-                        <h6 class="comment-text">comment</h6>
+                        <h6 class="comment-text"></h6>
+                        
                 </a>
                 </div>
           </div>

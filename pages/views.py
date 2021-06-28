@@ -26,7 +26,8 @@ from django.views.generic import (
     ListView,
     UpdateView
     )
-from .models import Post
+from .models import Post, Comment
+from .forms import CommentForm
 
 
 class HomePageView(ListView):
@@ -47,6 +48,21 @@ class PostCreateView(CreateView):
     fields = ["title", "body", "image"]
 
     def form_valid(self, form): # can be used for LoginRequiredMixin
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+class AddCommentView(CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'add_comment.html'
+
+    def get_success_url(self):
+          # capture that 'pk' as postid and pass it to 'reverse_lazy()' function
+          postid=self.kwargs['pk']
+          return reverse_lazy('post_detail', args=str(postid))
+
+    def form_valid(self, form):
+        form.instance.post = Post.objects.get(pk=self.kwargs.get("pk"))
         form.instance.author = self.request.user
         return super().form_valid(form)
 

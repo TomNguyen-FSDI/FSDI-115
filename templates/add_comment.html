@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load poll_extras %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+<link rel="stylesheet" href="{% static 'css/post_create.css' %}">
+<div class="container post">
+
+    <h1 class="border-bottom-utl">Add comment</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}
+                
+        {% endfor %}
+        
+        <button class="btn btn-light" type="submit">Comment</button>
+    </form>
+</div>
+{% endblock content %}

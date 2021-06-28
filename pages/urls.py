@@ -9,6 +9,7 @@ from .views import (
     login_page,
     PasswordResetView,
     change_password,
+    AddCommentView
 )
 
 urlpatterns = [
@@ -21,4 +22,5 @@ urlpatterns = [
     path('account/login', login_page, name='login'),
     path('account/password_reset/', PasswordResetView.as_view(), name="password_reset"),
     path('account/password_change/', change_password, name="password_change"),
+    path('post/<int:pk>/comment/', AddCommentView.as_view(), name="add_comment")
 ]

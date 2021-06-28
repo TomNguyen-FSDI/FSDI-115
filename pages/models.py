@@ -32,6 +32,10 @@ class Comment(models.Model):
         get_user_model(),
         on_delete=models.CASCADE
     )
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['created_on']
 
     def __str__(self):
         return self.comment
