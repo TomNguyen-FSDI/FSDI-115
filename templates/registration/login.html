@@ -28,7 +28,7 @@
                     {% endif %}
                 </div>
                     {% if invalid == 'password' %}
-                        {{ form.username|placeholder:username }}
+                        {{ form.username|value:username }}
                     {% else %}
                         {{ form.username|placeholder:'Username' }}
                     {% endif %}
