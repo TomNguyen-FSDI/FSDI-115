@@ -1,11 +1,24 @@
-from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
-from .models import Post
-from django.db.models import Q
+from django import forms
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.models import User
+from django.contrib.auth.tokens import default_token_generator
+from django.core.mail import send_mail
+from django.db.models import Q
+from django.shortcuts import redirect, render
+from django.template import loader
+from django.urls import reverse_lazy
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
+from django.views.generic import (
+    CreateView, 
+    DetailView, 
+    FormView, 
+    ListView,
+    UpdateView
+    )
+from .models import Post
 
 
 class HomePageView(ListView):
@@ -59,6 +72,48 @@ def login_page(request):
                     context['invalid'] = "password"
         context['form'] = form
         return render(request, 'registration/login.html', context)
+
+
+class PasswordResetForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ["email"]
+
+
+class PasswordResetView(FormView):
+    form_class = PasswordResetForm
+    success_url = reverse_lazy('password_reset_done')
+    template_name = 'registration/password_reset_form.html'
+    
+    def form_valid(self, form): 
+        email_in_db = User.objects.filter(email=form.data['email'])
+
+        if len(email_in_db) == 0:
+            return self.redirect_invalid_password_change(form)
+        
+        user= User.objects.filter(Q(email=form.data['email'])).first()
+        c = {
+            'email': form.data['email'],
+            'domain': self.request.META['HTTP_HOST'],
+            'site_name': self.request.META['HTTP_HOST'],
+            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+            'user': user,
+            'token': default_token_generator.make_token(user),
+            'protocol': self.request.scheme,
+        }
+        email_template_name='registration/password_reset_email.html'
+        subject = "Reset Your Password"
+        email = loader.render_to_string(email_template_name, c)
+        send_mail(subject, email, 'webmaster@localhost' , [form.data['email']], fail_silently=False)
+        return super().form_valid(form)
+
+
+    def redirect_invalid_password_change(self, form):
+        context = {}
+        context['form'] = form
+        context['invalid'] = "email"
+        context['email'] = form.data['email']
+        return render(self.request, 'registration/password_reset_form.html', context)
 
 
 def search_bar(request):
