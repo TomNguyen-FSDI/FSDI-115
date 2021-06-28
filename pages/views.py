@@ -72,12 +72,14 @@ def login_page(request):
                 login(request, user)
                 return redirect('home')
             else:
-                if len(user_account_name) == 0:
+                if len(user_account_name) == 0:         # user doesn't exist
+                    context['username'] = "Username"    # set placehold to Username
                     context['invalid'] = "username"
                     messages.info(request, 'Username is invalid')
-                else:
+                else:                                   # user is right but password is wrong
                     messages.info(request, 'Password is invalid')
                     context['invalid'] = "password"
+                    context['username'] = user_account_name.get()
         context['form'] = form
         return render(request, 'registration/login.html', context)
 

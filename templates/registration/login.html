@@ -19,6 +19,7 @@
             <p class=" login-title text-center">TMT</p>
             <br>
             <form method="post">
+                
                 {% csrf_token %}
                 <div>
                     {{ form.username.label_tag }}
@@ -26,7 +27,11 @@
                         <i class="fas fa-exclamation-triangle invalid-login-label"></i>
                     {% endif %}
                 </div>
-                {{ form.username|placeholder:'Username' }}
+                    {% if invalid == 'password' %}
+                        {{ form.username|placeholder:username }}
+                    {% else %}
+                        {{ form.username|placeholder:'Username' }}
+                    {% endif %}
                 {% if invalid == "username" %}
                     {% for message in messages %}
                         <label class="invalid-login-label">{{ message }}</label>
