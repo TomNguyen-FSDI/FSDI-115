@@ -22,7 +22,6 @@ class SignUpView(CreateView):
         return super().form_valid(form)
 
 
-        pass
 def redirect_invalid_logic(request, form):
     username_in_db = User.objects.filter(username=form.data['username'])
     email_in_db = User.objects.filter(email=form.data['email'])
