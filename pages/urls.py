@@ -7,7 +7,8 @@ from .views import (
     PostCreateView,
     PostUpdateView,
     login_page,
-    PasswordResetView
+    PasswordResetView,
+    change_password
 )
 
 urlpatterns = [
@@ -19,4 +20,5 @@ urlpatterns = [
     path('search/', search_bar, name='search_bar'),
     path('account/login', login_page, name='login'),
     path('account/password_reset/', PasswordResetView.as_view(), name="password_reset"),
+    path('account/password_change/', change_password, name="password_change"),
 ]

@@ -1,7 +1,15 @@
 from django import forms
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import (
+    authenticate, 
+    login, 
+    update_session_auth_hash
+    )
+from django.contrib.auth.forms import (
+    AuthenticationForm, 
+    UserCreationForm, 
+    PasswordChangeForm
+    )
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
@@ -114,6 +122,22 @@ class PasswordResetView(FormView):
         context['invalid'] = "email"
         context['email'] = form.data['email']
         return render(self.request, 'registration/password_reset_form.html', context)
+
+
+def change_password(request):
+    context = {}
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            return redirect('password_change_done')
+        else:
+            context['invalid'] = "password"         # marks in the template that there was a problem
+    else:
+        form = PasswordChangeForm(request.user)
+    context['form'] = form
+    return render(request, 'registration/password_change_form.html', context)
 
 
 def search_bar(request):
