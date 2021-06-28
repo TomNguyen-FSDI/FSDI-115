@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
 
+{% block cssstyle %}
+<link rel="stylesheet" href="{% static 'css/search_bar.css' %}">
+{% endblock cssstyle %}
 
 {% block content %}
     
@@ -8,18 +12,24 @@
             <h1 style="color:white;"> Results for {{ searched }}</h1>
             <br/>
             {% for searched_result in searched_results %}
-                <div class="card" style="width: 100%;">
-                    <div class="card-body">
-                      <h6 class="card-group">By: {{ searched_result.author }} | {{ searched_result.date }}</h6>
-                      <h4 class="card-title">{{ searched_result.title }}</h4>
-                      <p class="card-text">{{ searched_result.body|safe|truncatechars:140 }}</p>
+                <div class="card">
+                    <div style="width: 100%;">
+                        <div class="card-body search-container" >
+                            <div>
+                                <h6 class="card-group">By: {{ searched_result.author }} | {{ searched_result.date }}</h6>
+                                <h4 class="card-title">{{ searched_result.title }}</h4>
+                                <p class="card-text">{{ searched_result.body|safe|truncatechars:140 }}</p>
+                            </div>
+                            <div>
+                                <img src="{{ searched_result.image.url }}" class="search-image" alt="{{ searched_result.title }}">
+                            </div>
+                        </div>
                       <div class="post-footer d-flex">
                             <div class="vote-container d-flex">
                                 <a href="#"><i class="far fa-arrow-alt-circle-up arrow-up"></i></a>
                                     <h6 class="vote-text">Vote</h6>
                                 <a href="#"><i class="far fa-arrow-alt-circle-down arrow-down"></i></a>
                             </div>
-            
                             <div class="comments-container ">
                                 <button 
                                 type="button" 
