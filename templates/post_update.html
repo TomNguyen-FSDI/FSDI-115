@@ -4,8 +4,12 @@
 <link rel="stylesheet" href="{% static 'css/forms.css' %}">
 <link rel="stylesheet" href="{% static 'css/post_UpdateView.css' %}">
 <div class="container post">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        <button class="btn btn-light" type="submit">Update</button>
+    </form>
 
-    {% csrf_token %}
-    {{ form.as_p }}
 </div>
 {% endblock content %}

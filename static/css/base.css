@@ -134,7 +134,7 @@ body{
 .card{
     background-color: rgb(26, 26, 27);
     color: white;
-    margin-top: 5%;
+    margin: 5% 0;
     border: 1px solid #ffffff45;
 }
 .vote-text{
@@ -198,4 +198,22 @@ a i{
 }
 .comment-btn{
     align-items: center;
+}
+/* POST_DETAIL HTML */
+.post-detail{
+    background-color: rgb(26, 26, 27);
+    color: azure;
+    padding: 1rem;
+    margin: 1rem;
+    text-align: center;
+}
+@media(min-width:768px){
+    .post-detail{
+        width: 55%;
+    }
+}
+@media(min-width:1024px){
+    .post-detail{
+        width: 50%;
+    }
 }

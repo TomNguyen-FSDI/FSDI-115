@@ -2,14 +2,26 @@
 
 {% block title %}{{ post.title }}{% endblock title %}
 {% block content %} 
+<div class="d-flex justify-content-center">
 <div class="post-detail rounded shadow">
-    <h2 class=" title-case" >{{ post.title }}</h2>
-    <img src="{{ post.image.url }}" alt>
+    <h2 class="title-case" >{{ post.title }}</h2>
+    <img src="{{ post.image.url }}" alt="" style="width: 80%">
     <p class="title-case text-muted">by: {{ post.author }} | {{ post.date }}</p>
     <p class="text-container">{{ post.body }}</p>
+    <div class="car-footer">
+        <h6 class="text-muted title-case  border-bottom-utl mt-3">Comments</h6>
+        {% for comment in post.comments.all %}
+        <p>
+            <span class="font-weight-bold">
+                {{ comment.author }} &middot;
+            </span>
+            {{ comment }}
+        </p>
+        {% endfor %}
+    </div>
     {% if user == post.author %}
-    <div class="btn-container">
-        <a href="" class="btn btn-primary mt-3">+ Edit post</a>
+    <div>
+        <a href="{% url 'post_update' post.pk %}" class="btn btn-primary mt-3">+ Edit post</a>
         <a href="" class="btn btn-danger ms-3 mt-3">- Delete post</a>
         <a href="{% url 'home' %}" class="btn btn-dark ms-3 mt-3">Back</a>
     </div>
@@ -21,4 +33,5 @@
     </div>
     {% endif %}
 </div>
+</div> <!-- display flex-->
 {% endblock content %}
