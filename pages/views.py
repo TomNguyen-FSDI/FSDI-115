@@ -24,7 +24,8 @@ from django.views.generic import (
     DetailView, 
     FormView, 
     ListView,
-    UpdateView
+    UpdateView,
+    DeleteView
     )
 from .models import Post, Comment
 from .forms import CommentForm
@@ -72,6 +73,15 @@ class PostUpdateView(UpdateView):
     template_name = 'post_update.html'
     fields = ["title", "body", "image"]
 
+
+class PostDeleteView(DeleteView):
+    model = Post
+    template_name = "post_delete.html"
+    success_url = reverse_lazy("home")
+
+    def form_valid(self, form): # can be used for LoginRequiredMixin
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 def login_page(request):
     form = AuthenticationForm()

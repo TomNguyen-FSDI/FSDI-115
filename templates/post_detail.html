@@ -10,6 +10,7 @@
     <p class="text-container">{{ post.body }}</p>
     <div class="car-footer">
         <h6 class="text-muted title-case  border-bottom-utl mt-3">Comments</h6>
+
         <a href="{% url 'add_comment' post.pk %}">Add Comment</a>
         {% for comment in post.comments.all reversed %}
         <p>
@@ -23,7 +24,7 @@
     {% if user == post.author %}
     <div>
         <a href="{% url 'post_update' post.pk %}" class="btn btn-primary mt-3">+ Edit post</a>
-        <a href="" class="btn btn-danger ms-3 mt-3">- Delete post</a>
+        <a href="{% url 'post_delete' post.pk %}" class="btn btn-danger ms-3 mt-3">- Delete post</a>
         <a href="{% url 'home' %}" class="btn btn-dark ms-3 mt-3">Back</a>
     </div>
     {% else %}
