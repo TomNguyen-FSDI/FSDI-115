@@ -10,7 +10,7 @@ class Community(models.Model):
 
 
     def __str__(self):
-        return '{} {} {}'.format(self.name, self.topic, self.descriptions)
+        return '{} {} {}'.format(self.name, self.topic, self.description)
 
 
     def get_absolute_url(self):
