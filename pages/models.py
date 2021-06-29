@@ -6,7 +6,7 @@ from django.urls import reverse
 class Community(models.Model):
     name = models.CharField(max_length=200)
     topic = models.TextField()
-    descriptions = models.TextField()
+    description = models.TextField()
 
 
     def __str__(self):
