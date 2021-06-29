@@ -21,7 +21,8 @@ class Post(models.Model):
     community = models.ForeignKey(
         Community, 
         on_delete=models.CASCADE, 
-        related_name='posts'                 
+        related_name='posts', 
+        null=True                 
         )
     title = models.CharField(max_length=200)
     author = models.ForeignKey(
