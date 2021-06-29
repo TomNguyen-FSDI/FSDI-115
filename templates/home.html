@@ -9,7 +9,7 @@
     <div class="btn-group" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-dark btn-spacing">Home</button>
         <button type="button" class="btn btn-dark btn-spacing">Trending</button>
-        <button type="button" class="btn btn-dark btn-spacing">New</button>
+        <a type="button" class="btn btn-dark btn-spacing" href="{% url 'community_list' %}">Community</a>
     </div>
 </div>
 <div class="container">
@@ -23,7 +23,7 @@
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-dark btn-spacing">Home</button>
                     <button type="button" class="btn btn-dark btn-spacing">Trending</button>
-                    <button type="button" class="btn btn-dark btn-spacing">New</button>
+                    <a type="button" class="btn btn-dark btn-spacing" href="{% url 'community_list' %}" >Community</a>
                 </div>
             </div>
     {% for post in object_list %}
