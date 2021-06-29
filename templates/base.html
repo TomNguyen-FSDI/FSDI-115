@@ -29,7 +29,6 @@ crossorigin="anonymous">
       <form class="search-container" method=POST action="{% url 'search_bar' %}">
         {% csrf_token %}
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched_data">
-        <button class="btn btn-outline-secondary" type="submit">Search</button>
       </form>
 
       <div class="create-post">
@@ -82,7 +81,6 @@ crossorigin="anonymous">
             <form class="search-bar" method="POST" action="{% url 'search_bar' %}">
               {% csrf_token %}
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched_data">
-              <button class="btn btn-outline-secondary" type="submit">Search</button>
             </form>
 
             <div class="create-post">
