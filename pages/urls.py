@@ -1,8 +1,9 @@
 from django.urls import path
+from .community import CommunityListView
 from .views import (
     HomePageView, PostListView, PostDetailView, search_bar, PostCreateView, 
     PostUpdateView, login_page, PasswordResetView, change_password,
-    AddCommentView, PostDeleteView, CommunityListView
+    AddCommentView, PostDeleteView
 )
 
 urlpatterns = [
