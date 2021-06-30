@@ -4,8 +4,8 @@ from django.db import models
 from django.urls import reverse
 
 class Community(models.Model):
-    name = models.CharField(max_length=200)
-    topic = models.TextField()
+    name = models.CharField(max_length=200, unique=True)
+    topic = models.CharField(max_length=600)
     description = models.TextField()
 
 

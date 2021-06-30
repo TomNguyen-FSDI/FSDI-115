@@ -4,13 +4,6 @@
 {% block title %}Community{% endblock title %}
 
 {% block content %}
-<div class="btn-container" id="sm-btn-container">
-    <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-dark btn-spacing">Home</button>
-        <button type="button" class="btn btn-dark btn-spacing">Trending</button>
-        <a type="button" class="btn btn-dark btn-spacing" href="{% url 'community_list' %}">Community</a>
-    </div>
-</div>
 <div class="container">
 
     <div class="row">
@@ -23,13 +16,13 @@
                         <button type="button" class="btn btn-dark btn-spacing">Home</button>
                         <button type="button" class="btn btn-dark btn-spacing">Trending</button>
                         <a type="button" class="btn btn-dark btn-spacing"
-                            href="{% url 'community_list' %}">Community</a>
+                            href="{% url 'community_create' %}">Create Community</a>
                     </div>
                 </div>
                 {% for community in object_list %}
                 <div class="card" style="width: 100%;">
                     <div class="card-body">
-                        <a class="post-detail-link" href="#">
+                        <a class="post-detail-link" href="{% url 'community_detail' community.pk %}">
                             <h6 class="card-group"> {{ community.name }} </h6>
                             <h4 class="card-title">{{ community.topic }}</h4>
                             <p class="card-text">{{ community.description|safe|truncatechars:140 }}</p>

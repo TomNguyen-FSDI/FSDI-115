@@ -1,10 +1,13 @@
 from django.urls import path
-from .community import CommunityListView
+from .community import (
+    CommunityListView, CommunityCreateView, CommunityDetailView, 
+    CommunityUpdateView
+    )
 from .views import (
     HomePageView, PostListView, PostDetailView, search_bar, PostCreateView, 
     PostUpdateView, login_page, PasswordResetView, change_password,
     AddCommentView, PostDeleteView
-)
+    )
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
@@ -13,6 +16,9 @@ urlpatterns = [
     path('account/password_reset/', PasswordResetView.as_view(), name="password_reset"),
     path('account/password_change/', change_password, name="password_change"),
     path('community/list/', CommunityListView.as_view(), name='community_list'),
+    path('community/create/', CommunityCreateView.as_view(), name='community_create'),
+    path('community/<int:pk>/', CommunityDetailView.as_view(), name='community_detail'),
+    path('community/update/<int:pk>/', CommunityUpdateView.as_view(), name= 'community_update'),
     path('post/list/', PostListView.as_view(), name='home'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post_detail'),
     path('post/create/', PostCreateView.as_view(), name= 'post_create'),

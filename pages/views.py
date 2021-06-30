@@ -55,9 +55,9 @@ class AddCommentView(CreateView):
     template_name = 'add_comment.html'
 
     def get_success_url(self):
-          # capture that 'pk' as postid and pass it to 'reverse_lazy()' function
-          postid=self.kwargs['pk']
-          return reverse_lazy('post_detail', args=str(postid))
+        # capture that 'pk' as postid and pass it to 'reverse_lazy()' function
+        postid=self.kwargs['pk']
+        return reverse_lazy('post_detail', args=str(postid))
 
     def form_valid(self, form):
         form.instance.post = Post.objects.get(pk=self.kwargs.get("pk"))

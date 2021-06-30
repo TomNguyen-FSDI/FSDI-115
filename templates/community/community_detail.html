@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ community.name }}{% endblock title %}
+{% block content %}
+<div class="btn-container" id="sm-btn-container">
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-dark btn-spacing">Home</button>
+        <button type="button" class="btn btn-dark btn-spacing">Trending</button>
+        <a type="button" class="btn btn-dark btn-spacing" href="{% url 'community_list' %}">Communities</a>
+    </div>
+</div>
+<div class="d-flex justify-content-center">
+    <div class="post-detail rounded shadow">
+        
+        <h2><a class="post-detail-link card-group" href="{% url 'community_update' community.pk %}">{{ community.name }}</a></h2>
+        <img src="{{ post.image.url }}" alt="" style="width: 80%">
+        <p class="title-case card-title card-group" style="padding-left: 32px;">{{ community.topic }}</p>
+        <p class="text-container">{{ post.body }}</p>
+        <div class="car-footer">
+
+            {% if user.is_authenticated %}
+            <a href="{% url 'post_create'%}">Add Post</a>
+            {% else %}
+            <p>To post a comment you must be signed in.</p>
+            <a type="button" class="btn btn-light mb-2" href="{% url 'signup' %}">Sign Up Here</a>
+            {% endif %}
+
+            {% for post in community.posts.all reversed %}
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+                    <a class="post-detail-link" href="{% url 'post_detail' post.pk %}">
+                        <h6 class="card-group"> By: {{ post.author }} | {{ post.date }}</h6>
+                        <h4 class="card-title">{{ post.title }}</h4>
+                        <p class="card-text">{{ post.body|safe|truncatechars:140 }}</p>
+                    </a>
+                    <img src="{{ post.image.url }}" alt="" style="width: 100%">
+
+                    <div class="post-footer d-flex" style="padding-top: 16px;">
+                        <div class="vote-container d-flex">
+                            <a href="#"><i class="far fa-arrow-alt-circle-up arrow-up"></i></a>
+                                <h6 class="vote-text">Vote</h6>
+                            <a href="#"><i class="far fa-arrow-alt-circle-down arrow-down"></i></a>
+                        </div>    
+                        <div class="comments-container ">
+                            <a href="{% url 'add_comment' post.pk %}" 
+                            type="button" 
+                            class="btn btn-outline-light d-flex comment-btn">
+                            <i class="far fa-comment-alt"></i>
+                            <h6 class="comment-text"></h6>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+
+
+        </div>
+    </div> <!-- display flex-->
+    {% endblock content %}
