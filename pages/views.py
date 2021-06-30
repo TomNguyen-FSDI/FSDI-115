@@ -71,7 +71,7 @@ class AddCommentView(CreateView):
 class PostUpdateView(UpdateView):
     model = Post
     template_name = 'post_update.html'
-    fields = ["title", "body", "image"]
+    fields = ["community","title", "body", "image"]
 
 
 class PostDeleteView(DeleteView):

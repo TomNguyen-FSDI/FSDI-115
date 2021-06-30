@@ -30,7 +30,7 @@
     <div class="card" style="width: 100%;">
         <div class="card-body">
         <a class="post-detail-link" href="{% url 'post_detail' post.pk %}">
-          <h6 class="card-group"> By: {{ post.author }} | {{ post.date }}</h6>
+          <h6 class="card-group text-muted"> TMT/{{ post.community }}  &middot; Posted by u/{{ post.author }}  &middot; {{ post.date }}</h6>
           <h4 class="card-title">{{ post.title }}</h4>
           <p class="card-text">{{ post.body|safe|truncatechars:140 }}</p>
         </a>
