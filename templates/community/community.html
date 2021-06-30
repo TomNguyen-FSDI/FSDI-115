@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Community{% endblock title %}
+
+{% block content %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-6">
+            <div class="container">
+
+                <div class="btn-container" id="lg-btn-container">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a type="button" class="btn btn-dark btn-spacing" href="{% url 'home' %}">Home</a>
+                        <button type="button" class="btn btn-dark btn-spacing">Trending</button>
+                        <a type="button" class="btn btn-dark btn-spacing" href="{% url 'community_create' %}">Create
+                            Community</a>
+                    </div>
+                </div>
+
+                {% for community in object_list %}
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <a class="post-detail-link" href="{% url 'community_detail' community.pk %}">
+                            <h6 class="card-group"> {{ community.name }} </h6>
+                            <h4 class="card-title">{{ community.topic }}</h4>
+                            <p class="card-text">{{ community.description|safe|truncatechars:140 }}</p>
+                        </a>
+
+
+                        <div class="post-footer d-flex">
+                            <div class="vote-container d-flex">
+                                <a href="#"><i class="far fa-arrow-alt-circle-up arrow-up"></i></a>
+                                <h6 class="vote-text">Vote</h6>
+                                <a href="#"><i class="far fa-arrow-alt-circle-down arrow-down"></i></a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

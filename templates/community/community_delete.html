@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Delete Post{% endblock title %}
+
+{% block content %}
+<div class="bg-light p-5 rounded mt-5">
+    <h1  class="border-bottom-utl">Delete Post</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{ community.name }}" ?</p>
+        <button  class="btn btn-danger mt-3" type="submit" >Confirm</button>
+        <a type="button" class="btn btn-primary mt-3 ms-3 text-light" href="{% url 'community_detail' community.pk %}">Back</a>
+    </form>
+</div>
+{% endblock content %}

@@ -1,14 +1,10 @@
 from django import forms
 from django.contrib import messages
 from django.contrib.auth import (
-    authenticate, 
-    login, 
-    update_session_auth_hash
+    authenticate, login, update_session_auth_hash
     )
 from django.contrib.auth.forms import (
-    AuthenticationForm, 
-    UserCreationForm, 
-    PasswordChangeForm
+    AuthenticationForm, UserCreationForm, PasswordChangeForm
     )
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
@@ -20,14 +16,9 @@ from django.urls import reverse_lazy
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.views.generic import (
-    CreateView, 
-    DetailView, 
-    FormView, 
-    ListView,
-    UpdateView,
-    DeleteView
+    CreateView, DetailView, FormView, ListView, UpdateView,DeleteView
     )
-from .models import Post, Comment
+from .models import Post, Comment, Community
 from .forms import CommentForm
 
 
@@ -35,9 +26,26 @@ class HomePageView(ListView):
     model = Post
     template_name = 'home.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(HomePageView, self).get_context_data(**kwargs)
+        communities = Community.objects.all
+        context['communities'] = communities
+        return context
+
 class PostListView(ListView):
     model = Post 
     template_name = 'home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(PostListView, self).get_context_data(**kwargs)
+        communities = Community.objects.all()
+        context['communities'] = communities
+        return context
+
+class CommunityListView(ListView):
+    model = Community 
+    template_name = 'community/community.html'
+
 
 class PostDetailView(DetailView):
     model = Post
@@ -58,9 +66,9 @@ class AddCommentView(CreateView):
     template_name = 'add_comment.html'
 
     def get_success_url(self):
-          # capture that 'pk' as postid and pass it to 'reverse_lazy()' function
-          postid=self.kwargs['pk']
-          return reverse_lazy('post_detail', args=str(postid))
+        # capture that 'pk' as postid and pass it to 'reverse_lazy()' function
+        postid=self.kwargs['pk']
+        return reverse_lazy('post_detail', args=str(postid))
 
     def form_valid(self, form):
         form.instance.post = Post.objects.get(pk=self.kwargs.get("pk"))
@@ -82,6 +90,7 @@ class PostDeleteView(DeleteView):
     def form_valid(self, form): # can be used for LoginRequiredMixin
         form.instance.author = self.request.user
         return super().form_valid(form)
+
 
 def login_page(request):
     form = AuthenticationForm()
@@ -142,7 +151,6 @@ class PasswordResetView(FormView):
         email = loader.render_to_string(email_template_name, c)
         send_mail(subject, email, 'webmaster@localhost' , [form.data['email']], fail_silently=False)
         return super().form_valid(form)
-
 
     def redirect_invalid_password_change(self, form):
         context = {}

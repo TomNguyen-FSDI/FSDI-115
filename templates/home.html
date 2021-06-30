@@ -9,7 +9,7 @@
     <div class="btn-group" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-dark btn-spacing">Home</button>
         <button type="button" class="btn btn-dark btn-spacing">Trending</button>
-        <button type="button" class="btn btn-dark btn-spacing">New</button>
+        <a type="button" class="btn btn-dark btn-spacing" href="{% url 'community_list' %}">Communities</a>
     </div>
 </div>
 <div class="container">
@@ -21,9 +21,9 @@
             <!-- Btns for larger screens over 768px -->
             <div class="btn-container" id="lg-btn-container">
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-dark btn-spacing">Home</button>
+                    <a type="button" class="btn btn-dark btn-spacing" href="{% url 'home' %}">Home</a>
                     <button type="button" class="btn btn-dark btn-spacing">Trending</button>
-                    <button type="button" class="btn btn-dark btn-spacing">New</button>
+                    <a type="button" class="btn btn-dark btn-spacing" href="{% url 'community_list' %}" >Communities</a>
                 </div>
             </div>
     {% for post in object_list %}
@@ -62,38 +62,16 @@
       <div class="col-3">
         <ul class="list-group">
             <li class="list-group-item">New Communities</li>
+            {% for community in communities %}
             <li class="list-group-item">
-                <a href="#">
+                <a href="{% url 'community_detail' community.pk %}">
                     <img class="group-img" 
                     src="{% static 'images/default_pic.png' %}" 
                     alt="default image"> 
-                    TMT/Community name
+                    TMT/{{ community.name }}
                 </a>
             </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <img class="group-img" 
-                    src="{% static 'images/default_pic.png' %}" 
-                    alt="default image"> 
-                    TMT/Community name
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <img class="group-img" 
-                    src="{% static 'images/default_pic.png' %}" 
-                    alt="default image"> 
-                    TMT/Community name
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <img class="group-img" 
-                    src="{% static 'images/default_pic.png' %}" 
-                    alt="default image"> 
-                    TMT/Community name
-                </a>
-            </li>
+            {% endfor %}
           </ul>
       </div>
     </div>
