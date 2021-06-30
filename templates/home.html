@@ -62,38 +62,16 @@
       <div class="col-3">
         <ul class="list-group">
             <li class="list-group-item">New Communities</li>
+            {% for community in communities %}
             <li class="list-group-item">
-                <a href="#">
+                <a href="{% url 'community_detail' community.pk %}">
                     <img class="group-img" 
                     src="{% static 'images/default_pic.png' %}" 
                     alt="default image"> 
-                    TMT/Community name
+                    TMT/{{ community.name }}
                 </a>
             </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <img class="group-img" 
-                    src="{% static 'images/default_pic.png' %}" 
-                    alt="default image"> 
-                    TMT/Community name
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <img class="group-img" 
-                    src="{% static 'images/default_pic.png' %}" 
-                    alt="default image"> 
-                    TMT/Community name
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">
-                    <img class="group-img" 
-                    src="{% static 'images/default_pic.png' %}" 
-                    alt="default image"> 
-                    TMT/Community name
-                </a>
-            </li>
+            {% endfor %}
           </ul>
       </div>
     </div>

@@ -26,10 +26,21 @@ class HomePageView(ListView):
     model = Post
     template_name = 'home.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(HomePageView, self).get_context_data(**kwargs)
+        communities = Community.objects.all
+        context['communities'] = communities
+        return context
+
 class PostListView(ListView):
     model = Post 
     template_name = 'home.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(PostListView, self).get_context_data(**kwargs)
+        communities = Community.objects.all()
+        context['communities'] = communities
+        return context
 
 class CommunityListView(ListView):
     model = Community 
