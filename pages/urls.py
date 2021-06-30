@@ -1,12 +1,24 @@
 from django.urls import path
 from .community import (
-    CommunityListView, CommunityCreateView, CommunityDetailView, 
-    CommunityUpdateView, CommunityDeleteView
+    CommunityListView, 
+    CommunityCreateView, 
+    CommunityDetailView, 
+    CommunityUpdateView, 
+    CommunityDeleteView
     )
 from .views import (
-    HomePageView, PostListView, PostDetailView, search_bar, PostCreateView, 
-    PostUpdateView, login_page, PasswordResetView, change_password,
-    AddCommentView, PostDeleteView
+    HomePageView, 
+    PostListView, 
+    PostDetailView, 
+    search_bar, 
+    PostCreateView, 
+    PostUpdateView, 
+    login_page, 
+    PasswordResetView, 
+    change_password,
+    AddCommentView, 
+    PostDeleteView, 
+    LikeView
     )
 
 urlpatterns = [
@@ -27,4 +39,5 @@ urlpatterns = [
     path('post/update/<int:pk>/', PostUpdateView.as_view(), name= 'post_update'),
     path('post/<int:pk>/comment/', AddCommentView.as_view(), name="add_comment"),
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name="post_delete"),
+    path('like/<int:pk>/', LikeView, name='like_post'),
 ]

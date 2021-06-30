@@ -1,25 +1,47 @@
 from django import forms
 from django.contrib import messages
 from django.contrib.auth import (
-    authenticate, login, update_session_auth_hash
+    authenticate, 
+    login, 
+    update_session_auth_hash
     )
 from django.contrib.auth.forms import (
-    AuthenticationForm, UserCreationForm, PasswordChangeForm
+    AuthenticationForm, 
+    UserCreationForm, 
+    PasswordChangeForm
     )
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.db.models import Q
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.template import loader
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.views.generic import (
-    CreateView, DetailView, FormView, ListView, UpdateView,DeleteView
+    CreateView, 
+    DetailView, 
+    FormView, 
+    ListView, 
+    UpdateView,
+    DeleteView
     )
 from .models import Post, Comment, Community
 from .forms import CommentForm
+from django.http import HttpResponseRedirect
+
+def LikeView(request, pk):
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+        liked = False
+    else:
+        post.likes.add(request.user)
+        liked = True
+
+    return HttpResponseRedirect(reverse('post_detail', args=[str(pk)]))
 
 
 class HomePageView(ListView):
@@ -50,6 +72,20 @@ class CommunityListView(ListView):
 class PostDetailView(DetailView):
     model = Post
     template_name = 'post_detail.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(PostDetailView, self).get_context_data(*args, **kwargs)
+        post_info = get_object_or_404(Post, id=self.kwargs['pk'])
+
+        liked = False
+        if post_info.likes.filter(id=self.request.user.id).exists():
+            liked = True
+
+
+        total_likes = post_info.total_likes()
+        context["total_likes"] = total_likes
+        context["liked"] = liked
+        return context
 
 class PostCreateView(CreateView):
     model = Post
