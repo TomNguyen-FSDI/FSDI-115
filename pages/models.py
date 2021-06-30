@@ -7,6 +7,10 @@ class Community(models.Model):
     name = models.CharField(max_length=200, unique=True)
     topic = models.CharField(max_length=600)
     description = models.TextField()
+    author = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE
+    )
 
 
     def __str__(self):
@@ -27,7 +31,8 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     author = models.ForeignKey(
         get_user_model(), 
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        default=None
     )
     date = models.DateTimeField(auto_now_add=True)
     body = models.TextField()

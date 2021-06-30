@@ -29,3 +29,13 @@ class CommunityUpdateView(UpdateView):
     model = Community
     template_name = 'community/community_update.html'
     fields = ["name","topic", "description"]
+
+
+class CommunityDeleteView(DeleteView):
+    model = Community
+    template_name = "community/community_delete.html"
+    success_url = reverse_lazy("community_list")
+
+    def form_valid(self, form): # can be used for LoginRequiredMixin
+        form.instance.author = self.request.user
+        return super().form_valid(form)

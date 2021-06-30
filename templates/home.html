@@ -21,7 +21,7 @@
             <!-- Btns for larger screens over 768px -->
             <div class="btn-container" id="lg-btn-container">
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-dark btn-spacing">Home</button>
+                    <a type="button" class="btn btn-dark btn-spacing" href="{% url 'home' %}">Home</a>
                     <button type="button" class="btn btn-dark btn-spacing">Trending</button>
                     <a type="button" class="btn btn-dark btn-spacing" href="{% url 'community_list' %}" >Communities</a>
                 </div>
