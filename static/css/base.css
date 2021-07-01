@@ -207,6 +207,38 @@ a i{
     margin: 1rem;
     text-align: center;
 }
+.thumbs-up{
+    padding: 0!important;
+    border: none;
+    background-color: transparent;
+
+}
+.fa-thumbs-up{
+    color: rgb(6, 83, 250);
+    font-size: 2rem;
+}
+.like-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+.comments{
+    background-color: rgba(122, 122, 122, 0.671);
+    text-align: left;
+    padding: .5rem;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+.comment-btn{
+    margin-bottom: 2rem;
+}
+.center-col{
+    flex: 10;
+}
+.comment-btn:hover{
+    background-color: black;
+    color: white;
+}
 @media(min-width:768px){
     .post-detail{
         width: 55%;
