@@ -49,13 +49,8 @@
                     </a>
                     <img src="{{ post.image.url }}" alt="" style="width: 100%">
 
-                    <div class="post-footer d-flex" style="padding-top: 16px;">
-                        <div class="vote-container d-flex">
-                            <a href="#"><i class="far fa-arrow-alt-circle-up arrow-up"></i></a>
-                                <h6 class="vote-text">Vote</h6>
-                            <a href="#"><i class="far fa-arrow-alt-circle-down arrow-down"></i></a>
-                        </div>    
-                        <div class="comments-container ">
+                    <div class="post-footer d-flex" style="padding-top: 16px; float:right;">  
+                        <div class="comments-container">
                             <a href="{% url 'add_comment' post.pk %}" 
                             type="button" 
                             class="btn btn-outline-light d-flex comment-btn">

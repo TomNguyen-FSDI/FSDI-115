@@ -28,16 +28,6 @@
                             <h4 class="card-title">{{ community.topic }}</h4>
                             <p class="card-text">{{ community.description|safe|truncatechars:140 }}</p>
                         </a>
-
-
-                        <div class="post-footer d-flex">
-                            <div class="vote-container d-flex">
-                                <a href="#"><i class="far fa-arrow-alt-circle-up arrow-up"></i></a>
-                                <h6 class="vote-text">Vote</h6>
-                                <a href="#"><i class="far fa-arrow-alt-circle-down arrow-down"></i></a>
-                            </div>
-
-                        </div>
                     </div>
                 </div>
                 {% endfor %}
