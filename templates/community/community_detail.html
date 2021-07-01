@@ -26,10 +26,10 @@
         <div style="justify-content: space-between;">
             {% if user.is_authenticated %}
             {% if user == community.author %}
-            <a type="button" class="btn btn-outline-light" href="{% url 'community_delete' community.pk %}"><i class="fas fa-trash-alt"> Community</i></a>
+            <a type="button" class="btn btn-outline-light" href="{% url 'community_delete' community.pk %}"><i class="fas fa-trash-alt"></i> Community</a>
             {% endif %}
             <a type="button" class="btn btn-outline-light" href="#" ><i class="fas fa-wifi" style="transform:rotate(45deg); position: relative; margin-bottom: 0px; bottom: -3px; left: -5px;"></i> Follow</a>
-            <a type="button" class="btn btn-outline-light" href="{% url 'post_create'%}" ><i class="far fa-sticky-note"> Add Post</i></a>
+            <a type="button" class="btn btn-outline-light" href="{% url 'post_create'%}" ><i class="far fa-sticky-note"></i> Add Post</a>
             {% else %}
             <p>To post a comment you must be signed in.</p>
             <a type="button" class="btn btn-light mb-2" href="{% url 'signup' %}">Sign Up Here</a>
