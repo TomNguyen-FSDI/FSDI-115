@@ -4,7 +4,8 @@ from .community import (
     CommunityCreateView, 
     CommunityDetailView, 
     CommunityUpdateView, 
-    CommunityDeleteView
+    CommunityDeleteView,
+    follow_community
     )
 from .views import (
     HomePageView, 
@@ -29,6 +30,7 @@ urlpatterns = [
     path('account/password_change/', change_password, name="password_change"),
     path('community/list/', CommunityListView.as_view(), name='community_list'),
     path('community/create/', CommunityCreateView.as_view(), name='community_create'),
+    path('community/follow/<int:pk>/<str:community_name>/', follow_community, name='follow_community'),
     path('community/<int:pk>/', CommunityDetailView.as_view(), name='community_detail'),
     path('community/update/<int:pk>/', CommunityUpdateView.as_view(), name= 'community_update'),
     path('community/<int:pk>/delete/', CommunityDeleteView.as_view(), name="community_delete"),

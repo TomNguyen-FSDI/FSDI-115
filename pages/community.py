@@ -1,9 +1,13 @@
 
-from .models import Community
+from .models import Community, Follow_community
 from django.urls import reverse_lazy
 from django.views.generic import (
     CreateView, DetailView, FormView, ListView, UpdateView,DeleteView
     )
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy, reverse
+from django.contrib.auth.models import User
+from django.shortcuts import render
 
 class CommunityListView(ListView):
     model = Community 
@@ -13,6 +17,35 @@ class CommunityListView(ListView):
 class CommunityDetailView(DetailView):
     model = Community
     template_name = 'community/community_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(CommunityDetailView, self).get_context_data(**kwargs)
+        # community = Community.objects.get(name=context['community'])
+        # username = User.objects.get(username=self.request.user)
+        follow = Follow_community.objects.filter(username=self.request.user).filter(community_name=context['community'])
+        if len(follow) == 1:
+            follow = "True"
+        else:
+            follow = "False"
+        context['follow'] = follow
+        return context
+
+
+def follow_community(request, pk, community_name):
+    # temp_community = Community.objects.get(pk=pk)
+    # temp_user = User.objects.get(username=request.user)     # get a 
+    am_i_in_the_community = Follow_community.objects.filter(username=request.user).filter(community_name=community_name)
+    if len(am_i_in_the_community) == 0 :
+        new_follow = Follow_community(community_name=community_name, username=request.user)
+        new_follow.save()
+    else:   # unfollow
+        found_id = Follow_community.objects.filter(username=request.user).filter(community_name=community_name).values('id')[0]['id']
+        no_follow = Follow_community.objects.get(pk=found_id)
+        print(no_follow)
+        no_follow.delete()
+
+    return HttpResponseRedirect(reverse('community_detail', args=[str(pk)]))
+
 
 
 class CommunityCreateView(CreateView):

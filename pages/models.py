@@ -14,13 +14,16 @@ class Community(models.Model):
         default=None
     )
 
-
     def __str__(self):
         return self.name
 
-
     def get_absolute_url(self):
         return reverse('community_detail', args=[str(self.id)])
+
+
+class Follow_community(models.Model):
+    username = models.CharField(max_length=200, default=None)
+    community_name = models.CharField(max_length=200,default=None)
 
 
 class Post(models.Model):
@@ -63,7 +66,6 @@ class Comment(models.Model):
         on_delete=models.CASCADE
     )
     created_on = models.DateTimeField(auto_now_add=True)
-
 
     def __str__(self):
         return self.comment

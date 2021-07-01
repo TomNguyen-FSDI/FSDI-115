@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Comment, Community
+from .models import Post, Comment, Community, Follow_community
 
 class CommentInLine(admin.StackedInline):
     model = Comment
@@ -11,5 +11,6 @@ class PostAdmin(admin.ModelAdmin):
     ]
 
 admin.site.register(Community)
+admin.site.register(Follow_community)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Comment)
