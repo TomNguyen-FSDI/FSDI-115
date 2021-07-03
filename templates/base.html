@@ -19,6 +19,11 @@ crossorigin="anonymous">
 {% endblock cssstyle %}
     <title>{% block title %}TMT App{% endblock title %}</title>
 </head>
+<video autoplay muted loop id="myVideo">
+  <source src="{% static 'images/stars.mp4' %}" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+
 <body class="">
   <!-- Navbar for smaller screens under 768px -->
   <nav class="navbar sticky-top navbar-dark bg-dark d-flex" id="mobile-navbar">
