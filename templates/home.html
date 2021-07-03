@@ -6,76 +6,72 @@
 {% block content %}
 <!-- btn container for screens smaller than 768px -->
 <div class="btn-container" id="sm-btn-container">
-    <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-dark btn-spacing">Home</button>
-        <button type="button" class="btn btn-dark btn-spacing">Trending</button>
-        <a type="button" class="btn btn-dark btn-spacing" href="{% url 'community_list' %}">Communities</a>
-    </div>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-dark btn-spacing">Home</button>
+    <button type="button" class="btn btn-dark btn-spacing">Trending</button>
+    <a class="btn btn-dark btn-spacing" href="{% url 'community_list' %}">Communities</a>
+  </div>
 </div>
 <div class="container">
-    
-    <div class="row">
-        <div class="col-2"></div>
-      <div class="col-6">
-        <div class="container">
-            <!-- Btns for larger screens over 768px -->
-            <div class="btn-container" id="lg-btn-container">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <a type="button" class="btn btn-dark btn-spacing" href="{% url 'home' %}">Home</a>
-                    <button type="button" class="btn btn-dark btn-spacing">Trending</button>
-                    <a type="button" class="btn btn-dark btn-spacing" href="{% url 'community_list' %}" >Communities</a>
-                </div>
-            </div>
-    {% for post in object_list %}
-    <div class="card" style="width: 100%;">
-        <div class="card-body">
-        <a class="post-detail-link" href="{% url 'post_detail' post.pk %}">
-          <h6 class="card-group text-muted"> TMT/{{ post.community }}  &middot; Posted by u/{{ post.author }}  &middot; {{ post.date }}</h6>
-          <h4 class="card-title">{{ post.title }}</h4>
-          <p class="card-text">{{ post.body|safe|truncatechars:140 }}</p>
-        </a>
-          <img src="{{ post.image.url }}" alt="" style="width: 100%">
-        
-          <div class="post-footer d-flex">
-                <div class="vote-container d-flex">
-                    <a href="#"><i class="far fa-arrow-alt-circle-up arrow-up"></i></a>
-                        <h6 class="vote-text">Vote</h6>
-                    <a href="#"><i class="far fa-arrow-alt-circle-down arrow-down"></i></a>
-                </div>
 
-                <div class="comments-container ">
-                    <a href="{% url 'add_comment' post.pk %}" 
-                    type="button" 
-                    class="btn btn-outline-light d-flex comment-btn">
-                        <i class="far fa-comment-alt"></i>
-                        <h6 class="comment-text"></h6>
-                        
-                </a>
-                </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-6">
+      <div class="container">
+        <!-- Btns for larger screens over 768px -->
+        <div class="btn-container" id="lg-btn-container">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <a class="btn btn-dark btn-spacing" href="{% url 'home' %}">Home</a>
+            <button type="button" class="btn btn-dark btn-spacing">Trending</button>
+            <a class="btn btn-dark btn-spacing" href="{% url 'community_list' %}">Communities</a>
           </div>
         </div>
-      </div>
-      {% endfor %}
+        {% for post in object_list %}
+        <div class="card" style="width: 100%;">
+          <div class="card-body">
+            <a class="post-detail-link" href="{% url 'post_detail' post.pk %}">
+              <h6 class="card-group text-muted"> TMT/{{ post.community }} &middot; Posted by u/{{ post.author }}
+                &middot; {{ post.date }}</h6>
+              <h4 class="card-title">{{ post.title }}</h4>
+              <p class="card-text">{{ post.body|safe|truncatechars:140 }}</p>
+            </a>
+            <img src="{{ post.image.url }}" alt="" style="width: 100%">
 
-</div>
-      </div>
-      <div class="col-3">
-        <ul class="list-group">
-            <li class="list-group-item">New Communities</li>
-            {% for community in communities %}
-            <li class="list-group-item">
-                <a href="{% url 'community_detail' community.pk %}">
-                    <img class="group-img" 
-                    src="{% static 'images/default_pic.png' %}" 
-                    alt="default image"> 
-                    TMT/{{ community.name }}
+            <div class="post-footer d-flex">
+              <div class="vote-container d-flex">
+                <a href="#"><i class="far fa-arrow-alt-circle-up arrow-up"></i></a>
+                <h6 class="vote-text">Vote</h6>
+                <a href="#"><i class="far fa-arrow-alt-circle-down arrow-down"></i></a>
+              </div>
+
+              <div class="comments-container ">
+                <a href="{% url 'add_comment' post.pk %}" class="btn btn-outline-light d-flex comment-btn">
+                  <i class="far fa-comment-alt"></i>
                 </a>
-            </li>
-            {% endfor %}
-          </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
       </div>
     </div>
+    <div class="col-3">
+      <ul class="list-group">
+        <li class="list-group-item">New Communities</li>
+        {% for community in communities %}
+        <li class="list-group-item">
+          <a href="{% url 'community_detail' community.pk %}">
+            <img class="group-img" src="{% static 'images/default_pic.png' %}" alt="default image">
+            TMT/{{ community.name }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
+</div>
+</div>
 
 
 {% endblock content %}
