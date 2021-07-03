@@ -23,7 +23,7 @@ crossorigin="anonymous">
   <!-- Navbar for smaller screens under 768px -->
   <nav class="navbar sticky-top navbar-dark bg-dark d-flex" id="mobile-navbar">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-rocket"></i> TMT</i> </a>
+      <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-rocket"> TMT</i> </a>
       <!-- Will uncomment when user accounts are created -->
       {% if user.is_authenticated %}
       <form class="search-container" method=POST action="{% url 'search_bar' %}">
@@ -58,9 +58,9 @@ crossorigin="anonymous">
       </div>
       {% else %}
       <div>
-        <a type="button" class="btn btn-outline-light" href="{% url 'login' %}">Log In</a>
+        <a class="btn btn-outline-light" href="{% url 'login' %}">Log In</a>
         
-        <a type="button" class="btn btn-light" href="{% url 'signup' %}">Sign Up</a>
+        <a class="btn btn-light" href="{% url 'signup' %}">Sign Up</a>
       </div>
     </div>
       {% endif %}
@@ -69,7 +69,7 @@ crossorigin="anonymous">
   <!-- Navbar for screens over 768px(TABLETS/DESKTOP) -->
     <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark" id="big-navbar">
         <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-rocket"></i> TMT</i> </a>
+          <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-rocket"> TMT</i> </a>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <!-- Commented out till logged in -->
             {% if user.is_authenticated %}
@@ -112,9 +112,9 @@ crossorigin="anonymous">
             </div>
             {% else %}
             <div>
-              <a type="button" class="btn btn-outline-light text-dec-none" href="{% url 'login' %}">Log In</a>
+              <a class="btn btn-outline-light text-dec-none" href="{% url 'login' %}">Log In</a>
               
-              <a type="button" class="btn btn-light" href="{% url 'signup' %}">Sign Up</a>
+              <a class="btn btn-light" href="{% url 'signup' %}">Sign Up</a>
             {% endif %}
           </div>
         </div>
