@@ -19,12 +19,14 @@ crossorigin="anonymous">
 {% endblock cssstyle %}
     <title>{% block title %}TMT App{% endblock title %}</title>
 </head>
-<video autoplay muted loop id="myVideo">
-  <source src="{% static 'images/stars.mp4' %}" type="video/mp4">
-  Your browser does not support HTML5 video.
-</video>
 
-<body class="">
+<body>
+  <div id="myVideo">
+    <video autoplay muted loop>
+      <source src="{% static 'images/stars.mp4' %}" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+  </div>
   <!-- Navbar for smaller screens under 768px -->
   <nav class="navbar sticky-top navbar-dark bg-dark d-flex" id="mobile-navbar">
     <div class="container-fluid">
@@ -57,6 +59,7 @@ crossorigin="anonymous">
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">Profile</a></li>
               <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
+              <li><a id="turnOffVideo" class="dropdown-item" onclick="pauseVideo()">turn off background</a></li>
               <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
             </ul>
           </div>
@@ -111,6 +114,7 @@ crossorigin="anonymous">
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Profile</a></li>
                     <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
+                    <li><a id="turnOffVideo" class="dropdown-item" onclick="pauseVideo()">turn off background</a></li>
                     <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
                   </ul>
                 </div>
@@ -137,5 +141,6 @@ crossorigin="anonymous">
 src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" 
 integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" 
 crossorigin="anonymous"></script>
+<script src="{% static 'js/video.js' %}"></script>
 </body>
 </html>
