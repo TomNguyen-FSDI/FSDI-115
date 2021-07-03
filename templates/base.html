@@ -59,7 +59,7 @@ crossorigin="anonymous">
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">Profile</a></li>
               <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
-              <li><a id="turnOffVideo" class="dropdown-item" onclick="pauseVideo()">turn off background</a></li>
+              <li><a id="turnOffVideo" class="dropdown-item" onclick="pauseVideo()">background off</a></li>
               <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
             </ul>
           </div>
@@ -72,6 +72,7 @@ crossorigin="anonymous">
       </div>
     </div>
       {% endif %}
+  </div>
   </nav>
 
   <!-- Navbar for screens over 768px(TABLETS/DESKTOP) -->
@@ -114,7 +115,7 @@ crossorigin="anonymous">
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Profile</a></li>
                     <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
-                    <li><a id="turnOffVideo" class="dropdown-item" onclick="pauseVideo()">turn off background</a></li>
+                    <li><a id="turnOffVideo" class="dropdown-item" onclick="pauseVideo()">background off</a></li>
                     <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
                   </ul>
                 </div>
@@ -126,6 +127,7 @@ crossorigin="anonymous">
               <a class="btn btn-light" href="{% url 'signup' %}">Sign Up</a>
             {% endif %}
           </div>
+        </div>
         </div>
       </nav>
     <main>
