@@ -1,4 +1,10 @@
 from django.urls import path
+from .inbox import (
+    InboxCreateView,
+    InboxListView,
+    InboxSentView,
+    InboxDetailView,
+)
 from .community import (
     CommunityListView, 
     CommunityCreateView, 
@@ -35,6 +41,10 @@ urlpatterns = [
     path('community/update/<int:pk>/', CommunityUpdateView.as_view(), name= 'community_update'),
     path('community/<int:pk>/delete/', CommunityDeleteView.as_view(), name="community_delete"),
     path('community/<int:pk>/delete/', CommunityDeleteView.as_view(), name="community_delete"),
+    path('inbox/create/', InboxCreateView.as_view(), name='inbox_create'),
+    path('inbox/list/', InboxListView.as_view(), name='inbox_list'),
+    path('inbox/sent/', InboxSentView.as_view(), name='inbox_sent'),
+    path('inbox/<int:pk>/', InboxDetailView.as_view(), name='inbox_detail'),
     path('post/list/', PostListView.as_view(), name='home'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post_detail'),
     path('post/create/', PostCreateView.as_view(), name= 'post_create'),

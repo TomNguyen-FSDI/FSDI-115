@@ -33,6 +33,9 @@
 #id_new_password1, #id_new_password2, #id_old_password {
     width: 100%;
 }
+#id_receiver, #id_subject, #id_message{
+    width: 100%;
+}
 #id_password, #id_password1, #id_password2{
     width: 100%;
 }

@@ -27,7 +27,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView
     )
-from .models import Post, Comment, Community
+from .models import Post, Comment, Community, InboxMessage
 from .forms import CommentForm
 from django.http import HttpResponseRedirect
 
@@ -62,6 +62,7 @@ class PostListView(ListView):
         context = super(PostListView, self).get_context_data(**kwargs)
         communities = Community.objects.all()
         context['communities'] = communities
+
         return context
 
 class CommunityListView(ListView):
