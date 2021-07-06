@@ -21,12 +21,11 @@ crossorigin="anonymous">
 </head>
 
 <body>
+  {% block loginbackground %}
   <div id="myVideo">
-    <video autoplay muted loop>
-      <source src="{% static 'images/stars.mp4' %}" type="video/mp4">
-      Your browser does not support HTML5 video.
-    </video>
+    myVideoElement.html("");
   </div>
+  {% endblock loginbackground %}
   <!-- Navbar for smaller screens under 768px -->
   <nav class="navbar sticky-top navbar-dark bg-dark d-flex" id="mobile-navbar">
     <div class="container-fluid">

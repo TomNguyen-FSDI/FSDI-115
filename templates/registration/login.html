@@ -8,8 +8,16 @@
 {% block title %}Log In{% endblock title %}
 
 
-
+{% block loginbackground %}
+<div id="myVideo">
+    <video autoplay muted loop>
+        <source src="{% static 'images/stars.mp4' %}" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+</div>
+{% endblock loginbackground %}
 {% block content %}
+
 
 <div class="position-relative">
     <div class="position-absolute top-100 start-50 translate-middle-x" style="margin-top:5rem;width:300px;">
