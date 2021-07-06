@@ -72,3 +72,18 @@ class Comment(models.Model):
 
     def get_absolute_url(self):
         return reverse('post_list')
+
+
+class InboxMessage(models.Model):
+    receiver = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE
+    )
+    sender = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE
+    )
+    subject = models.CharField(max_length=255)
+    message = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+    unread = models.BooleanField(default=True)
