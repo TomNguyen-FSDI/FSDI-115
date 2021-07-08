@@ -65,12 +65,15 @@
 
                     <div class="post-footer d-flex" style="padding-top: 16px; float:right;">  
                         <div class="comments-container">
-                            <a href="{% url 'add_comment' post.pk %}" 
-                            type="button" 
-                            class="btn btn-outline-light d-flex comment-btn">
-                            <i class="far fa-comment-alt"></i>
-                            <h6 class="comment-text"></h6>
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'add_comment' post.pk %}" class="btn btn-outline-light d-flex comment-btn">
+                              <i class="far fa-comment-alt"></i>
                             </a>
+                          {% else %}
+                            <a href="{% url  'login'  %}" class="btn btn-outline-light d-flex comment-btn">
+                              <i class="far fa-comment-alt"></i>
+                            </a>
+                          {% endif %}
                         </div>
                     </div>
 
