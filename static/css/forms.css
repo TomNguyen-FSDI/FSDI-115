@@ -71,5 +71,9 @@
 }
 .invalid-login-label{
     color:#DD0000;
+}
 
+/* comment delete */
+.delete-comment-row{
+    align-items: flex-end;
 }

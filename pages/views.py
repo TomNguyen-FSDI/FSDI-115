@@ -119,6 +119,30 @@ class PostUpdateView(UpdateView):
     fields = ["community","title", "body", "image"]
 
 
+class CommentUpdateView(UpdateView):
+    model = Comment
+    template_name = 'comment_update.html'
+    fields = ["comment"]
+
+    def get_success_url(self):
+        # capture that 'pk' as postid and pass it to 'reverse_lazy()' function
+        postid=self.kwargs['id']
+        return reverse_lazy('post_detail', args=str(postid))
+
+class CommentDeleteView(DeleteView):
+    model = Comment
+    template_name = "comment_delete.html"
+    
+    def get_success_url(self):
+        # capture that 'pk' as postid and pass it to 'reverse_lazy()' function
+        postid=self.kwargs['id']
+        return reverse_lazy('post_detail', args=str(postid))
+
+    def form_valid(self, form): # can be used for LoginRequiredMixin
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
 class PostDeleteView(DeleteView):
     model = Post
     template_name = "post_delete.html"

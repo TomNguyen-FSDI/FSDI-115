@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Delete Comment{% endblock title %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+
+<div class="container bg-light p-4 rounded mt-5">
+    <h1  class="border-bottom-utl">Delete Comment</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <p>Are you sure you want to delete your comment "{{ comment.comment }}" ?</p>
+
+            <button  class="btn btn-danger mt-3" type="submit" >Confirm</button>
+                
+            <a class="text-light btn btn-primary mt-3 ms-3" href="{% url 'post_detail' comment.post.pk %}">Back</a>
+        </form>
+      
+                
+
+</div>
+
+{% endblock content %}

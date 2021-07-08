@@ -25,7 +25,9 @@ from .views import (
     change_password,
     AddCommentView, 
     PostDeleteView, 
-    LikeView
+    LikeView,
+    CommentUpdateView,
+    CommentDeleteView
     )
 
 urlpatterns = [
@@ -52,4 +54,6 @@ urlpatterns = [
     path('post/<int:pk>/comment/', AddCommentView.as_view(), name="add_comment"),
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name="post_delete"),
     path('like/<int:pk>/', LikeView, name='like_post'),
+    path('comment/update/<int:pk>/post/<int:id>/', CommentUpdateView.as_view(), name='comment_update'),
+    path('comment/delete/<int:pk>/post/<int:id>/', CommentDeleteView.as_view(), name='comment_delete'),
 ]

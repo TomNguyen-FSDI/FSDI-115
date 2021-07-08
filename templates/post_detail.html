@@ -91,18 +91,40 @@
         {% if user.is_authenticated %}
         
         <a class="btn btn-light comment-btn" href="{% url 'add_comment' post.pk %}">Add Comment</a>
+       
         
         {% else %}
 
         {% endif %}
 
         {% for comment in post.comments.all reversed %}
-        <p class="comments">
-            <span class="font-weight-bold">
-                {{ comment.author }} &middot;
-            </span>
-            {{ comment }}
-        </p>
+        <div class="comments mb-3">
+            <p class="">
+                <span class="font-weight-bold">
+                    u/{{ comment.author }} &middot; {{ comment.created_on }}
+                </span>
+            </br>
+                <span>
+                    {{ comment }}
+                </span>
+            </p> 
+            {% if user == comment.author %}
+            <div class="dropdown">
+                <button 
+                class="btn btn-secondary dropdown-toggle comment-dropdown" 
+                type="button" 
+                id="dropdownMenuButton1" 
+                data-bs-toggle="dropdown" 
+                aria-expanded="false"
+                title="Edit/Delete post">
+                    <i class="fas fa-ellipsis-v"></i>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li class="comment-option"><a class="btn btn-light comment-btn" href="{% url 'comment_update' comment.pk post.id %}">Edit Comment</a></li>
+                <li class="comment-option"><a class="btn btn-light comment-btn" href="{% url 'comment_delete' comment.pk post.id %}">delete Comment</a></li>
+            </div>
+            {% endif %}
+        </div>
         {% endfor %}
     </div>
 </div>

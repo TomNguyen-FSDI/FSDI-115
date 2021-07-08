@@ -236,14 +236,26 @@ a i{
     align-items: baseline;
 }
 .comments{
+    display: flex;
+    justify-content: space-between;
     background-color: rgba(122, 122, 122, 0.671);
     text-align: left;
     padding: .5rem;
     border: 1px solid white;
     border-radius: 5px;
 }
+.comment-dropdown{
+    padding: 2px;
+    font-size: 13px;
+}
+.comment-option{
+    width: max-content;
+}
 .comment-btn{
     margin-bottom: 2rem;
+}
+li>.comment-btn:last-of-type{
+    margin-bottom: 0;
 }
 .center-col{
     flex: 10;
