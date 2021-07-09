@@ -241,9 +241,11 @@ def search_bar(request):
     if request.method == "POST":
         if 'searched_data' in request.POST: # same as : # searched = request.POST.get('searched_data', False)
             searched = request.POST['searched_data']
-            searched_results = Post.objects.filter(Q(body__contains=searched)|Q(title__contains=searched)).order_by('-id')[:7]
+            search_result_for_community = Community.objects.filter(Q(name__contains=searched)|Q(topic__contains=searched)|Q(description__contains=searched)).order_by('id')[:5]
+            search_result_for_post = Post.objects.filter(Q(body__contains=searched)|Q(title__contains=searched)).order_by('-id')[:5]
             context = {}
             context['searched'] = searched
-            context['searched_results'] = searched_results
+            context['searched_results_post'] = search_result_for_post
+            context['searched_results_community'] = search_result_for_community
             return render(request, 'search_bar.html', context)
     return render(request, 'search_bar.html', {})

@@ -42,7 +42,6 @@ urlpatterns = [
     path('community/<int:pk>/', CommunityDetailView.as_view(), name='community_detail'),
     path('community/update/<int:pk>/', CommunityUpdateView.as_view(), name= 'community_update'),
     path('community/<int:pk>/delete/', CommunityDeleteView.as_view(), name="community_delete"),
-    path('community/<int:pk>/delete/', CommunityDeleteView.as_view(), name="community_delete"),
     path('inbox/create/', InboxCreateView.as_view(), name='inbox_create'),
     path('inbox/list/', InboxListView.as_view(), name='inbox_list'),
     path('inbox/sent/', InboxSentView.as_view(), name='inbox_sent'),
