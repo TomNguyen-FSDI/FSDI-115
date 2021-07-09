@@ -31,6 +31,7 @@ from .models import Post, Comment, Community, InboxMessage
 from .forms import CommentForm
 from django.http import HttpResponseRedirect
 
+
 def LikeView(request, pk):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
     liked = False
@@ -41,8 +42,13 @@ def LikeView(request, pk):
         post.likes.add(request.user)
         liked = True
 
-    return HttpResponseRedirect(reverse('post_detail', args=[str(pk)]))
+    url_path = request.path
+    if '/post/list/' in url_path :
+        return HttpResponseRedirect(reverse('home'))
+    else:
+        return HttpResponseRedirect(reverse('post_detail', args=[str(pk)]))
 
+    
 
 class HomePageView(ListView):
     model = Post

@@ -90,8 +90,7 @@
 
         {% if user.is_authenticated %}
         
-        <a class="btn btn-light comment-btn" href="{% url 'add_comment' post.pk %}">Add Comment</a>
-       
+            <a class="btn btn-light comment-btn" href="{% url 'add_comment' post.pk %}">Add Comment</a>
         
         {% else %}
 
