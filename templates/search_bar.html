@@ -57,7 +57,6 @@
 
         <div class="card-body">
             <div>
-                what am i {{ searched_result.pk }} here {{ searched_result.id }}
                 <a href="{% url 'post_detail' searched_result.pk %}" style="text-decoration: none;">
                     <h6 class="card-group">By: {{ searched_result.name }} | {{ searched_result.date }}</h6>
                     <h4 class="card-title">{{ searched_result.title }}</h4>
