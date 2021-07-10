@@ -25,6 +25,9 @@ class Follow_community(models.Model):
     username = models.CharField(max_length=200, default=None)
     community_name = models.CharField(max_length=200,default=None)
 
+    def __str__(self):
+        return "user: {}, community name: {}".format(self.username, self.community_name)
+
 
 class Post(models.Model):
     community = models.ForeignKey(
