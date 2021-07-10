@@ -41,11 +41,24 @@ def follow_community(request, pk, community_name):
     else:   # unfollow
         found_id = Follow_community.objects.filter(username=request.user).filter(community_name=community_name).values('id')[0]['id']
         no_follow = Follow_community.objects.get(pk=found_id)
-        print(no_follow)
         no_follow.delete()
-
     return HttpResponseRedirect(reverse('community_detail', args=[str(pk)]))
 
+
+class Followed_community(ListView):
+    model = Community 
+    template_name = 'community/followed.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(Followed_community, self).get_context_data(**kwargs)
+        followed = Follow_community.objects.filter(username=self.request.user)      
+        list_of_followed = []
+        for item in followed:
+            communities = Community.objects.filter(name=item.community_name)
+            list_of_followed.append(communities)
+        context['followed'] = list_of_followed
+        return context
+        
 
 
 class CommunityCreateView(CreateView):

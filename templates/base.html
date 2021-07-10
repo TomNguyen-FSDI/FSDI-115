@@ -56,8 +56,9 @@ crossorigin="anonymous">
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">Profile</a></li>
-              <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
               <li><a class="dropdown-item" href="{% url 'inbox_list' %}"><i class="far fa-envelope" style="position: relative; top: 3px; color: black;"></i> inbox (<label style="position: relative;">{% unread_message request %} </label>)</a></li>
+              <li><a class="dropdown-item" href="{% url 'followed_community' %}">Communities</a></li>
+              <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
               <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
             </ul>
           </div>
@@ -111,8 +112,9 @@ crossorigin="anonymous">
                   </a>
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
                     <li><a class="dropdown-item" href="{% url 'inbox_list' %}"><i class="far fa-envelope" style="position: relative; top: 3px; color: black;"></i> inbox (<label style="position: relative;">{% unread_message request %} </label>)</a></li>
+                    <li><a class="dropdown-item" href="{% url 'followed_community' %}">Communities</a></li>
+                    <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
                     <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
                   </ul>
                 </div>
