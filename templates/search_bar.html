@@ -34,7 +34,7 @@
         <div class="card-body">
             <div>
                 <a href="{% url 'community_detail' searched_result.pk %}" style="text-decoration: none; color: inherit;">
-                    <h6 class="card-group">community: {{ searched_result.author }}</h6>
+                    <h6 class="card-group">community: {{ searched_result.name }}</h6>
                     <h4 class="card-title">{{ searched_result.topic }}</h4>
                 </a>
                 <p class="card-text">{{ searched_result.description|safe|truncatechars:140 }}</p>
