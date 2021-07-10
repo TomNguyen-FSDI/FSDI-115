@@ -56,7 +56,7 @@
 
         <div class="card-body">
             <div>
-                <a href="{% url 'post_detail' searched_result.pk %}" style="text-decoration: none;">
+                <a href="{% url 'post_detail' searched_result.pk %}" style="text-decoration: none; color: inherit;">
                     <h6 class="card-group">By: {{ searched_result.name }} | {{ searched_result.date }}</h6>
                     <h4 class="card-title">{{ searched_result.title }}</h4>
                 </a>
