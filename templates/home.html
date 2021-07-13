@@ -37,49 +37,48 @@
               <p class="card-text">{{ post.body|safe|truncatechars:140 }}</p>
             </a>
             <img src="{{ post.image.url }}" alt="" style="width: 100%">
-
             <div class="post-footer d-flex">
               <div class="vote-container d-flex">
+                {% if user.is_authenticated %}
                 <form 
-        action="{% url  'like_post_home' post.pk %}"
-        method="post"
-        class="like-container">
-            {% csrf_token %}
-        {% if user.is_authenticated %}
-            {% if post.liked %}
-            <button 
-                type="submit" 
-                name="post_id" 
-                value="{{ post.id }}" 
-                class="thumbs-up">
-                <i class="fas fa-thumbs-up"></i>
-            </button> 
-            {% else %}
-            <button 
-                type="submit" 
-                name="post_id" 
-                value="{{ post.id }}" 
-                class="thumbs-up">
-                <i class="far fa-thumbs-up"></i>
-            </button>
-            {% endif %} 
-        {% else %}
-            <small><a type="button" class="btn btn-sm btn-outline-light text-dec-none" href="{% url 'login' %}">Login</a> to like or comment</small>
-        {% endif %}
+                  action="{% url 'like' post.pk %}"
+                  method="Post"
+                  class="like-container">
+                  {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <button 
+                        type="submit" 
+                        class="thumbs-up">
+                        <i class="far fa-arrow-alt-circle-up upvote"><span class="count">{{ post.likes.all.count }}</span></i>
+                    </button> 
+                </form>
 
-            <p> - {{ post.total_likes }} Likes</p>
-        </form>
+                    <form 
+                    action="{% url 'dislike' post.pk %}"
+                    method="Post"
+                    class="like-container">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <button 
+                            type="submit" 
+                            class="thumbs-up">
+                            <i class="far fa-arrow-alt-circle-down downvote"><span class="count">{{ post.dislikes.all.count }}</span></i>
+                        </button> 
+                                </form>
+
               </div>
 
               <div class="comments-container ">
-                {% if user.is_authenticated %}
+                
                   <a href="{% url 'add_comment' post.pk %}" class="btn btn-outline-light d-flex comment-btn">
                     <i class="far fa-comment-alt"></i>
                   </a>
                 {% else %}
-                  <a href="{% url  'login'  %}" class="btn btn-outline-light d-flex comment-btn">
-                    <i class="far fa-comment-alt"></i>
-                  </a>
+                  <p>
+                    <a href="{% url  'login'  %}" class="btn btn-sm btn-outline-light">
+                    Login</a> to like and comment.
+                  </p>
+                  
                 {% endif %}
               </div>
             </div>

@@ -45,10 +45,8 @@ class Post(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     body = models.TextField()
     image = models.ImageField(upload_to='images/', default='.png', blank=True)
-    likes = models.ManyToManyField(User, related_name='post_likes')
-
-    def total_likes(self):
-        return self.likes.count()
+    likes = models.ManyToManyField(User, blank=True,related_name='likes')
+    dislikes = models.ManyToManyField(User, blank=True,related_name='dislikes')
 
     def __str__(self):
         return self.title

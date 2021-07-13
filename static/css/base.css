@@ -226,9 +226,17 @@ a i{
     background-color: transparent;
 
 }
-.fa-thumbs-up{
+.upvote{
     color: rgb(6, 83, 250);
-    font-size: 2rem;
+    font-size: 1.5rem;
+}
+.downvote{
+    color: rgb(250, 55, 6);
+    font-size: 1.5rem;
+}
+.count{
+    color: white;
+    margin:  0 .25rem;
 }
 .like-container{
     display: flex;
