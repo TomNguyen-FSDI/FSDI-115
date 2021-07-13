@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load poll_extras %}
 
 {% block title %}Home{% endblock title %}
 
@@ -77,11 +78,30 @@
                     <button 
                         type="submit" 
                         class="thumbs-up">
+<<<<<<< HEAD
                         <i class="fas fa-arrow-alt-circle-down downvote"><span class="count">{{ post.dislikes.all.count }}</span></i>
+=======
+                        {% get_likes post.pk request %}{{ post.likes.all.count }}</span></i>
+>>>>>>> b3049ba3fae247275b85420821dbc88bf96adc17
                     </button> 
                     {% endif %}
 
+<<<<<<< HEAD
                             </form>
+=======
+                    <form 
+                    action="{% url 'dislike' post.pk %}"
+                    method="Post"
+                    class="like-container">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <button 
+                            type="submit" 
+                            class="thumbs-up">
+                            {% get_dislikes post.pk request %}{{ post.dislikes.all.count }}</span></i>
+                        </button> 
+                                </form>
+>>>>>>> b3049ba3fae247275b85420821dbc88bf96adc17
 
               </div>
 
