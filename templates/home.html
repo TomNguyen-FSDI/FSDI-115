@@ -41,30 +41,47 @@
               <div class="vote-container d-flex">
                 {% if user.is_authenticated %}
                 <form 
-                  action="{% url 'like' post.pk %}"
-                  method="Post"
-                  class="like-container">
-                  {% csrf_token %}
+              action="{% url 'like' post.pk %}"
+              method="Post"
+              class="like-container">
+              {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.path }}">
+                {% if not liked %}
+                <button 
+                    type="submit" 
+                    class="thumbs-up">
+                    <i class="far fa-arrow-alt-circle-up upvote"><span class="count">{{ post.likes.all.count }}</span></i>
+                </button> 
+                {% else %}
+                <button 
+                type="submit" 
+                class="thumbs-up">
+                <i class="fas fa-arrow-alt-circle-up upvote"><span class="count">{{ post.likes.all.count }}</span></i>
+            </button> 
+                {% endif %}
+            </form>
+
+                <form 
+                action="{% url 'dislike' post.pk %}"
+                method="Post"
+                class="like-container">
+                    {% csrf_token %}
                     <input type="hidden" name="next" value="{{ request.path }}">
+                    {% if not disliked %}
                     <button 
                         type="submit" 
                         class="thumbs-up">
-                        <i class="far fa-arrow-alt-circle-up upvote"><span class="count">{{ post.likes.all.count }}</span></i>
+                        <i class="far fa-arrow-alt-circle-down downvote"><span class="count">{{ post.dislikes.all.count }}</span></i>
                     </button> 
-                </form>
+                    {% else %}
+                    <button 
+                        type="submit" 
+                        class="thumbs-up">
+                        <i class="fas fa-arrow-alt-circle-down downvote"><span class="count">{{ post.dislikes.all.count }}</span></i>
+                    </button> 
+                    {% endif %}
 
-                    <form 
-                    action="{% url 'dislike' post.pk %}"
-                    method="Post"
-                    class="like-container">
-                        {% csrf_token %}
-                        <input type="hidden" name="next" value="{{ request.path }}">
-                        <button 
-                            type="submit" 
-                            class="thumbs-up">
-                            <i class="far fa-arrow-alt-circle-down downvote"><span class="count">{{ post.dislikes.all.count }}</span></i>
-                        </button> 
-                                </form>
+                            </form>
 
               </div>
 

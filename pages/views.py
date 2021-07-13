@@ -124,18 +124,21 @@ class PostDetailView(DetailView):
     model = Post
     template_name = 'post_detail.html'
 
-    # def get_context_data(self, *args, **kwargs):
-    #     context = super(PostDetailView, self).get_context_data(*args, **kwargs)
-    #     post_info = get_object_or_404(Post, id=self.kwargs['pk'])
+    def get_context_data(self, *args, **kwargs):
+        context = super(PostDetailView, self).get_context_data(*args, **kwargs)
+        post_info = get_object_or_404(Post, id=self.kwargs['pk'])
+        print(post_info)
+        liked = False
+        if post_info.likes.filter(id=self.request.user.id).exists():
+            liked = True
+
+        disliked = False
+        if post_info.dislikes.filter(id=self.request.user.id).exists():
+            disliked = True
         
-    #     liked = False
-    #     if post_info.likes.filter(id=self.request.user.id).exists():
-    #         liked = True
-        
-    #     total_likes = post_info.total_likes()
-    #     context["total_likes"] = total_likes
-    #     context["liked"] = liked
-    #     return context
+        context["liked"] = liked
+        context["disliked"] = disliked
+        return context
 
 class PostCreateView(CreateView):
     model = Post
