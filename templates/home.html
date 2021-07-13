@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load poll_extras %}
 
 {% block title %}Home{% endblock title %}
 
@@ -49,7 +50,7 @@
                     <button 
                         type="submit" 
                         class="thumbs-up">
-                        <i class="far fa-arrow-alt-circle-up upvote"><span class="count">{{ post.likes.all.count }}</span></i>
+                        {% get_likes post.pk request %}{{ post.likes.all.count }}</span></i>
                     </button> 
                 </form>
 
@@ -62,7 +63,7 @@
                         <button 
                             type="submit" 
                             class="thumbs-up">
-                            <i class="far fa-arrow-alt-circle-down downvote"><span class="count">{{ post.dislikes.all.count }}</span></i>
+                            {% get_dislikes post.pk request %}{{ post.dislikes.all.count }}</span></i>
                         </button> 
                                 </form>
 

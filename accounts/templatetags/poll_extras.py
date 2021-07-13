@@ -1,6 +1,10 @@
 
 from django import template
-from pages.models import InboxMessage
+from pages.models import InboxMessage, Post
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponse
+from django.utils.safestring import mark_safe
+
 
 register = template.Library()
 
@@ -42,6 +46,23 @@ def set_unread_message(pk):
     item.unread = False
     item.save()
     return None
+
+@register.simple_tag
+def get_dislikes(pk, request):
+    post_info = get_object_or_404(Post, id=pk)
+    results = r'<i class="far fa-arrow-alt-circle-down downvote"><span class="count">'
+    if post_info.dislikes.filter(id=request.user.id).exists():
+        results = r'<i class="fas fa-arrow-alt-circle-down downvote"><span class="count">'
+    return mark_safe(results)
+
+@register.simple_tag
+def get_likes(pk, request):
+    post_info = get_object_or_404(Post, id=pk)
+    results = r'<i class="far fa-arrow-alt-circle-up upvote"><span class="count">'
+    if post_info.likes.filter(id=request.user.id).exists():
+        results = r'<i class="fas fa-arrow-alt-circle-up upvote"><span class="count">'
+    return mark_safe(results)
+
 
 
 register.filter('value', html_value)
