@@ -78,17 +78,16 @@
                     <button 
                         type="submit" 
                         class="thumbs-up">
-<<<<<<< HEAD
+
                         <i class="fas fa-arrow-alt-circle-down downvote"><span class="count">{{ post.dislikes.all.count }}</span></i>
-=======
+
                         {% get_likes post.pk request %}{{ post.likes.all.count }}</span></i>
->>>>>>> b3049ba3fae247275b85420821dbc88bf96adc17
+
+                        {% get_likes post.pk request %}{{ post.likes.all.count }}</span></i>
+
                     </button> 
                     {% endif %}
 
-<<<<<<< HEAD
-                            </form>
-=======
                     <form 
                     action="{% url 'dislike' post.pk %}"
                     method="Post"
@@ -101,7 +100,6 @@
                             {% get_dislikes post.pk request %}{{ post.dislikes.all.count }}</span></i>
                         </button> 
                                 </form>
->>>>>>> b3049ba3fae247275b85420821dbc88bf96adc17
 
               </div>
 
