@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load poll_extras %}
 
 {% block title %}{{ post.title }}{% endblock title %}
 {% block content %} 
@@ -67,13 +68,13 @@
                 <button 
                     type="submit" 
                     class="thumbs-up">
-                    <i class="far fa-arrow-alt-circle-up upvote"><span class="count">{{ post.likes.all.count }}</span></i>
+                    <i class="fas fa-arrow-up not-clicked"></i><span class="count">{{ post.likes.all.count }}</span></i>
                 </button> 
                 {% else %}
                 <button 
                 type="submit" 
                 class="thumbs-up">
-                <i class="fas fa-arrow-alt-circle-up upvote"><span class="count">{{ post.likes.all.count }}</span></i>
+                <i class="fas fa-arrow-up liked"></i><span class="count">{{ post.likes.all.count }}</span></i>
             </button> 
                 {% endif %}
             </form>
@@ -88,13 +89,13 @@
                     <button 
                         type="submit" 
                         class="thumbs-up">
-                        <i class="far fa-arrow-alt-circle-down downvote"><span class="count">{{ post.dislikes.all.count }}</span></i>
+                        <i class="fas fa-arrow-down not-clicked"></i><span class="count">{{ post.dislikes.all.count }}</span></i>
                     </button> 
                     {% else %}
                     <button 
                         type="submit" 
                         class="thumbs-up">
-                        <i class="fas fa-arrow-alt-circle-down downvote"><span class="count">{{ post.dislikes.all.count }}</span></i>
+                        <i class="fas fa-arrow-down disliked"></i><span class="count">{{ post.dislikes.all.count }}</span></i>
                     </button> 
                     {% endif %}
 
@@ -120,6 +121,7 @@
 
         {% for comment in post.comments.all reversed %}
         <div class="comments mb-3">
+            <div class="test">
             <p class="">
                 <span class="font-weight-bold">
                     u/{{ comment.author }} &middot; {{ comment.created_on }}
@@ -129,6 +131,44 @@
                     {{ comment }}
                 </span>
             </p> 
+            {% if user.is_authenticated %}
+        <div class="vote-container d-flex">
+            <form 
+              action="{% url 'comment_like' comment.pk %}"
+              method="Post"
+              class="like-container">
+              {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <button 
+                    type="submit" 
+                    class="thumbs-up">
+                    {% get_comment_likes comment.pk request %}{{ comment.likes.all.count }}</span></i>
+                </button> 
+                
+            </form>
+
+                <form 
+                action="{% url 'comment_dislike' comment.pk %}"
+                method="Post"
+                class="like-container">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <button
+                        type="submit" 
+                        class="thumbs-up">
+                        {% get_comment_dislikes comment.pk request %}{{ comment.dislikes.all.count }}</span></i>
+                    </button> 
+
+                            </form>
+
+          </div>
+        </div><!--.test-->
+          {% else %}
+          <p>
+            <a href="{% url  'login'  %}" class="btn btn-sm btn-outline-light">
+            Login</a> to like and comment.
+          </p>
+          {% endif %}
             {% if user == comment.author %}
             <div class="dropdown">
                 <button 

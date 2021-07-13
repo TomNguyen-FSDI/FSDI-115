@@ -1,6 +1,6 @@
 
 from django import template
-from pages.models import InboxMessage, Post
+from pages.models import InboxMessage, Post, Comment
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 from django.utils.safestring import mark_safe
@@ -50,17 +50,33 @@ def set_unread_message(pk):
 @register.simple_tag
 def get_dislikes(pk, request):
     post_info = get_object_or_404(Post, id=pk)
-    results = r'<i class="far fa-arrow-alt-circle-down downvote"><span class="count">'
+    results = r'<i class="fas fa-arrow-down not-clicked"></i><span class="count">'
     if post_info.dislikes.filter(id=request.user.id).exists():
-        results = r'<i class="fas fa-arrow-alt-circle-down downvote"><span class="count">'
+        results = r'<i class="fas fa-arrow-down disliked"></i><span class="count">'
     return mark_safe(results)
 
 @register.simple_tag
 def get_likes(pk, request):
     post_info = get_object_or_404(Post, id=pk)
-    results = r'<i class="far fa-arrow-alt-circle-up upvote"><span class="count">'
+    results = r'<i class="fas fa-arrow-up not-clicked"></i><span class="count">'
     if post_info.likes.filter(id=request.user.id).exists():
-        results = r'<i class="fas fa-arrow-alt-circle-up upvote"><span class="count">'
+        results = r'<i class="fas fa-arrow-up liked"></i><span class="count">'
+    return mark_safe(results)
+
+@register.simple_tag
+def get_comment_likes(pk, request):
+    comment_info = get_object_or_404(Comment, id=pk)
+    results = r'<i class="fas fa-arrow-up not-clicked"></i><span class="count">'
+    if comment_info.likes.filter(id=request.user.id).exists():
+        results = r'<i class="fas fa-arrow-up liked"></i><span class="count">'
+    return mark_safe(results)
+
+@register.simple_tag
+def get_comment_dislikes(pk, request):
+    comment_info = get_object_or_404(Comment, id=pk)
+    results = r'<i class="fas fa-arrow-down not-clicked"></i><span class="count">'
+    if comment_info.dislikes.filter(id=request.user.id).exists():
+        results = r'<i class="fas fa-arrow-down disliked"></i><span class="count">'
     return mark_safe(results)
 
 

@@ -63,6 +63,7 @@ class AddLike(View):
         next = request.POST.get('next', '/')
         return HttpResponseRedirect(next)
 
+
 class AddDislike(View):
     def post(self, request, pk, *args, **kwargs):
         post = Post.objects.get(pk=pk)
@@ -89,6 +90,66 @@ class AddDislike(View):
 
         if disliked:
             post.dislikes.remove(request.user)
+
+        next = request.POST.get('next', '/')
+        return HttpResponseRedirect(next)
+
+class AddCommentLike(View):
+    def post(self, request, pk, *args, **kwargs):
+        comment = Comment.objects.get(pk=pk)
+
+        disliked = False
+
+        for dislike in comment.dislikes.all():
+            if dislike == request.user:
+                disliked = True
+                break
+
+        if disliked:
+            comment.dislikes.remove(request.user)
+
+        liked = False
+
+        for like in comment.likes.all():
+            if like == request.user:
+                liked = True
+                break
+
+        if not liked:
+            comment.likes.add(request.user)
+
+        if liked:
+            comment.likes.remove(request.user)
+
+        next = request.POST.get('next', '/')
+        return HttpResponseRedirect(next)
+
+class AddCommentDislike(View):
+    def post(self, request, pk, *args, **kwargs):
+        comment = Comment.objects.get(pk=pk)
+
+        liked = False
+
+        for like in comment.likes.all():
+            if like == request.user:
+                liked = True
+                break
+
+        if liked:
+            comment.likes.remove(request.user)
+
+        disliked = False
+
+        for dislike in comment.dislikes.all():
+            if dislike == request.user:
+                disliked = True
+                break
+
+        if not disliked:
+            comment.dislikes.add(request.user)
+
+        if disliked:
+            comment.dislikes.remove(request.user)
 
         next = request.POST.get('next', '/')
         return HttpResponseRedirect(next)
@@ -127,7 +188,7 @@ class PostDetailView(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(PostDetailView, self).get_context_data(*args, **kwargs)
         post_info = get_object_or_404(Post, id=self.kwargs['pk'])
-        print(post_info)
+
         liked = False
         if post_info.likes.filter(id=self.request.user.id).exists():
             liked = True

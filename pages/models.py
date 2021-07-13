@@ -67,6 +67,8 @@ class Comment(models.Model):
         on_delete=models.CASCADE
     )
     created_on = models.DateTimeField(auto_now_add=True)
+    likes = models.ManyToManyField(User, blank=True,related_name='comment_likes')
+    dislikes = models.ManyToManyField(User, blank=True,related_name='comment_dislikes')
 
     def __str__(self):
         return self.comment
