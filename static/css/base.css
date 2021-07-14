@@ -230,6 +230,12 @@ a i{
     color: white;
     font-size: 1.5rem;
 }
+.fa-arrow-down.not-clicked:hover{
+    color: rgb(250, 55, 6);
+}
+.fa-arrow-up.not-clicked:hover{
+    color: rgb(6, 83, 250);
+}
 .liked{
     color: rgb(6, 83, 250);
     font-size: 1.5rem;

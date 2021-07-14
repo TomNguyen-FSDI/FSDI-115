@@ -13,7 +13,7 @@ from django.contrib.auth.forms import (
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.shortcuts import redirect, render, get_object_or_404, get_list_or_404
 from django.template import loader
 from django.urls import reverse_lazy, reverse
@@ -184,9 +184,13 @@ class CommunityListView(ListView):
 class PostDetailView(DetailView):
     model = Post
     template_name = 'post_detail.html'
-
+    
     def get_context_data(self, *args, **kwargs):
         context = super(PostDetailView, self).get_context_data(*args, **kwargs)
+        # gets comment model and creats a list by likes starting with highest number
+        comments = Comment
+        liked_order = comments.objects.annotate(like_count=Count('likes')).order_by('-like_count')
+        # Tracks if post is liked or disliked by user
         post_info = get_object_or_404(Post, id=self.kwargs['pk'])
 
         liked = False
@@ -196,7 +200,7 @@ class PostDetailView(DetailView):
         disliked = False
         if post_info.dislikes.filter(id=self.request.user.id).exists():
             disliked = True
-        
+        context["liked_order"] = liked_order
         context["liked"] = liked
         context["disliked"] = disliked
         return context
