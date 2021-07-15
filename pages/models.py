@@ -61,7 +61,7 @@ class Comment(models.Model):
         on_delete=models.CASCADE,
         related_name='comments'                     # name the attribute for django tags
         )
-    comment = models.CharField(max_length=540)
+    comment = models.TextField()
     author = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE

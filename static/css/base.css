@@ -164,7 +164,7 @@ body{
     align-items: baseline;
 }
 @media(max-width:768px){
-   .row{
+    .row{
     --bs-gutter-x: 0;
     } 
 }
@@ -215,10 +215,13 @@ a i{
 /* POST_DETAIL HTML */
 .post-detail{
     background-color: rgb(26, 26, 27);
-    color: azure;
+    color: white;
     padding: 1rem;
     margin: 1rem;
     text-align: center;
+}
+.font-weight-bold{
+    color:#c1c1c1;
 }
 .thumbs-up{
     padding: 0!important;
@@ -231,17 +234,17 @@ a i{
     font-size: 1.5rem;
 }
 .fa-arrow-down.not-clicked:hover{
-    color: rgb(250, 55, 6);
+    color: #FE3957;
 }
 .fa-arrow-up.not-clicked:hover{
-    color: rgb(6, 83, 250);
+    color: #0CAF82;
 }
 .liked{
-    color: rgb(6, 83, 250);
+    color: #0CAF82;
     font-size: 1.5rem;
 }
 .disliked{
-    color: rgb(250, 55, 6);
+    color: #FE3957;
     font-size: 1.5rem;
 }
 .count{
@@ -256,11 +259,12 @@ a i{
 .comments{
     display: flex;
     justify-content: space-between;
-    background-color: rgba(122, 122, 122, 0.671);
+    background-color: rgb(37, 37, 37);
     text-align: left;
     padding: .5rem;
-    border: 1px solid white;
+    border: 1px solid rgb(233, 233, 233);
     border-radius: 5px;
+    box-shadow: 2px 2px 15px rgb(141, 141, 141);
 }
 .comment-dropdown{
     padding: 2px;
