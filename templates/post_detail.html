@@ -124,7 +124,7 @@
 
             {% if comment in post.comments.all %}
         <div class="comments mb-3">
-            <div class="test">
+            <div class="comment-vote-container">
             <p>
                 <span class="font-weight-bold">
                     u/{{ comment.author }} &middot; {{ comment.created_on }}
@@ -164,7 +164,7 @@
 
                             </form>
 
-          </div>
+        </div>
         </div><!--.test-->
           {% else %}
           <p>
@@ -188,12 +188,13 @@
                 <li class="comment-option"><a class="btn btn-light comment-btn" href="{% url 'comment_update' comment.pk post.id %}">Edit Comment</a></li>
                 <li class="comment-option"><a class="btn btn-light comment-btn" href="{% url 'comment_delete' comment.pk post.id %}">delete Comment</a></li>
             </div>
+        
             {% endif %}<!--edit and delete comments if posted by you-->
         </div>
-    </div><!--.comments-section-->
-            {% endif %}<!--if for comments in post-->
+        {% endif %}<!--if for comments in post-->
         {% endfor %}<!--all comments for loop-->
+    </div><!--.comments-section-->
     </div>
 </div>
-</div> <!-- display flex-->
+</div><!--display flex -->
 {% endblock content %}
