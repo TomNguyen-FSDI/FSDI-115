@@ -3,6 +3,7 @@ from django.views.generic import CreateView
 from .forms import CustomUserCreationForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from pages.models import Profile
 
 
 class SignUpView(CreateView):

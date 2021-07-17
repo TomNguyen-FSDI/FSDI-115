@@ -163,8 +163,9 @@ class PostListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(PostListView, self).get_context_data(**kwargs)
         communities = Community.objects.all()
-        find_profile = Profile.objects.get(user=User.objects.get(pk=self.request.user.id))
-        context['profile_id'] = find_profile.id
+        if self.request.user.id :
+            find_profile = Profile.objects.get(user=User.objects.get(pk=self.request.user.id))
+            context['profile_id'] = find_profile.id
         context['communities'] = communities
         return context
 
