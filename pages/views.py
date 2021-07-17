@@ -166,6 +166,7 @@ class PostListView(ListView):
         if self.request.user.id :
             find_profile = Profile.objects.get(user=User.objects.get(pk=self.request.user.id))
             context['profile_id'] = find_profile.id
+            
         context['communities'] = communities
         return context
 
