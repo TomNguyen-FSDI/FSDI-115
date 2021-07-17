@@ -27,7 +27,7 @@ class Profile(models.Model):
         User,
         on_delete=models.CASCADE,
     )
-    img = models.ImageField(upload_to='images/profiles/', default='.png', blank=True, null=True)
+    img = models.ImageField(upload_to='images/profiles/', default='images/default_pic_wHQDZUq.png', blank=True, null=True)
     about = models.TextField(default=None, null=True)
     hodl = models.CharField(max_length=200, default=None, null=True)
 

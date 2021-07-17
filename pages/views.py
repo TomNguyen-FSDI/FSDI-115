@@ -169,7 +169,7 @@ class PostListView(ListView):
             find_user = User.objects.get(pk=self.request.user.pk)
             find_profile = Profile.objects.filter(user=find_user)    
             if len(find_profile) == 0:
-                create_profile =  Profile(user=find_user, img='images/default_pic_wHQDZUq.png')
+                create_profile =  Profile(user=find_user)
                 create_profile.save()
                 create_profile.refresh_from_db()
             find_profile = Profile.objects.get(user=User.objects.get(pk=self.request.user.id))
