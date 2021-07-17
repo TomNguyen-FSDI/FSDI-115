@@ -23,12 +23,13 @@ crossorigin="anonymous">
 </head>
 
 <body>
+
   {% block loginbackground %}
   {% endblock loginbackground %}
   <!-- Navbar for smaller screens under 768px -->
   <nav class="navbar sticky-top navbar-dark bg-dark d-flex" id="mobile-navbar">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-rocket"> TMT</i></a>
+      <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}"/> TMT</a>
       <!-- Will uncomment when user accounts are created -->
       {% if user.is_authenticated %}
       <form class="search-container" method=POST action="{% url 'search_bar' %}">
@@ -55,10 +56,10 @@ crossorigin="anonymous">
 
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Profile</a></li>
+              {% check_profile request %}
+              <li><a class="dropdown-item" href="{% url 'profile_detail' request.user.id %}">Profile</a></li>
               <li><a class="dropdown-item" href="{% url 'inbox_list' %}"><i class="far fa-envelope" style="position: relative; top: 3px; color: black;"></i> inbox (<label style="position: relative;">{% unread_message request %} </label>)</a></li>
               <li><a class="dropdown-item" href="{% url 'followed_community' %}">Communities</a></li>
-              <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
               <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
             </ul>
           </div>
@@ -76,7 +77,7 @@ crossorigin="anonymous">
   <!-- Navbar for screens over 768px(TABLETS/DESKTOP) -->
     <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark" id="big-navbar">
         <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-rocket"> TMT</i> </a>
+          <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}"/> TMT </a>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <!-- Commented out till logged in -->
             {% if user.is_authenticated %}
@@ -111,10 +112,9 @@ crossorigin="anonymous">
 
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="{% url 'profile_detail' request.user.pk %}">Profile</a></li>
                     <li><a class="dropdown-item" href="{% url 'inbox_list' %}"><i class="far fa-envelope" style="position: relative; top: 3px; color: black;"></i> inbox (<label style="position: relative;">{% unread_message request %} </label>)</a></li>
                     <li><a class="dropdown-item" href="{% url 'followed_community' %}">Communities</a></li>
-                    <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
                     <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
                   </ul>
                 </div>

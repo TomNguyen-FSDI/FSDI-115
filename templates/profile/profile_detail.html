@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ profile.user.username }}{% endblock title %}
+{% block content %}
+
+<!-- btn container for screens smaller than 768px -->
+<div class="btn-container" id="sm-btn-container">
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-dark btn-spacing" href="{% url 'home' %}">Home</button>
+        <button type="button" class="btn btn-dark btn-spacing">Trending</button>
+        <a class="btn btn-dark btn-spacing"  href="{% url 'community_list' %}">Communities</a>
+    </div>
+</div>
+<!-- btn container for screens bigger than 768px -->
+<div class="container col-6">
+    <div class="btn-container" id="lg-btn-container">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a class="btn btn-dark btn-spacing" href="{% url 'home' %}">Home</a>
+            <button type="button" class="btn btn-dark btn-spacing">Trending</button>
+            <a class="btn btn-dark btn-spacing"
+            href="{% url 'community_list' %}">Communities</a>
+        </div>
+    </div>
+</div>
+{% csrf_token %}
+<div class="d-flex justify-content-center">
+    <div class="post-detail rounded shadow">
+        <div class="d-flex justify-content-center">
+            <div class="post-detail rounded shadow">
+                <div class="container">
+                    <div class="card" >
+                            <h6 class="card-group">username: </h6>{{ profile.user.username }}
+                            <div>
+                                <h6 class="card-group"> hodl:  </h6>
+                            </div>
+                            {{ profile.hodl }}
+                            <h6 class="card-group">About: </h6>{{ profile.about }}
+                            <h6 class="card-group">Profile image:  </h6>
+                            <img src="/media/{{ profile.img }}" alt="profile image" />
+                            
+                        </div>
+                        <a class="btn btn-light comment-btn" style="width:auto; margin: 3px auto;" href="{% url 'profile_update' profile.id %}">edit profile</a>
+                        <a class="btn btn-light comment-btn" href="{% url 'password_change' %}">change password</a>
+                </div>
+            </div>
+        </div> <!-- display flex-->
+
+
+    </div>
+</div> <!-- display flex-->
+    {% endblock content %}

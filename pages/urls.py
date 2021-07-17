@@ -1,4 +1,8 @@
 from django.urls import path
+from .profile import (
+    profileDetailView,
+    ProfileUpdateView
+)
 from .inbox import (
     InboxCreateView,
     InboxListView,
@@ -14,8 +18,7 @@ from .community import (
     follow_community,
     Followed_community 
     )
-from .views import (
-    HomePageView, 
+from .views import ( 
     PostListView, 
     PostDetailView, 
     search_bar, 
@@ -35,7 +38,7 @@ from .views import (
     )
 
 urlpatterns = [
-    path('', HomePageView.as_view(), name='home'),
+    path('', PostListView.as_view(), name='home2'),
     path('search/', search_bar, name='search_bar'),
     path('account/login', login_page, name='login'),
     path('account/password_reset/', PasswordResetView.as_view(), name="password_reset"),
@@ -51,6 +54,8 @@ urlpatterns = [
     path('inbox/list/', InboxListView.as_view(), name='inbox_list'),
     path('inbox/sent/', InboxSentView.as_view(), name='inbox_sent'),
     path('inbox/<int:pk>/', InboxDetailView.as_view(), name='inbox_detail'),
+    path('profile/<int:pk>/', profileDetailView, name='profile_detail'),
+    path('profile/update/<int:pk>/', ProfileUpdateView.as_view(), name='profile_update'),
     path('post/list/', PostListView.as_view(), name='home'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post_detail'),
     path('post/create/', PostCreateView.as_view(), name= 'post_create'),
