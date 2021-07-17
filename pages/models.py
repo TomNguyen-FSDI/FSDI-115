@@ -37,8 +37,6 @@ class Profile(models.Model):
     def save(self, *args, **kwargs):
         super().save()
         image = Image.open(self.img.path)
-        print('here')
-        print(self.img.path)
         if image.height > 150 or image.width > 150:
             image.thumbnail((150, 150))
             image.save(self.img.path)
