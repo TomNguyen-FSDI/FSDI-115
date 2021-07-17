@@ -1,9 +1,12 @@
 
 from django import template
-from pages.models import InboxMessage, Post, Comment
+from pages.models import (
+    InboxMessage, Post, Comment, Profile
+    )
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 from django.utils.safestring import mark_safe
+from django.contrib.auth.models import User
 
 
 register = template.Library()
@@ -79,6 +82,18 @@ def get_comment_dislikes(pk, request):
         results = r'<i class="fas fa-arrow-down disliked"></i><span class="count">'
     return mark_safe(results)
 
+
+@register.simple_tag
+def check_profile(request):
+    pk = request.user.pk
+    find_user = User.objects.get(pk=pk)
+    find_profile = Profile.objects.filter(user=find_user)    
+    if len(find_profile) > 0: # if this is not empty
+        return None
+    else:
+        create_profile =  Profile(user=find_user)
+        create_profile.save()
+    return None
 
 
 register.filter('value', html_value)

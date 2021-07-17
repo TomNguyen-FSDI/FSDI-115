@@ -28,7 +28,7 @@ from django.views.generic import (
     DeleteView,
     View
     )
-from .models import Post, Comment, Community, InboxMessage
+from .models import Post, Comment, Community, InboxMessage, Profile
 from .forms import CommentForm
 from django.http import HttpResponseRedirect
 
@@ -156,16 +156,6 @@ class AddCommentDislike(View):
 
 
 
-class HomePageView(ListView):
-    model = Post
-    template_name = 'home.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(HomePageView, self).get_context_data(**kwargs)
-        communities = Community.objects.all
-        context['communities'] = communities
-        return context
-
 class PostListView(ListView):
     model = Post
     template_name = 'home.html'
@@ -173,6 +163,8 @@ class PostListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(PostListView, self).get_context_data(**kwargs)
         communities = Community.objects.all()
+        find_profile = Profile.objects.get(user=User.objects.get(pk=self.request.user.id))
+        context['profile_id'] = find_profile.id
         context['communities'] = communities
         return context
 

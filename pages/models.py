@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
+from PIL import Image
 
 class Community(models.Model):
     name = models.CharField(max_length=200, unique=True)
@@ -26,9 +27,21 @@ class Profile(models.Model):
         User,
         on_delete=models.CASCADE,
     )
-    about = models.TextField(default=None)
-    hodl = models.CharField(max_length=200, default=None)
-    pass    
+    img = models.ImageField(upload_to='images/profiles/', default='.png', blank=True, null=True)
+    about = models.TextField(default=None, null=True)
+    hodl = models.CharField(max_length=200, default=None, null=True)
+
+    def __str__(self):
+        return self.user.username
+
+    def save(self, *args, **kwargs):
+        super().save()
+        image = Image.open(self.img.path)
+        print('here')
+        print(self.img.path)
+        if image.height > 150 or image.width > 150:
+            image.thumbnail((150, 150))
+            image.save(self.img.path)
 
 
 class Follow_community(models.Model):
