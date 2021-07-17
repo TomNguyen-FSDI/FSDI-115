@@ -37,6 +37,7 @@
                     <h6 class="card-group"> Subject: {{ inboxmessage.subject }} </h6>
                     <div style="height: 10px;"></div>
                     <p class="card-text">{{ inboxmessage.message }}</p>
+                    <a href="{% url 'message_delete' inboxmessage.pk %}" class="btn btn-sm btn-dark">Delete message</a>
                 </div>
             </div>
         </div>

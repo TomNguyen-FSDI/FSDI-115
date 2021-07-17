@@ -202,13 +202,7 @@ a i{
     color: white;
     font-size: 1.4rem;
 }
-.arrow-up:hover,
-.arrow-up:visited{
-    color: rgb(0, 153, 255);
-}
-.arrow-down:hover{
-    color: rgb(252, 70, 70);
-}
+
 .comment-btn{
     align-items: center;
 }
@@ -234,17 +228,17 @@ a i{
     font-size: 1.5rem;
 }
 .fa-arrow-down.not-clicked:hover{
-    color: #FE3957;
+    color: #E04036;
 }
 .fa-arrow-up.not-clicked:hover{
-    color: #0CAF82;
+    color: #00DB86;
 }
 .liked{
-    color: #0CAF82;
+    color: #00DB86;
     font-size: 1.5rem;
 }
 .disliked{
-    color: #FE3957;
+    color: #E04036;
     font-size: 1.5rem;
 }
 .count{

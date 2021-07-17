@@ -8,6 +8,7 @@ from .inbox import (
     InboxListView,
     InboxSentView,
     InboxDetailView,
+    InboxDeleteView,
 )
 from .community import (
     CommunityListView, 
@@ -34,7 +35,7 @@ from .views import (
     AddLike,
     AddDislike,
     AddCommentLike,
-    AddCommentDislike
+    AddCommentDislike,
     )
 
 urlpatterns = [
@@ -54,6 +55,7 @@ urlpatterns = [
     path('inbox/list/', InboxListView.as_view(), name='inbox_list'),
     path('inbox/sent/', InboxSentView.as_view(), name='inbox_sent'),
     path('inbox/<int:pk>/', InboxDetailView.as_view(), name='inbox_detail'),
+    path('inbox/<int:pk>/delete/', InboxDeleteView.as_view(), name='message_delete'),
     path('profile/<int:pk>/', profileDetailView, name='profile_detail'),
     path('profile/update/<int:pk>/', ProfileUpdateView.as_view(), name='profile_update'),
     path('post/list/', PostListView.as_view(), name='home'),
