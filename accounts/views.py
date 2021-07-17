@@ -20,6 +20,15 @@ class SignUpView(CreateView):
         email_in_db = User.objects.filter(email=form.data['email'])
         if len(email_in_db) > 0:
             return redirect_invalid_logic(self.request, form)
+        player = form.save()
+        player.refresh_from_db()
+        print(player.username)
+        print("form")
+        print(form.instance.email)
+        find_user = User.objects.get(email=form.instance.email)
+        create_user = Profile(user=find_user)
+        print(create_user)
+        create_user.save()
         return super().form_valid(form)
 
 
