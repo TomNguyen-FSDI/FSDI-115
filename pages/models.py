@@ -21,6 +21,16 @@ class Community(models.Model):
         return reverse('community_detail', args=[str(self.id)])
 
 
+class Profile(models.Model):
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+    )
+    about = models.TextField(default=None)
+    hodl = models.CharField(max_length=200, default=None)
+    pass    
+
+
 class Follow_community(models.Model):
     username = models.CharField(max_length=200, default=None)
     community_name = models.CharField(max_length=200,default=None)

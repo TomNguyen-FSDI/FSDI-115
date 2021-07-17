@@ -28,7 +28,7 @@ crossorigin="anonymous">
   <!-- Navbar for smaller screens under 768px -->
   <nav class="navbar sticky-top navbar-dark bg-dark d-flex" id="mobile-navbar">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-rocket"> TMT</i></a>
+      <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}"/> TMT</a>
       <!-- Will uncomment when user accounts are created -->
       {% if user.is_authenticated %}
       <form class="search-container" method=POST action="{% url 'search_bar' %}">
@@ -76,7 +76,7 @@ crossorigin="anonymous">
   <!-- Navbar for screens over 768px(TABLETS/DESKTOP) -->
     <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark" id="big-navbar">
         <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-rocket"> TMT</i> </a>
+          <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}"/> TMT </a>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <!-- Commented out till logged in -->
             {% if user.is_authenticated %}
