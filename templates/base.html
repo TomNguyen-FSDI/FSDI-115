@@ -30,7 +30,7 @@ crossorigin="anonymous">
   <nav class="navbar sticky-top navbar-dark bg-dark d-flex" id="mobile-navbar">
     <div class="container-fluid">
       <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}"/> TMT</a>
-      <!-- Will uncomment when user accounts are created -->
+
       {% if user.is_authenticated %}
       <form class="search-container" method=POST action="{% url 'search_bar' %}">
         {% csrf_token %}
@@ -38,7 +38,8 @@ crossorigin="anonymous">
       </form>
 
       <div class="create-post">
-        <a href="{% url 'post_create' %}"></a><i class="fas fa-plus"></i>
+        <a href="{% url 'post_create' %}"><i class="fas fa-plus"></i></a>
+        
       </div>
 
       <div class="user">
@@ -51,9 +52,8 @@ crossorigin="anonymous">
           data-bs-toggle="dropdown" 
           aria-expanded="false">
           
-            <img class="user-img" src="{% static 'images/default_pic.png' %}" alt="default image">
-          
-
+            <img class="user-img" src="{{ user.profile.img.url }}" alt="default image">
+            <i class="fas fa-angle-down"></i>
             </a>
             <ul class="dropdown-menu">
 
@@ -79,13 +79,8 @@ crossorigin="anonymous">
         <div class="container-fluid">
           <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}"/> TMT </a>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <!-- Commented out till logged in -->
+
             {% if user.is_authenticated %}
-            <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item btn-lg">
-                <a class="nav-link btn btn-outline-dark" id="homePage" href="{% url 'home' %}"><i class="fas fa-home"></i>Home</a>
-              </li>
-            </ul> -->
             <form class="search-bar" method="POST" action="{% url 'search_bar' %}">
               {% csrf_token %}
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched_data">
@@ -107,7 +102,7 @@ crossorigin="anonymous">
                 
                   
                   
-                  <img class="user-img" src="{% static 'images/default_pic.png' %}" alt="default image">
+                  <img class="user-img" src="{{ user.profile.img.url }}" alt="default image">
                   <i class="fas fa-angle-down"></i>
 
                   </a>

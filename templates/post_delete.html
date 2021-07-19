@@ -8,7 +8,7 @@
         {% csrf_token %}
         <p>Are you sure you want to delete "{{ post.title }}" ?</p>
         <button  class="btn btn-danger mt-3" type="submit" >Confirm</button>
-        <button class="btn btn-primary mt-3 ms-3" ><a class="text-light" href="{% url 'post_detail' post.pk %}">Back</a></button>
+        <a class="text-light btn btn-primary mt-3 ms-3" href="{% url 'post_detail' post.pk %}">Back</a>
     </form>
 </div>
 {% endblock content %}

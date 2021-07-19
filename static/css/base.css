@@ -33,6 +33,9 @@
 a{
     text-decoration: none!important;
 }
+.hide{
+    display: none;
+}
 /* BASE HTML */
 body{
     background-color: #030303;
@@ -70,6 +73,9 @@ body{
 .create-post{
     color: white;
 }
+.fa-plus{
+    padding: 0 .5rem;
+}
 .user {
     margin-left: 4%;
     width: 10%;
@@ -93,7 +99,9 @@ body{
     }
 }
 .user-img{
+    border: 1px solid #444444;
     width: 100%;
+    border-radius: 50%;
 }
 .dropdown-menu[data-bs-popper]{
     right: 0;
@@ -109,6 +117,7 @@ body{
     font-size: 12px;
     position: absolute;
     bottom: 0;
+    color: white;
 }
 /* HOME HTML */
 .container{
@@ -207,6 +216,21 @@ a i{
     align-items: center;
 }
 /* POST_DETAIL HTML */
+.dropdown-toggle-btn{
+    white-space: nowrap;
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: .2rem .8rem;
+}
+.dropdown-toggle-btn:hover{
+    background-color: rgba(255, 255, 255, 0.301);
+    border-radius: 50%;
+}
+.dropdown-toggle-btn:focus{
+    background-color: rgba(255, 255, 255, 0.322);
+    border-radius: 50%;
+}
 .post-detail{
     background-color: rgb(26, 26, 27);
     color: white;
@@ -261,7 +285,6 @@ a i{
     box-shadow: 2px 2px 15px rgb(141, 141, 141);
 }
 .comment-dropdown{
-    padding: 2px;
     font-size: 13px;
 }
 .comment-option{

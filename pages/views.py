@@ -32,7 +32,6 @@ from .models import Post, Comment, Community, InboxMessage, Profile
 from .forms import CommentForm
 from django.http import HttpResponseRedirect
 
-
 class AddLike(View):
     def post(self, request, pk, *args, **kwargs):
         post = Post.objects.get(pk=pk)
@@ -162,6 +161,7 @@ class PostListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(PostListView, self).get_context_data(**kwargs)
+
         communities = Community.objects.all()
         if self.request.user.pk is None:
             pass
@@ -174,6 +174,7 @@ class PostListView(ListView):
                 create_profile.refresh_from_db()
             find_profile = Profile.objects.get(user=User.objects.get(pk=self.request.user.id))
             context['profile_id'] = find_profile.id
+
         context['communities'] = communities
         return context
 

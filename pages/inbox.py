@@ -44,3 +44,4 @@ class InboxDeleteView(DeleteView):
     template_name = "inbox/message_delete.html"
     success_url = reverse_lazy("inbox_list")
 
+
