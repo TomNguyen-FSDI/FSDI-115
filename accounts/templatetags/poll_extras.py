@@ -43,6 +43,11 @@ def style_width_100(field):
     field.field.widget.attrs.update({"style":"width:100%;"})
     return field
 
+@register.filter(name="red_border")
+def red_border(field):
+    field.field.widget.attrs.update({"style":"border:1px solid red;"})
+    return field
+
 @register.simple_tag
 def set_unread_message(pk):
     item = InboxMessage.objects.get(pk=pk)
@@ -99,5 +104,6 @@ def check_profile(request):
 register.filter('value', html_value)
 register.filter('placeholder', html_placeholder)
 register.filter('style_width_100', style_width_100)
+register.filter('red_border', red_border)
 register.filter('hidden', style_hidden)
 
