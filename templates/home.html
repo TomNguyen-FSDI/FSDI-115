@@ -27,6 +27,24 @@
             <a class="btn btn-dark btn-spacing" href="{% url 'community_list' %}">Communities</a>
           </div>
         </div>
+
+        <div class="dropdown post-filter mt-3">
+          <a 
+          class="btn btn-secondary dropdown-toggle" 
+          href="#" 
+          role="button" 
+          id="dropdownMenuLink" 
+          data-bs-toggle="dropdown" 
+          aria-expanded="false">
+            Filter Posts
+          </a>
+        
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="{% url 'home' %}">Date Posted</a></li>
+            <li><a class="dropdown-item" href="{% url 'post_likes' %}">Most Likes</a></li>
+          </ul>
+        </div>
+
         {% for post in object_list %}
 
         <div class="card" style="width: 100%;">

@@ -20,7 +20,8 @@ from .community import (
     Followed_community 
     )
 from .views import ( 
-    PostListView, 
+    PostListView,
+    PostsByLikesView, 
     PostDetailView, 
     search_bar, 
     PostCreateView, 
@@ -36,6 +37,7 @@ from .views import (
     AddDislike,
     AddCommentLike,
     AddCommentDislike,
+
     )
 
 urlpatterns = [
@@ -59,6 +61,7 @@ urlpatterns = [
     path('profile/<int:pk>/', profileDetailView, name='profile_detail'),
     path('profile/update/<int:pk>/', ProfileUpdateView.as_view(), name='profile_update'),
     path('post/list/', PostListView.as_view(), name='home'),
+    path('post/list/likes/', PostsByLikesView.as_view(), name='post_likes'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post_detail'),
     path('post/create/', PostCreateView.as_view(), name= 'post_create'),
     path('post/update/<int:pk>/', PostUpdateView.as_view(), name= 'post_update'),

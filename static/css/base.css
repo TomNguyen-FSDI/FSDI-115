@@ -102,6 +102,7 @@ body{
     border: 1px solid #444444;
     width: 100%;
     border-radius: 50%;
+    aspect-ratio: 1/1;
 }
 .dropdown-menu[data-bs-popper]{
     right: 0;
@@ -119,7 +120,10 @@ body{
     bottom: 0;
     color: white;
 }
-/* HOME HTML */
+/* HOME & POST_LIKES HTML */
+.post-filter{
+    width: fit-content;
+}
 .container{
     padding-left: 0;
     padding-right: 0;

@@ -153,7 +153,30 @@ class AddCommentDislike(View):
         next = request.POST.get('next', '/')
         return HttpResponseRedirect(next)
 
+class PostsByLikesView(ListView):
+    model = Post
+    template_name = 'post_likes.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(PostsByLikesView, self).get_context_data(**kwargs)
+        post = Post
+        liked_order = post.objects.annotate(like_count=Count('likes')).order_by('-like_count')
+        communities = Community.objects.all()
+        if self.request.user.pk is None:
+            pass
+        else:
+            find_user = User.objects.get(pk=self.request.user.pk)
+            find_profile = Profile.objects.filter(user=find_user)    
+            if len(find_profile) == 0:
+                create_profile =  Profile(user=find_user)
+                create_profile.save()
+                create_profile.refresh_from_db()
+            find_profile = Profile.objects.get(user=User.objects.get(pk=self.request.user.id))
+            context['profile_id'] = find_profile.id
+            
+        context["liked_order"] = liked_order
+        context['communities'] = communities
+        return context
 
 class PostListView(ListView):
     model = Post
@@ -161,8 +184,9 @@ class PostListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(PostListView, self).get_context_data(**kwargs)
-
+        
         communities = Community.objects.all()
+
         if self.request.user.pk is None:
             pass
         else:
@@ -189,7 +213,7 @@ class PostDetailView(DetailView):
     
     def get_context_data(self, *args, **kwargs):
         context = super(PostDetailView, self).get_context_data(*args, **kwargs)
-        # gets comment model and creats a list by likes starting with highest number
+        # gets comment model and create a list by likes starting with highest number
         comments = Comment
         liked_order = comments.objects.annotate(like_count=Count('likes')).order_by('-like_count')
         # Tracks if post is liked or disliked by user

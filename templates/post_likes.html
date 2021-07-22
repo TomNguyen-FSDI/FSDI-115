@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load poll_extras %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<!-- btn container for screens smaller than 768px -->
+<div class="btn-container" id="sm-btn-container">
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-dark btn-spacing">Home</button>
+    <button type="button" class="btn btn-dark btn-spacing">Trending</button>
+    <a class="btn btn-dark btn-spacing" href="{% url 'community_list' %}">Communities</a>
+  </div>
+</div>
+<div class="container">
+
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-6">
+      <div class="container">
+        <!-- Btns for larger screens over 768px -->
+        <div class="btn-container" id="lg-btn-container">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <a class="btn btn-dark btn-spacing" href="{% url 'home' %}">Home</a>
+            <button type="button" class="btn btn-dark btn-spacing">Trending</button>
+            <a class="btn btn-dark btn-spacing" href="{% url 'community_list' %}">Communities</a>
+          </div>
+        </div>
+
+        <div class="dropdown post-filter mt-3">
+          <a 
+          class="btn btn-secondary dropdown-toggle" 
+          href="#" 
+          role="button" 
+          id="dropdownMenuLink" 
+          data-bs-toggle="dropdown" 
+          aria-expanded="false">
+            Filter Posts
+          </a>
+        
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="{% url 'home' %}">Date Posted</a></li>
+            <li><a class="dropdown-item" href="{% url 'post_likes' %}">Most Likes</a></li>
+          </ul>
+        </div>
+
+        {% for post in liked_order %}
+
+        <div class="card" style="width: 100%;">
+          <div class="card-body">
+            <a class="post-detail-link" href="{% url 'post_detail' post.pk %}">
+              <h6 class="card-group text-muted"> TMT/{{ post.community }} &middot; Posted by u/{{ post.author }}
+                &middot; {{ post.date }}</h6>
+              <h4 class="card-title">{{ post.title }}</h4>
+              <p class="card-text">{{ post.body|safe|truncatechars:140 }}</p>
+            </a>
+            <img src="{{ post.image.url }}" alt="" style="width: 100%">
+            <div class="post-footer d-flex">
+              <div class="vote-container d-flex">
+                {% if user.is_authenticated %}
+
+                <form 
+                action="{% url 'like' post.pk %}"
+                method="Post"
+                class="like-container">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <button 
+                        type="submit" 
+                        class="thumbs-up">
+                        {% get_likes post.pk request %}{{ post.likes.all.count }}</span></i>
+
+                    </button> 
+                    </form>
+
+                    <form 
+                    action="{% url 'dislike' post.pk %}"
+                    method="Post"
+                    class="like-container">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <button 
+                            type="submit" 
+                            class="thumbs-up">
+                            {% get_dislikes post.pk request %}{{ post.dislikes.all.count }}</span></i>
+                        </button> 
+                                </form>
+
+              </div>
+
+              <div class="comments-container ">
+                
+                  <a href="{% url 'add_comment' post.pk %}" class="btn btn-outline-light d-flex comment-btn">
+                    <i class="far fa-comment-alt"></i>
+                  </a>
+                {% else %}
+                  <p>
+                    <a href="{% url  'login'  %}" class="btn btn-sm btn-outline-light">
+                    Login</a> to like and comment.
+                  </p>
+                  
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+    <div class="col-3">
+      <ul class="list-group">
+        <li class="list-group-item">New Communities</li>
+        {% for community in communities %}
+        <li class="list-group-item">
+          <a href="{% url 'community_detail' community.pk %}">
+            <img class="group-img" src="{% static 'images/default_pic.png' %}" alt="default image">
+            TMT/{{ community.name }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock content %}
