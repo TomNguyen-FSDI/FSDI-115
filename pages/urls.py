@@ -3,6 +3,7 @@ from .profile import (
     profileDetailView,
     ProfileUpdateView
 )
+from .trending import TrendingListView
 from .inbox import (
     InboxCreateView,
     InboxListView,
@@ -53,6 +54,7 @@ urlpatterns = [
     path('community/<int:pk>/', CommunityDetailView.as_view(), name='community_detail'),
     path('community/update/<int:pk>/', CommunityUpdateView.as_view(), name= 'community_update'),
     path('community/<int:pk>/delete/', CommunityDeleteView.as_view(), name="community_delete"),
+    path('trending/list/', TrendingListView.as_view(), name='trending_list'),
     path('inbox/create/', InboxCreateView.as_view(), name='inbox_create'),
     path('inbox/list/', InboxListView.as_view(), name='inbox_list'),
     path('inbox/sent/', InboxSentView.as_view(), name='inbox_sent'),
