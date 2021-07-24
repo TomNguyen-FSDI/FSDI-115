@@ -1,0 +1,15 @@
+
+<nav class="navbar navbar-dark bg-dark fixed-bottom" id="bottom-nav-mobile">
+        <div class="navbar-nav">
+
+            <a class="nav-link" href="{% url 'profile_detail' request.user.id %}"><i class="fas fa-user-circle"></i></a>
+
+            <a class="nav-link" href="{% url 'community_list' %}" title="Communities"><i class="fas fa-hands-helping"></i></a>
+
+            <a class="nav-link" href="{% url 'post_create' %}"><i class="fas fa-plus"></i></a>
+
+            <a class="nav-link active" aria-current="page" href="{% url 'home' %}"><i class="fas fa-home"></i></a>
+
+            <a class="nav-link" href="{% url 'inbox_list' %}"><i class="far fa-envelope"></i></a>
+        </div>
+</nav>

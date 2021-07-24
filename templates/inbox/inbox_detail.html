@@ -3,6 +3,7 @@
 
 {% block title %}Mail{% endblock title %}
 {% block content %}
+{% include 'bottom_nav.html' %}
 {% set_unread_message inboxmessage.pk %}
 <!-- btn container for screens smaller than 768px -->
 <div class="btn-container" id="sm-btn-container">

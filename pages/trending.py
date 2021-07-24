@@ -13,7 +13,7 @@ class TrendingListView(ListView):
         if len(list_current) < 7:
             list_current = Post.objects.order_by('-date').annotate(like_count=Count('likes')).order_by('-like_count')
         return list_current
-  
+
     def get_context_data(self, *args, **kwargs):
         context = super(TrendingListView, self).get_context_data(**kwargs)
         communities = Community.objects.all()
