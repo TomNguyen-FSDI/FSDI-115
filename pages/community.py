@@ -18,8 +18,8 @@ class CommunityDetailView(DetailView):
     model = Community
     template_name = 'community/community_detail.html'
 
-    def get_context_data(self, **kwargs):
-        context = super(CommunityDetailView, self).get_context_data(**kwargs)
+    def get_context_data(self, *args, **kwargs):
+        context = super(CommunityDetailView, self).get_context_data(*args, **kwargs)
         # community = Community.objects.get(name=context['community'])
         # username = User.objects.get(username=self.request.user)
         follow = Follow_community.objects.filter(username=self.request.user).filter(community_name=context['community'])
@@ -49,14 +49,16 @@ class Followed_community(ListView):
     model = Community 
     template_name = 'community/followed.html'
 
-    def get_context_data(self, **kwargs):
-        context = super(Followed_community, self).get_context_data(**kwargs)
+    def get_context_data(self, *args, **kwargs):
+        context = super(Followed_community, self).get_context_data( *args, **kwargs)
         followed = Follow_community.objects.filter(username=self.request.user)      
         list_of_followed = []
         for item in followed:
             communities = Community.objects.filter(name=item.community_name)
             list_of_followed.append(communities)
         context['followed'] = list_of_followed
+        communities = Community.objects.all()
+        context['communities'] = communities
         return context
         
 

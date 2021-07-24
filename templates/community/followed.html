@@ -1,42 +1,42 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Community{% endblock title %}
+{% block title %}Following{% endblock title %}
 
 {% block content %}
 
-{% include 'mini_nav.html' %}
-
 <div class="container">
-
     <div class="row">
         <div class="col-2"></div>
         <div class="col-6">
+        
+            {% include 'mini_nav.html' %}
             <div class="container">
-
-                {% if followed %}
-                {% for follow_list in followed %}
-                <div class="card" style="width: 100%;">
-                    <div class="card-body">
-                        {% for community in follow_list %}
-                        <a class="post-detail-link" href="{% url 'community_detail' community.pk %}">
-                            <h6 class="card-group"> {{ community.name }} </h6>
-                            <h4 class="card-title">{{ community.topic }}</h4>
-                            <p class="card-text">{{ community.description|safe|truncatechars:140 }}</p>
-                        </a>
-                        {% endfor %}
-                    </div>
+            {% if followed %}
+            {% for follow_list in followed %}
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+                    {% for community in follow_list %}
+                    <a class="post-detail-link" href="{% url 'community_detail' community.pk %}">
+                        <h6 class="card-group"> {{ community.name }} </h6>
+                        <h4 class="card-title">{{ community.topic }}</h4>
+                        <p class="card-text">{{ community.description|safe|truncatechars:140 }}</p>
+                    </a>
+                    {% endfor %}
                 </div>
-                {% endfor %}
-                {% else %}
-                <div class="card" style="width: 100%;">
-                    <div class="card-body">
-                        <p class="card-text">No Communities followed</p>
-                    </div>
-                </div>
-                {% endif %}
             </div>
+            {% endfor %}
+            {% else %}
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+                    <p class="card-text">No Communities followed</p>
+                </div>
+            </div>
+            {% endif %}
         </div>
+        </div>
+{% include 'side_bar_community_component.html' with communities=communities%}
     </div>
 </div>
+
 {% endblock content %}

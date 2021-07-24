@@ -2,11 +2,19 @@
 {% load static %}
 
 
-{% block title %}Community{% endblock title %}
+{% block title %}Trending{% endblock title %}
 
 {% block content %}
 
-{% include 'mini_nav.html' %}
-{% include 'post_component.html'  with object_list=object_list %}
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-6">
+            {% include 'mini_nav.html' %}
+            {% include 'post_component.html' with object_list=object_list %}
+        </div>
+        {% include 'side_bar_community_component.html' with communities=communities %}
+    </div>
+</div>
 
 {% endblock content %}

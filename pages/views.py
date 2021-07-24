@@ -182,8 +182,8 @@ class PostListView(ListView):
     model = Post
     template_name = 'home.html'
 
-    def get_context_data(self, **kwargs):
-        context = super(PostListView, self).get_context_data(**kwargs)
+    def get_context_data(self, *args, **kwargs):
+        context = super(PostListView, self).get_context_data(*args, **kwargs)
         
         communities = Community.objects.all()
 
