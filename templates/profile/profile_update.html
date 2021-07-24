@@ -27,7 +27,7 @@
         {% csrf_token %}
         <p><label for="id_hodl">Hodl:</label> 
         </br>
-        <input type="text" name="hodl" maxlength="200" value={{ profile.hodl }} id="id_hodl" style="width:100%;"></p>
+        <input type="text" name="hodl" maxlength="200" value="{{ profile.hodl }}" id="id_hodl" style="width:100%;"></p>
         <p><label for="id_about">About:</label> <textarea name="about" cols="40" rows="10" id="id_about" style="width:100%;">{{ profile.about }}</textarea></p>
         <p><label for="id_img">Img:</label> 
         {% if profile.img == ".png" %}
