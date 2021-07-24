@@ -1,5 +1,5 @@
 
-from .models import InboxMessage
+from .models import InboxMessage, Community
 from django.urls import reverse_lazy
 from django.views.generic import (
     CreateView, DetailView, FormView, ListView, UpdateView,DeleteView
@@ -16,6 +16,11 @@ class InboxListView(ListView):
     def get_queryset(self):
         return super().get_queryset().filter(receiver=self.request.user).order_by("-timestamp")
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(InboxListView, self).get_context_data(*args, **kwargs)
+        communities = Community.objects.all()
+        context['communities'] = communities
+        return context
 
 class InboxSentView(ListView):
     model = InboxMessage
@@ -23,6 +28,12 @@ class InboxSentView(ListView):
 
     def get_queryset(self):
         return super().get_queryset().filter(sender=self.request.user).order_by("-timestamp")
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(InboxSentView, self).get_context_data(*args, **kwargs)
+        communities = Community.objects.all()
+        context['communities'] = communities
+        return context
 
 
 class InboxDetailView(DetailView):

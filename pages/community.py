@@ -13,6 +13,12 @@ class CommunityListView(ListView):
     model = Community 
     template_name = 'community/community.html'
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(CommunityListView, self).get_context_data(*args, **kwargs)
+        communities = Community.objects.all()
+        context['communities'] = communities
+        return context
+
 
 class CommunityDetailView(DetailView):
     model = Community
