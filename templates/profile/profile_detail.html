@@ -4,7 +4,6 @@
 {% block title %}{{ profile.user.username }}{% endblock title %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/profile.css' %}">
-{% include 'bottom_nav.html' %}
 {% include 'mini_nav.html' %}
 {% csrf_token %}
 

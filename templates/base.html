@@ -32,6 +32,7 @@ crossorigin="anonymous">
       <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}"/> TMT</a>
 
       {% if user.is_authenticated %}
+      {% include 'bottom_nav.html' %}
       <form class="search-container" method=POST action="{% url 'search_bar' %}">
         {% csrf_token %}
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched_data">
