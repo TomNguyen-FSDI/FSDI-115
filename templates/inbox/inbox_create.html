@@ -6,26 +6,7 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/forms.css' %}">
 <link rel="stylesheet" href="{% static 'css/post_create.css' %}">
-<!-- btn container for screens smaller than 768px -->
-<div class="btn-container" id="sm-btn-container">
-    <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-dark btn-spacing">Home</button>
-        <button type="button" class="btn btn-dark btn-spacing">Trending</button>
-        <a class="btn btn-dark btn-spacing" href="{% url 'community_create' %}">Create
-            Community</a>
-    </div>
-</div>
-<!-- btn container for screens bigger than 768px -->
-<div class="container col-6">
-    <div class="btn-container" id="lg-btn-container">
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <a class="btn btn-dark btn-spacing" href="{% url 'home' %}">Home</a>
-            <button type="button" class="btn btn-dark btn-spacing">Trending</button>
-            <a class="btn btn-dark btn-spacing"
-            href="{% url 'community_list' %}">Communities</a>
-        </div>
-    </div>
-</div>
+{% include 'mini_nav.html' %}
 
 <div class="container post">
 
