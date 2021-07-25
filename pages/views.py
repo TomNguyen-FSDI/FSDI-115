@@ -157,6 +157,7 @@ class PostsByLikesView(ListView):
     model = Post
     template_name = 'post_likes.html'
 
+
     def get_context_data(self, **kwargs):
         context = super(PostsByLikesView, self).get_context_data(**kwargs)
         post = Post
@@ -181,6 +182,7 @@ class PostsByLikesView(ListView):
 class PostListView(ListView):
     model = Post
     template_name = 'home.html'
+    paginate_by = 2
 
     def get_context_data(self, *args, **kwargs):
         context = super(PostListView, self).get_context_data(*args, **kwargs)
