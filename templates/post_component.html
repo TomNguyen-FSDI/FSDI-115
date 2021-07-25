@@ -3,9 +3,9 @@
 
 
 
-<div class="container">
+<div class="container infinite-container">
   {% for post in object_list %}
-  <div class="card" style="width: 100%;">
+  <div class="card infinite-item" style="width: 100%;">
     <div class="card-body">
       <a class="post-detail-link" href="{% url 'post_detail' post.pk %}">
         <h6 class="card-group text-muted"> TMT/{{ post.community }} &middot; Posted by u/{{ post.author }}
@@ -55,3 +55,17 @@
   </div>
   {% endfor %}
 </div>
+<div class="d-flex position-fixed" style="top: 85vh;left: 50%;-moz-transform: translateX(-50%) translateY(-50%); -webkit-transform: translateX(-50%) translateY(-50%); transform: translateX(-50%) translateY(-50%);">
+  <button class="btn btn-primary loading" style="display: none;">
+    <span class="spinner-border spinner-border-sm"></span>
+    Loading...
+  </button>
+</div>
+<div class="row">
+  <div class="col-12">
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}" class="infinite-more-link"></a>
+    {% endif %}
+  </div>
+</div>
+
