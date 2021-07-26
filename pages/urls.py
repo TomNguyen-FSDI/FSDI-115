@@ -21,6 +21,7 @@ from .community import (
     Followed_community 
     )
 from .views import ( 
+    HomeListView,
     PostListView,
     PostsByLikesView, 
     PostDetailView, 
@@ -42,7 +43,7 @@ from .views import (
     )
 
 urlpatterns = [
-    path('', PostListView.as_view(), name='home2'),
+    path('', HomeListView.as_view(), name='home2'),
     path('search/', search_bar, name='search_bar'),
     path('account/login', login_page, name='login'),
     path('account/password_reset/', PasswordResetView.as_view(), name="password_reset"),

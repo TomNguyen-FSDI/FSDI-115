@@ -1,0 +1,16 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block landing_page %}
+
+<div class="intro">
+    <img class="moon" src="{% static 'images/moon.png' %}" title="moon" alt="yellow cheese hole full moon" />
+    <img class="clouds" src="{% static 'images/clouds.png' %}" title="clouds" alt="clouds" />
+    <img class="clouds2" src="{% static 'images/clouds.png' %}" title="clouds" alt="clouds" />
+    <img class="rocket" src="{% static 'images/rocket.png' %}" title="rocket" alt="rocket blasting to the moon" />
+    <h1 class='intro-text'>Going to the Moon!!!</h1>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js" integrity="sha512-UxP+UhJaGRWuMG2YC6LPWYpFQnsSgnor0VUF3BHdD83PS/pOpN+FYbZmrYN+ISX8jnvgVUciqP/fILOXDjZSwg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{% static 'js/landing.js' %}"></script>
+{% endblock landing_page %}

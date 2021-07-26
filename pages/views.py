@@ -179,6 +179,7 @@ class PostsByLikesView(ListView):
         context['communities'] = communities
         return context
 
+
 class PostListView(ListView):
     model = Post
     template_name = 'home.html'
@@ -186,9 +187,7 @@ class PostListView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(PostListView, self).get_context_data(*args, **kwargs)
-        
         communities = Community.objects.all()
-
         if self.request.user.pk is None:
             pass
         else:
@@ -200,9 +199,13 @@ class PostListView(ListView):
                 create_profile.refresh_from_db()
             find_profile = Profile.objects.get(user=User.objects.get(pk=self.request.user.id))
             context['profile_id'] = find_profile.id
-
         context['communities'] = communities
         return context
+
+
+class HomeListView(PostListView):
+    template_name = 'landing_page.html'
+
 
 class CommunityListView(ListView):
     model = Community 
