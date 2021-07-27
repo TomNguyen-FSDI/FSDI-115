@@ -187,7 +187,6 @@ class PostListView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(PostListView, self).get_context_data(*args, **kwargs)
-        communities = Community.objects.all()
         if self.request.user.pk is None:
             pass
         else:
@@ -199,7 +198,7 @@ class PostListView(ListView):
                 create_profile.refresh_from_db()
             find_profile = Profile.objects.get(user=User.objects.get(pk=self.request.user.id))
             context['profile_id'] = find_profile.id
-        context['communities'] = communities
+        context['communities'] = Post.community_all.all()
         return context
 
 
@@ -231,8 +230,7 @@ class PostDetailView(DetailView):
         disliked = False
         if post_info.dislikes.filter(id=self.request.user.id).exists():
             disliked = True
-        communities = Community.objects.all()
-        context['communities'] = communities
+        context['communities'] = Post.community_all.all()
         context["liked_order"] = liked_order
         context["liked"] = liked
         context["disliked"] = disliked

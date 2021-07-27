@@ -5,6 +5,11 @@ from django.db import models
 from django.urls import reverse
 from PIL import Image
 
+
+class Community_custom_manager(models.Manager):
+    def get_queryset(self):
+        return Community.objects.all()
+
 class Community(models.Model):
     name = models.CharField(max_length=200, unique=True)
     topic = models.CharField(max_length=600)
@@ -68,6 +73,8 @@ class Post(models.Model):
     image = models.ImageField(upload_to='images/', default='.png', blank=True)
     likes = models.ManyToManyField(User, blank=True,related_name='likes')
     dislikes = models.ManyToManyField(User, blank=True,related_name='dislikes')
+    objects = models.Manager()
+    community_all = Community_custom_manager()
 
     def __str__(self):
         return self.title
