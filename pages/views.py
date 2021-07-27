@@ -231,6 +231,8 @@ class PostDetailView(DetailView):
         disliked = False
         if post_info.dislikes.filter(id=self.request.user.id).exists():
             disliked = True
+        communities = Community.objects.all()
+        context['communities'] = communities
         context["liked_order"] = liked_order
         context["liked"] = liked
         context["disliked"] = disliked

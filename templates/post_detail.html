@@ -3,16 +3,12 @@
 
 {% block title %}{{ post.title }}{% endblock title %}
 {% block content %} 
-<div class="container col-6">
-    <div class="btn-container" id="lg-btn-container">
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <a type="button" class="btn btn-dark btn-spacing" href="{% url 'home' %}">Home</a>
-            <button type="button" class="btn btn-dark btn-spacing">Trending</button>
-            <a type="button" class="btn btn-dark btn-spacing"
-            href="{% url 'community_list' %}">Communities</a>
-        </div>
-    </div>
-</div>
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-6">
+    {% include 'mini_nav.html' %}
+
 <div class="d-flex justify-content-center">
 <div class="post-detail rounded shadow">
 
@@ -195,4 +191,8 @@
     </div>
 </div>
 </div><!--display flex -->
+</div>
+{% include 'side_bar_community_component.html' with communities=communities %}
+</div>
+</div>
 {% endblock content %}

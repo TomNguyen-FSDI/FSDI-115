@@ -305,14 +305,16 @@ li>.comment-btn:last-of-type{
     background-color: black;
     color: white;
 }
-@media(min-width:768px){
+@media(max-width:768px){
     .post-detail{
-        width: 55%;
+        /* width: 55%; */
+        margin: 16px 0;
     }
 }
 @media(min-width:1024px){
     .post-detail{
-        width: 50%;
+        /* width: 50%; */
+        margin: 16px 23px;
     }
 }
 /* Bottom_Nav.html */
