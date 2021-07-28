@@ -8,7 +8,7 @@
 {% csrf_token %}
 
 
-            <div class="post-detail rounded shadow">
+            <div class="post-detail rounded shadow bottom-margin">
 
                     <div class="card" >
                         <h6 class="card-group">Profile Picture: 
@@ -35,8 +35,8 @@
                         </h6> 
                             
                     </div>
-                        <a class="btn btn-light comment-btn" style="width:auto; margin: 3px auto;" href="{% url 'profile_update' profile.id %}">edit profile</a>
-                        <a class="btn btn-light comment-btn" href="{% url 'password_change' %}">change password</a>
+                        <a class="btn btn-light comment-btn" style="width:auto; margin: 3px auto;" href="{% url 'profile_update' profile.id %}">Edit Profile</a>
+                        <a class="btn btn-light comment-btn" href="{% url 'password_change' %}">Change Password</a>
 
             </div>
 

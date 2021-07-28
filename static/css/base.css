@@ -30,6 +30,12 @@
     }
 }
 /* Utilities */
+.bottom-margin{
+    margin-bottom: 3rem!important;
+}
+.form-bottom-margin{
+    margin-bottom: 5rem!important;
+}
 a{
     text-decoration: none!important;
 }
@@ -324,7 +330,7 @@ li>.comment-btn:last-of-type{
         display: none;
     }
 }
-.home-container{
+.mobile-bottom-margin{
     margin-bottom: 3rem;
 }
 .navbar{
