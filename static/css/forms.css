@@ -5,6 +5,21 @@
     border: 1px solid rgba(207, 207, 207, 0.774);
     color: azure;
 }
+@media(min-width:768px){
+    .signup-container{
+        margin: 0 auto;
+        width: 75%;
+    }
+}
+@media(min-width:1024px){
+    .signup-container{
+        width: 60%;
+        padding: 4rem!important;
+    }
+}
+label{
+    display: flex;
+}
 .textarea{
     width:100%;
 }

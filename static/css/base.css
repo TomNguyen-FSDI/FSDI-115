@@ -36,6 +36,12 @@
 .form-bottom-margin{
     margin-bottom: 5rem!important;
 }
+@media(min-width:1024px){
+    .form-bottom-margin{
+        width: 50%;
+    }
+}
+
 a{
     text-decoration: none!important;
 }

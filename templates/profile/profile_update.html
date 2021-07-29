@@ -11,7 +11,7 @@
         </br>
         <input type="text" name="hodl" maxlength="200" value="{{ profile.hodl }}" id="id_hodl" style="width:100%;"></p>
         <p><label for="id_about">About:</label> <textarea name="about" cols="40" rows="10" id="id_about" style="width:100%;">{{ profile.about }}</textarea></p>
-        <p><label for="id_img">Img:</label> 
+        <p><label for="id_img">Current Image:</label> 
         {% if profile.img == ".png" %}
         
         {% else %}
@@ -21,8 +21,10 @@
 
         {% endif %}
         </br>
-        Change:
+        Change Image:
         <input type="file" name="img" accept="image/*" id="id_img"></p>
+        
+        <hr>
 
         <button class="btn btn-light" type="submit" >Update profile</button>
 
