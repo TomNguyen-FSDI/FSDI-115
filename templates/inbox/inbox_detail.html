@@ -8,8 +8,8 @@
 {% include 'inbox/mini_nav_inbox_component.html' %}
 {% if user == inboxmessage.receiver or user == inboxmessage.sender %}
 
-<div class="d-flex justify-content-center">
-    <div class="post-detail rounded shadow">
+
+    <div class="inbox-detail rounded shadow">
         <div class="container">
             <div class="card" style="width: 100%;">
                 <div class="card-body">
@@ -20,7 +20,9 @@
                     <h6 class="card-group"> From: {{ inboxmessage.sender }} </h6>
                     <h6 class="card-group"> Subject: {{ inboxmessage.subject }} </h6>
                     <div style="height: 10px;"></div>
-                    <p class="card-text">{{ inboxmessage.message }}</p>
+                    <hr>
+                    <p class="card-text inbox-text">{{ inboxmessage.message }}</p>
+                    <hr>
 
                     <a class="btn btn-sm btn-primary" href="{% url 'inbox_create' %}">Reply</a>
 
@@ -29,7 +31,7 @@
             </div>
         </div>
     </div>
-</div> <!-- display flex-->
+
 {% else %}
 <div class="d-flex justify-content-center">
     <div class="post-detail rounded shadow">

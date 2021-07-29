@@ -183,6 +183,7 @@ class PostsByLikesView(ListView):
 class PostListView(ListView):
     model = Post
     template_name = 'home.html'
+    ordering = ['-date']
     paginate_by = 2
 
     def get_context_data(self, *args, **kwargs):

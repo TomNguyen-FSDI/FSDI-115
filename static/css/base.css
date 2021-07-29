@@ -41,7 +41,18 @@
         width: 50%;
     }
 }
-
+@media(min-width:768px){
+    .delete-container{
+        width: 75%;
+        margin: 0 auto;
+    }
+}
+@media(min-width:1024px){
+    .delete-container{
+        width:50%;
+    }
+}
+    
 a{
     text-decoration: none!important;
 }
@@ -250,6 +261,7 @@ a i{
 .post-detail{
     background-color: rgb(26, 26, 27);
     color: white;
+    width: 100%;
     padding: 1rem;
     margin: 1rem;
     text-align: center;
@@ -317,16 +329,22 @@ li>.comment-btn:last-of-type{
     background-color: black;
     color: white;
 }
-@media(max-width:768px){
-    .post-detail{
-        /* width: 55%; */
-        margin: 16px 0;
+.inbox-text{
+    padding: 0 .5rem ;
+}
+.inbox-detail{
+    width: 100%;
+    margin: 0 auto;
+}
+@media(min-width:768px){
+    .inbox-detail{
+        width: 75%;
+
     }
 }
 @media(min-width:1024px){
-    .post-detail{
-        /* width: 50%; */
-        margin: 16px 23px;
+    .inbox-detail{
+        width: 55%;
     }
 }
 /* Bottom_Nav.html */
