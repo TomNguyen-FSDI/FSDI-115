@@ -34,6 +34,7 @@ class CommunityDetailView(DetailView):
         else:
             follow = "False"
         context['follow'] = follow
+        context['communities'] = Community.objects.all()
         return context
 
 

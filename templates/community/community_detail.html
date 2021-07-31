@@ -1,87 +1,61 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}{{ community.name }}{% endblock title %}
 {% block content %}
-<!-- btn container for screens smaller than 768px -->
-<div class="btn-container" id="sm-btn-container">
-    <div class="btn-group" role="group" aria-label="Basic example">
-        <a class="btn btn-dark btn-spacing" href="{% url 'home' %}">Home</a>
-        <a class="btn btn-dark btn-spacing" href="{% url 'trending_list' %}">Trending</a>
-        <a class="btn btn-dark btn-spacing" href="{% url 'community_create' %}">Create
-            Community</a>
-    </div>
-</div>
-<!-- btn container for screens bigger than 768px -->
-<div class="container col-6">
-    <div class="btn-container" id="lg-btn-container">
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <a class="btn btn-dark btn-spacing" href="{% url 'home' %}">Home</a>
-            <a class="btn btn-dark btn-spacing" href="{% url 'trending_list' %}">Trending</a>
-            <a class="btn btn-dark btn-spacing"
-            href="{% url 'community_create' %}">Create Community</a>
-        </div>
-    </div>
-</div>
-<div class="d-flex justify-content-center bottom-margin">
-    <div class="post-detail rounded shadow">
-        
-        {% if user == community.author %}
-        <h2><a class="post-detail-link card-group" href="{% url 'community_update' community.pk %}">{{ community.name }}</a></h2>
-        {% else %}
-        <h2 class="card-group"> {{ community.name }}</h2>
-        {% endif %}
-        <img src="{{ post.image.url }}" alt="" style="width: 80%">
-        <p class="title-case card-title card-group" style="padding-left: 32px;">{{ community.topic }}</p>
-        <p class="text-container">{{ post.body }}</p>
-        <div style="justify-content: space-between;">
-            {% if user.is_authenticated %}
-            {% if user == community.author %}
-            <a class="btn btn-outline-light" href="{% url 'community_delete' community.pk %}"><i class="fas fa-trash-alt"></i> Community</a>
-            {% endif %}
-            {% if follow == "True" %}
-                <a class="btn btn-outline-light" href="{% url 'follow_community' community.pk community.name %}" ><i class="fas fa-wifi" style="transform:rotate(45deg); position: relative; margin-bottom: 0px; bottom: -3px; left: -5px;"></i> Unfollow</a>
-            {% else %}
-                <a class="btn btn-outline-light" href="{% url 'follow_community' community.pk community.name %}" ><i class="fas fa-wifi" style="transform:rotate(45deg); position: relative; margin-bottom: 0px; bottom: -3px; left: -5px;"></i> Follow</a>
-            {% endif %}
-            <a class="btn btn-outline-light" href="{% url 'post_create'%}" ><i class="far fa-sticky-note"></i> Add Post</a>
-            {% else %}
-            <p>To post a comment you must be signed in.</p>
-            <a class="btn btn-light mb-2" href="{% url 'signup' %}">Sign Up Here</a>
-            {% endif %}
-        </div>
-        <div class="car-footer">
+<div class="container bottom-margin">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-6">
+            {% include 'community/community_mini_nav.html' %}
+            <div class="d-flex justify-content-center bottom-margin">
+                <div class="post-detail rounded shadow">
 
-
-            <br>
-            {% for post in community.posts.all reversed %}
-            <div class="card" style="width: 100%;">
-                <div class="card-body">
-                    <a class="post-detail-link" href="{% url 'post_detail' post.pk %}">
-                        <h6 class="card-group"> By: {{ post.author }} | {{ post.date }}</h6>
-                        <h4 class="card-title">{{ post.title }}</h4>
-                        <p class="card-text">{{ post.body|safe|truncatechars:140 }}</p>
-                    </a>
-                    <img src="{{ post.image.url }}" alt="" style="width: 100%">
-
-                    <div class="post-footer d-flex" style="padding-top: 16px; float:right;">  
-                        <div class="comments-container">
-                            {% if user.is_authenticated %}
-                            <a href="{% url 'add_comment' post.pk %}" class="btn btn-outline-light d-flex comment-btn">
-                              <i class="far fa-comment-alt"></i>
-                            </a>
-                          {% else %}
-                            <a href="{% url  'login'  %}" class="btn btn-outline-light d-flex comment-btn">
-                              <i class="far fa-comment-alt"></i>
-                            </a>
-                          {% endif %}
-                        </div>
+                    {% if user == community.author %}
+                    <h2><a class="post-detail-link card-group" href="{% url 'community_update' community.pk %}">{{ community.name }}</a></h2>
+                    {% else %}
+                    <h2 class="card-group"> {{ community.name }}</h2>
+                    {% endif %}
+                    <img src="{{ post.image.url }}" alt="" style="width: 80%">
+                    <p class="title-case card-title card-group" style="padding-left: 32px;">{{ community.topic }}</p>
+                    <p class="text-container">{{ post.body }}</p>
+                    <div style="justify-content: space-between;">
+                        {% if user.is_authenticated %}
+                        {% if user == community.author %}
+                        <a class="btn btn-outline-light" href="{% url 'community_delete' community.pk %}"><i
+                                class="fas fa-trash-alt"></i> Community</a>
+                        {% endif %}
+                        {% if follow == "True" %}
+                        <a class="btn btn-outline-light"
+                            href="{% url 'follow_community' community.pk community.name %}"><i class="fas fa-wifi"
+                                style="transform:rotate(45deg); position: relative; margin-bottom: 0px; bottom: -3px; left: -5px;"></i>
+                            Unfollow</a>
+                        {% else %}
+                        <a class="btn btn-outline-light"
+                            href="{% url 'follow_community' community.pk community.name %}"><i class="fas fa-wifi"
+                                style="transform:rotate(45deg); position: relative; margin-bottom: 0px; bottom: -3px; left: -5px;"></i>
+                            Follow</a>
+                        {% endif %}
+                        <a class="btn btn-outline-light" href="{% url 'post_create'%}"><i
+                                class="far fa-sticky-note"></i> Add Post</a>
+                        {% else %}
+                        <p>To post a comment you must be signed in.</p>
+                        <a class="btn btn-light mb-2" href="{% url 'signup' %}">Sign Up Here</a>
+                        {% endif %}
                     </div>
+                    <div class="car-footer">
 
+
+                        <br>
+                        {% include 'post_component.html' with object_list=community.posts.all %}
+                    </div>
                 </div>
             </div>
-            {% endfor %}
-
-
         </div>
-    </div> <!-- display flex-->
-    {% endblock content %}
+        {% include 'side_bar_community_component.html' with communities=communities %}
+    </div>
+</div> <!-- display flex-->
+<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'js/infinite.js' %}"></script>
+<script src="{% static 'js/load_infinite.js' %}"></script>
+{% endblock content %}
