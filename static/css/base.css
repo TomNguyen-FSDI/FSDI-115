@@ -258,6 +258,9 @@ a i{
     background-color: rgba(255, 255, 255, 0.322);
     border-radius: 50%;
 }
+.text-container p{
+    text-align: left;
+}
 .post-detail{
     background-color: rgb(26, 26, 27);
     color: white;

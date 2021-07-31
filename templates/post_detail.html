@@ -49,7 +49,11 @@
 
     <img src="{{ post.image.url }}" alt="" style="width: 80%">
     <p class="title-case text-muted"> TMT/{{ post.community }}  &middot; Posted by u/{{ post.author }}  &middot; {{ post.date }}</p>
-    <p class="text-container">{{ post.body }}</p>
+    <div class="text-container">
+        {{ post.body | safe | linebreaks }}
+        
+    </div>
+
     <div class="car-footer">
         {% if user.is_authenticated %}
         <div class="vote-container d-flex">
@@ -126,7 +130,7 @@
                 </span>
             </br>
                 <span>
-                    {{ comment }}
+                    {{ comment  | safe | linebreaks  }}
                 </span>
             </p> 
             {% if user.is_authenticated %}
