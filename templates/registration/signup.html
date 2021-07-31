@@ -24,8 +24,8 @@
                 {% if field.label == "Username" %}
                     {% if invalid_user == "username" %}      
 
-                            <div>
-                                {{ field.label_tag }}<i class="fas fa-exclamation-triangle invalid-login-label"></i>
+                            <div style="display:flex;">
+                                <i class="fas fa-exclamation-triangle invalid-login-label"></i>{{ field.label_tag }} 
                             </div>
                                 {{ field|placeholder:username }}
                                 <label class="invalid-login-label">Username already exist</label>
@@ -38,8 +38,8 @@
                 {% if field.label == "Email" %}
                     {% if invalid_email == "email" %}      
 
-                            <div>
-                                {{ field.label_tag }}<i class="fas fa-exclamation-triangle invalid-login-label"></i>
+                            <div style="display:flex;">
+                                <i class="fas fa-exclamation-triangle invalid-login-label"></i>{{ field.label_tag }}
                             </div>
                                 {{ field|placeholder:email }}
                                 <label class="invalid-login-label">Email already used</label>

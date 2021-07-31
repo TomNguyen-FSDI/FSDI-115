@@ -18,13 +18,14 @@ class SignUpView(CreateView):
 
     def form_valid(self, form): 
         email_in_db = User.objects.filter(email=form.data['email'])
-        if len(email_in_db) > 0:
+        username_in_db = User.objects.filter(username=form.data['username'])
+        if len(email_in_db) > 0 or len(username_in_db) > 0:                        # exists in the database
             return redirect_invalid_logic(self.request, form)
         player = form.save()
-        player.refresh_from_db()
-        find_user = User.objects.get(email=form.instance.email)
-        create_user = Profile(user=find_user)
-        create_user.save()
+        # player.refresh_from_db()
+        # find_user = User.objects.get(email=form.instance.email)
+        # create_user = Profile(user=find_user)
+        # create_user.save()
         return super().form_valid(form)
 
 

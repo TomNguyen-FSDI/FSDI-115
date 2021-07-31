@@ -1,3 +1,7 @@
 ul li:first-child{
     display: none;
 }
+.invalid-login-label{
+    color:#DD0000;
+    padding: 4px 6px 0 0;
+}
