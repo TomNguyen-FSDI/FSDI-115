@@ -6,7 +6,6 @@
       {% for community in communities %}
       <li class="list-group-item">
         <a href="{% url 'community_detail' community.pk %}">
-          <img class="group-img" src="{% static 'images/default_pic.png' %}" alt="default image">
           TMT/{{ community.name }}
         </a>
       </li>

@@ -106,6 +106,9 @@ body{
     background-position: center center;
     background-size: cover;
 }
+.inbox-label{
+    display: inline-block;
+}
 .post-detail-link{
     text-decoration: none!important;
     color: aliceblue;
