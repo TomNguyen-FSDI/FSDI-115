@@ -31,6 +31,7 @@ from django.views.generic import (
 from .models import Post, Comment, Community, InboxMessage, Profile
 from .forms import CommentForm
 from django.http import HttpResponseRedirect
+from django.http import JsonResponse
 
 class AddLike(View):
     def post(self, request, pk, *args, **kwargs):
@@ -58,6 +59,12 @@ class AddLike(View):
 
         if liked:
             post.likes.remove(request.user)
+
+        data = {
+            'value': liked,
+            'likes': post.likes.all().count()
+        }
+        return JsonResponse(data, safe=False)
 
         next = request.POST.get('next', '/')
         return HttpResponseRedirect(next)
@@ -89,6 +96,12 @@ class AddDislike(View):
 
         if disliked:
             post.dislikes.remove(request.user)
+
+        data = {
+            'value': disliked,
+            'dislikes': post.dislikes.all().count()
+        }
+        return JsonResponse(data, safe=False)
 
         next = request.POST.get('next', '/')
         return HttpResponseRedirect(next)
@@ -184,7 +197,7 @@ class PostListView(ListView):
     model = Post
     template_name = 'home.html'
     ordering = ['-date']
-    paginate_by = 2
+    # paginate_by = 2
 
     def get_context_data(self, *args, **kwargs):
         context = super(PostListView, self).get_context_data(*args, **kwargs)

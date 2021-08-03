@@ -5,7 +5,7 @@ from .models import Post, Community
 class TrendingListView(ListView):
     model = Post
     template_name = 'trending/trending_list.html'
-    paginate_by = 2
+    # paginate_by = 2
 
     def get_queryset(self):
         """return the highest vote count within the last 7 days"""

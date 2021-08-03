@@ -276,6 +276,7 @@ a i{
     color:#c1c1c1;
 }
 .thumbs-up{
+    display: flex;
     padding: 0!important;
     border: none;
     background-color: transparent;

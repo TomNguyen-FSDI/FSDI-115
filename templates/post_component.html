@@ -18,20 +18,31 @@
         <div class="vote-container d-flex">
           {% if user.is_authenticated %}
 
-          <form action="{% url 'like' post.pk %}" method="Post" class="like-container">
+          <form action="{% url 'like' post.pk %}" method="Post" class="like-container" id="{{ post.pk }}">
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ request.path }}">
-            <button type="submit" class="thumbs-up">
-              {% get_likes post.pk request %}{{ post.likes.all.count }}</span></i>
+            <button type="submit" class="thumbs-up ">
+              <div class="like-btn{{ post.pk }}">
+              {% get_likes post.pk request %}
+            </div>
+              <span class="count like-count{{ post.pk }}">
+                {{ post.likes.all.count }}
+              </span>
+              
 
             </button>
           </form>
 
-          <form action="{% url 'dislike' post.pk %}" method="Post" class="like-container">
+          <form action="{% url 'dislike' post.pk %}" method="Post" class="dislike-container" id="{{ post.pk }}">
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ request.path }}">
             <button type="submit" class="thumbs-up">
-              {% get_dislikes post.pk request %}{{ post.dislikes.all.count }}</span></i>
+              <div class="dislike-btn{{ post.pk }}">
+                {% get_dislikes post.pk request %}
+              </div>
+              <span class="count dislike-count{{ post.pk }}">
+                {{ post.dislikes.all.count }}
+              </span>
             </button>
           </form>
 
@@ -68,4 +79,5 @@
     {% endif %}
   </div>
 </div>
+
 

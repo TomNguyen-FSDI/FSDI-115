@@ -1,3 +1,6 @@
 .post {
     color: white; 
 }
+.select2-container{
+    max-width: 100%;
+}
