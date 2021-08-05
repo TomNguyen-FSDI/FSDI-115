@@ -49,19 +49,9 @@
 
       </div>
     </div>
-    <div class="col-3">
-      <ul class="list-group">
-        <li class="list-group-item">New Communities</li>
-        {% for community in communities %}
-        <li class="list-group-item">
-          <a href="{% url 'community_detail' community.pk %}">
-            <img class="group-img" src="{% static 'images/default_pic.png' %}" alt="default image">
-            TMT/{{ community.name }}
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
+
+        {% include 'side_bar_community_component.html' with communities=communities %}
+
   </div>
 </div>
 
