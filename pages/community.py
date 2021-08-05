@@ -77,7 +77,7 @@ class CommunityCreateView(CreateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(CommunityCreateView, self).get_context_data( *args, **kwargs)
-        communities = Community.objects.all()
+        context['communities'] = Community.objects.all()
         return context
 
     def form_valid(self, form): # can be used for LoginRequiredMixin
