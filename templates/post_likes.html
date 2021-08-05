@@ -45,67 +45,7 @@
           </ul>
         </div>
 
-        {% for post in liked_order %}
-
-        <div class="card" style="width: 100%;">
-          <div class="card-body">
-            <a class="post-detail-link" href="{% url 'post_detail' post.pk %}">
-              <h6 class="card-group text-muted"> TMT/{{ post.community }} &middot; Posted by u/{{ post.author }}
-                &middot; {{ post.date }}</h6>
-              <h4 class="card-title">{{ post.title }}</h4>
-              <p class="card-text">{{ post.body|safe|truncatechars:140 }}</p>
-            </a>
-            <img src="{{ post.image.url }}" alt="" style="width: 100%">
-            <div class="post-footer d-flex">
-              <div class="vote-container d-flex">
-                {% if user.is_authenticated %}
-
-                <form 
-                action="{% url 'like' post.pk %}"
-                method="Post"
-                class="like-container">
-                    {% csrf_token %}
-                    <input type="hidden" name="next" value="{{ request.path }}">
-                    <button 
-                        type="submit" 
-                        class="thumbs-up">
-                        {% get_likes post.pk request %}{{ post.likes.all.count }}</span></i>
-
-                    </button> 
-                    </form>
-
-                    <form 
-                    action="{% url 'dislike' post.pk %}"
-                    method="Post"
-                    class="like-container">
-                        {% csrf_token %}
-                        <input type="hidden" name="next" value="{{ request.path }}">
-                        <button 
-                            type="submit" 
-                            class="thumbs-up">
-                            {% get_dislikes post.pk request %}{{ post.dislikes.all.count }}</span></i>
-                        </button> 
-                                </form>
-
-              </div>
-
-              <div class="comments-container ">
-                
-                  <a href="{% url 'add_comment' post.pk %}" class="btn btn-outline-light d-flex comment-btn">
-                    <i class="far fa-comment-alt"></i>
-                  </a>
-                {% else %}
-                  <p>
-                    <a href="{% url  'login'  %}" class="btn btn-sm btn-outline-light">
-                    Login</a> to like and comment.
-                  </p>
-                  
-                {% endif %}
-              </div>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
+        {% include 'post_component.html' with object_list=object_list %}
 
       </div>
     </div>
@@ -126,5 +66,7 @@
 </div>
 
 
+<script src="{% static 'js/like_handler.js' %}"></script>
+<script src="{% static 'js/dislike_handler.js' %}"></script>
 
 {% endblock content %}
