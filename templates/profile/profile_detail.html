@@ -31,7 +31,7 @@
 
                         <h6 class="card-group">
                             <p>About:</p>
-                            <p class="about-p">{{ profile.about }}</p>
+                            <p class="about-p">{{ profile.about | safe | linebreaks }}</p>
                         </h6> 
                             
                     </div>

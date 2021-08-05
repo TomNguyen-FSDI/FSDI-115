@@ -16,7 +16,7 @@
     <div class="card" style="width: 100%;">
         <div class="card-body">
             <a class="post-detail-link" href="{% url 'community_detail' community.pk %}">
-                <h6 class="card-group"> {{ community.name }} </h6>
+                <h6 class="card-group">TMT/{{ community.name }} </h6>
                 <h4 class="card-title">{{ community.topic }}</h4>
                 <p class="card-text">{{ community.description|safe|truncatechars:140 }}</p>
             </a>

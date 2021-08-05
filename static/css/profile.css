@@ -1,6 +1,4 @@
-p{
-    margin: 0;
-}
+
 .post-detail{
     padding: .9rem;
     width:100%;
@@ -24,11 +22,11 @@ p{
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    justify-content: space-around;
+    justify-content: space-between;
     border: 1px solid rgba(255, 255, 255, 0.404);
     box-shadow: 1px 1px 10px white;
     border-radius: 10px;
-    padding: .4rem;
+    padding: .6rem;
     text-transform: capitalize;
 
 }
@@ -36,6 +34,9 @@ p{
     .post-detail{
         width: 86%;
         margin: 1rem auto;
+    }
+    .card-group{
+        padding: 1.5rem;
     }
 }
 @media(min-width:1024px){

@@ -43,10 +43,14 @@
           data-bs-toggle="dropdown" 
           aria-expanded="false">
             Filter Posts
+            <i 
+            style="font-size: 0.7rem;
+                    position: unset;" 
+            class="fas fa-angle-down"></i>
           </a>
         
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="{% url 'home' %}">Newest</a></li>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item active" href="{% url 'home' %}">Newest</a></li>
             <li><a class="dropdown-item" href="{% url 'post_likes' %}">Most Likes</a></li>
           </ul>
         </div>

@@ -283,7 +283,7 @@ a i{
 
 }
 .not-clicked{
-    color: white;
+    color: white!important;
     font-size: 1.5rem;
 }
 .fa-arrow-down.not-clicked:hover{
