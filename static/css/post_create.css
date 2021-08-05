@@ -4,3 +4,8 @@
 .select2-container{
     max-width: 100%;
 }
+@media (min-width:768px){
+    .post{
+        margin: 1rem 1.9rem;
+    }
+}

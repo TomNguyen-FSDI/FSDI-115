@@ -413,6 +413,7 @@ def search_bar(request):
             search_result_for_post = Post.objects.filter(Q(body__contains=searched)|Q(title__contains=searched)).order_by('-id')[:5]
             context = {}
             context['searched'] = searched
+            context['communities'] = Post.community_all.all()
             context['searched_results_post'] = search_result_for_post
             context['searched_results_community'] = search_result_for_community
             return render(request, 'search_bar.html', context)

@@ -6,76 +6,50 @@
 {% endblock cssstyle %}
 
 {% block content %}
-{% include 'mini_nav.html' %}
-<div class="container">
+
+<div class="container bottom-margin">
     {% if searched %}
     <h1 style="color:white;"> Results for <i>"{{ searched }}"</i></h1>
     <br />
-    {% for searched_result in searched_results_community %}
-    <div class="card search-container">
-
-        <div class="card-body">
-            <div>
-                <a href="{% url 'community_detail' searched_result.pk %}" style="text-decoration: none; color: inherit;">
-                    <h6 class="card-group">community: {{ searched_result.name }}</h6>
-                    <h4 class="card-title">{{ searched_result.topic }}</h4>
-                </a>
-                <p class="card-text">{{ searched_result.description|safe|truncatechars:140 }}</p>
-            </div>
-        </div>
-        <div class="post-footer d-flex search-container-footer">
-            <div class="comments-container ">
-                <a class="btn btn-outline-light d-flex comment-btn" href="{% url 'post_create' %}">
-                    <i class="far fa-comment-alt"></i>
-                    <h6 class="comment-text">Post</h6>
-                </a>
-            </div>
-
-        </div>
-    </div>
-    {% endfor %}
-    {% for searched_result in searched_results_post %}
-    <div class="card search-container">
-
-        <div class="card-body">
-            <div>
-                <a href="{% url 'post_detail' searched_result.pk %}" style="text-decoration: none; color: inherit;">
-                    <h6 class="card-group">By: {{ searched_result.name }} | {{ searched_result.date }}</h6>
-                    <h4 class="card-title">{{ searched_result.title }}</h4>
-                </a>
-                {% if searched_result.image.url == "/media/.png" %}
-                {% else %}
-                <center>
-                    <img src="{{ searched_result.image.url }}" class="search-image" alt="{{ searched_result.title }}">
-                </center>
-                {% endif %}
-                <p class="card-text">{{ searched_result.body|safe|truncatechars:140 }}</p>
-            </div>
-        </div>
-        <div class="post-footer d-flex search-container-footer">
-            <div class="vote-container d-flex">
-                <a href="#"><i class="far fa-arrow-alt-circle-up arrow-up"></i></a>
-                <h6 class="vote-text">Vote</h6>
-                <a href="#"><i class="far fa-arrow-alt-circle-down arrow-down"></i></a>
-            </div>
-            <div class="comments-container ">
-                <a class="btn btn-outline-light d-flex comment-btn" href="{% url 'add_comment' searched_result.pk %}">
-                    <i class="far fa-comment-alt"></i>
-                    <h6 class="comment-text">Comments</h6>
-                </a>
-            </div>
-
-        </div>
-    </div>
-    {% endfor %}
     {% else %}
     <center style="color:white;">
         <h1></h1>
     </center>
     {% endif %}
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-6">
+            {% include 'mini_nav.html' %}
+            {% include 'post_component.html' with object_list=searched_results_post %}
+            {% for searched_result in searched_results_community %}
+            <div class="card search-container search-community">
+                <div class="card-body">
+                    <div>
+                        <a href="{% url 'community_detail' searched_result.pk %}"
+                            style="text-decoration: none; color: inherit;">
+                            <h6 class="card-group">community: {{ searched_result.name }}</h6>
+                            <h4 class="card-title">{{ searched_result.topic }}</h4>
+                        </a>
+                        <p class="card-text">{{ searched_result.description|safe|truncatechars:140 }}</p>
+                    </div>
+                </div>
+                <div class="post-footer d-flex search-container-footer">
+                    <div class="comments-container ">
+                        <a class="btn btn-outline-light d-flex comment-btn" href="{% url 'post_create' %}">
+                            <i class="far fa-comment-alt"></i>
+                            <h6 class="comment-text">Post</h6>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% include 'side_bar_community_component.html' with communities=communities %}
+    </div>
 </div>
 
-
+<script src="{% static 'js/like_handler.js' %}"></script>
+<script src="{% static 'js/dislike_handler.js' %}"></script>
 
 
 {% endblock content %}

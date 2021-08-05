@@ -6,7 +6,13 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/forms.css' %}">
 <link rel="stylesheet" href="{% static 'css/post_create.css' %}">
-<div class="container post form-bottom-margin">
+
+<div class="container bottom-margin">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-6">
+            {% include 'mini_nav.html' %}
+    <div class="post">
 
     <h1 class="border-bottom-utl">Create a New Community</h1>
     <form method="post" enctype="multipart/form-data">
@@ -15,5 +21,9 @@
         
         <button class="btn btn-light" type="submit">Create</button>
     </form>
+</div>
+</div>
+{% include 'side_bar_community_component.html' with communities=communities %}
+</div>
 </div>
 {% endblock content %}

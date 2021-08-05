@@ -75,6 +75,11 @@ class CommunityCreateView(CreateView):
     template_name = 'community/community_create.html'
     fields = ["name","topic", "description"]
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(CommunityCreateView, self).get_context_data( *args, **kwargs)
+        communities = Community.objects.all()
+        return context
+
     def form_valid(self, form): # can be used for LoginRequiredMixin
         form.instance.author = self.request.user
         return super().form_valid(form)
