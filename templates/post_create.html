@@ -6,29 +6,39 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <link rel="stylesheet" href="{% static 'css/forms.css' %}">
 <link rel="stylesheet" href="{% static 'css/post_create.css' %}">
-<div class="container post form-bottom-margin">
+<div class="container bottom-margin">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-6">
+            {% include 'mini_nav.html' %}
 
-    <h1 class="border-bottom-utl">New Post</h1>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% for field in form %}
-            {{ field.errors }}
-            {% if field.label == "Image" %}
-                <label for="{{ form.image.id_for_label }}">Image (optional):</label>
-                {{ field }}
+            <div class="post" style="margin: 1rem 1.9rem;">
 
-            {% elif field.label != "Image" %}
-                {{ field.label_tag }} {{ field }}
-                
-            {% endif %}
+                <h1 class="border-bottom-utl">New Post</h1>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    {{ field.errors }}
+                    {% if field.label == "Image" %}
+                    <label for="{{ form.image.id_for_label }}">Image (optional):</label>
+                    {{ field }}
 
-        {% endfor %}
-        
-        <button class="btn btn-light" type="submit">Create</button>
-    </form>
+                    {% elif field.label != "Image" %}
+                    {{ field.label_tag }} {{ field }}
+
+                    {% endif %}
+
+                    {% endfor %}
+
+                    <button class="btn btn-light" type="submit">Create</button>
+                </form>
+            </div>
+        </div>
+        {% include 'side_bar_community_component.html' with communities=communities %}
+    </div>
 </div>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('#id_community').select2();
     });
 </script>

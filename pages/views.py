@@ -255,6 +255,12 @@ class PostCreateView(CreateView):
     template_name = 'post_create.html'
     fields = ["community","title", "body", "image"]
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(PostCreateView, self).get_context_data(*args, **kwargs)
+        # gets comment model and create a list by likes starting with highest number
+        context['communities'] = Post.community_all.all()
+        return context
+
     def form_valid(self, form): # can be used for LoginRequiredMixin
         form.instance.author = self.request.user
         return super().form_valid(form)
