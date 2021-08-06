@@ -41,15 +41,17 @@
         width: 50%;
     }
 }
+
 @media(min-width:768px){
     .delete-container{
-        width: 75%;
+        width: 100%;
         margin: 0 auto;
     }
 }
+
 @media(min-width:1024px){
     .delete-container{
-        width:50%;
+        width:90%;
     }
 }
     
@@ -187,7 +189,9 @@ body{
     color: white;
     margin: 5% 0;
     border: 1px solid #ffffff45;
+    border-radius: 10px;
 }
+
 .vote-text{
     margin: 0 5%;
 }

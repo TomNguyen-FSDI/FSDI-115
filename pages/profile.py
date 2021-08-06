@@ -4,7 +4,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import (
     CreateView, DetailView, FormView, ListView, UpdateView,DeleteView
     )
-from .models import Profile
+from .models import Profile, Community
 
 def profileDetailView(request, pk): # note that pk needs to be the same name as <int:pk>
     context = {}
@@ -14,6 +14,7 @@ def profileDetailView(request, pk): # note that pk needs to be the same name as 
     except Profile.DoesNotExist:
         raise Http404("Profile does not exist")
     context['profile'] = profile
+    context['communities'] = Community.objects.all()
     return render(request, 'profile/profile_detail.html', context)
 
 

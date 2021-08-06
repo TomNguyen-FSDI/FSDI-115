@@ -2,7 +2,12 @@
 {% block title %}Delete Post{% endblock title %}
 
 {% block content %}
-<div class="bg-light p-5 rounded mt-5">
+<div class="container bottom-margin">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-6">
+            {% include 'mini_nav.html' %}
+            <div class="bg-light p-5 rounded mt-5 delete-container">
     <h1  class="border-bottom-utl">Delete Post</h1>
     <form action="" method="post">
         {% csrf_token %}
@@ -10,5 +15,9 @@
         <button  class="btn btn-danger mt-3" type="submit" >Confirm</button>
         <a type="button" class="btn btn-primary mt-3 ms-3 text-light" href="{% url 'community_detail' community.pk %}">Back</a>
     </form>
+</div>
+</div>
+{% include 'side_bar_community_component.html' with communities=communities %}
+</div>
 </div>
 {% endblock content %}

@@ -96,6 +96,11 @@ class CommunityDeleteView(DeleteView):
     template_name = "community/community_delete.html"
     success_url = reverse_lazy("community_list")
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(CommunityDeleteView, self).get_context_data( *args, **kwargs)
+        context['communities'] = Community.objects.all()
+        return context
+
     def form_valid(self, form): # can be used for LoginRequiredMixin
         form.instance.author = self.request.user
         return super().form_valid(form)

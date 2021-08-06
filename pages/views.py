@@ -316,6 +316,12 @@ class PostDeleteView(DeleteView):
     template_name = "post_delete.html"
     success_url = reverse_lazy("home")
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(PostDeleteView, self).get_context_data(*args, **kwargs)
+        # gets comment model and create a list by likes starting with highest number
+        context['communities'] = Post.community_all.all()
+        return context
+
     def form_valid(self, form): # can be used for LoginRequiredMixin
         form.instance.author = self.request.user
         return super().form_valid(form)

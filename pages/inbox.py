@@ -46,6 +46,12 @@ class InboxCreateView(CreateView):
     template_name = 'inbox/inbox_create.html'
     fields = ["receiver","subject", "message"]
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(InboxCreateView, self).get_context_data(*args, **kwargs)
+        communities = Community.objects.all()
+        context['communities'] = communities
+        return context
+
     def form_valid(self, form): # can be used for LoginRequiredMixin
         form.instance.sender = self.request.user
         return super().form_valid(form)

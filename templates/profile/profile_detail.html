@@ -4,11 +4,15 @@
 {% block title %}{{ profile.user.username }}{% endblock title %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/profile.css' %}">
-{% include 'mini_nav.html' %}
+<div class="container bottom-margin">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-6">
+            {% include 'mini_nav.html' %}
 {% csrf_token %}
 
 
-            <div class="post-detail rounded shadow bottom-margin">
+            <div class="post-detail shadow bottom-margin">
 
                     <div class="card" >
                         <h6 class="card-group">Profile Picture: 
@@ -39,7 +43,10 @@
                         <a class="btn btn-light comment-btn" href="{% url 'password_change' %}">Change Password</a>
 
             </div>
-
+        </div>
+        {% include 'side_bar_community_component.html' with communities=communities %}
+    </div>
+</div>
 
 
 
