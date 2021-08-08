@@ -294,8 +294,9 @@ class CommentUpdateView(UpdateView):
 
     def get_success_url(self):
         # capture that 'pk' as postid and pass it to 'reverse_lazy()' function
-        postid=self.kwargs['pk']
+        postid=self.kwargs['id']
         return reverse_lazy('post_detail', args=[postid])
+
 
 class CommentDeleteView(DeleteView):
     model = Comment
